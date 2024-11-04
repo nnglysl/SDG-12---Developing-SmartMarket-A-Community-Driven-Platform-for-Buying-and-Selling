@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apparel Store</title>
+    <link rel="stylesheet" href="/home/home.css" />
+    <link
+      href="https://fonts.google.com/specimen/Nanum+Gothic"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="/css/nav.css" />
+  </head>
+  <body>
+    <header>
+      <img src="/imgs/mainpagelogo.png" alt="Logo" class="logo" />
+
+      <ul class="nav">
+        <li><a href="/home/home.html">HOME</a></li>
+        <li><a href="/shop/school_supplies/school supplies.html">SHOP</a></li>
+      </ul>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="product-search"
+          class="search-bar"
+          name="query"
+          placeholder="Search..."
+        />
+        <button type="submit" class="search-button">
+          <i class="bx bx-search"></i>
+        </button>
+        <ul id="dropdown-results" class="dropdown-results"></ul>
+      </div>
+      <div class="result-container">
+        <ul id="results"></ul>
+      </div>
+      <script src="/javascript/searchbar.js"></script>
+
+      <div class="navicon">
+        <a href="/profile/profile.html"><i class="bx bx-user"></i></a>
+        <a href="#"><i class="bx bx-cart"></i></a>
+      </div>
+    </header>
+
+    <section id="home" class="banner">
+      <h1>Preloved and</h1>
+      <p>Brand New Items</p>
+
+      <a href="/shop/school_supplies/school supplies.html" class="btn"
+        >Shop Now <i class="bx bx-right-arrow-alt"></i
+      ></a>
+    </section>
+
+    <section id="shop" class="shop-section">
+      <div class="products">
+        <!-- First Row of Products -->
+        <div class="product">
+          <a href="/items_uniforms/peunif/peunif.html">
+            <img src="/imgs/uniforms/peunif.png" alt="PE Uniform" />
+            <h3>PE Uniform Set</h3>
+            <p>₱ 500.00-₱ 650.00</p>
+          </a>
+        </div>
+        <div class="product">
+          <a href="/items_uniforms/collarpin/collarpin.html">
+            <img src="/imgs/uniforms/collarpin.jfif" alt="Collar Pin" />
+            <h3>University Collar Pin</h3>
+            <p>₱ 80.00</p>
+          </a>
+        </div>
+        <div class="product">
+          <a href="/items/calcu/calcu.html">
+            <img src="/imgs/school supplies/calcu.png" alt="Calculator" />
+            <h3>Casio Scientific Calculator</h3>
+            <p>₱ 500.00</p>
+          </a>
+        </div>
+        <div class="product">
+          <a href="/items_deptshirt/cics/cics.html">
+            <img
+              src="/imgs/department shirts/deptshirt.png"
+              alt="CICS Department Shirt"
+            />
+            <h3>CICS Department Shirt</h3>
+            <p>₱ 500.00</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
