@@ -41,7 +41,7 @@ form input{
     border-radius: 20px;
     background: #e4e4e4;
 }
-button{
+.login-btn input{
     font-size: 16px;
     margin-top: 30px;
     margin-bottom: 20px;

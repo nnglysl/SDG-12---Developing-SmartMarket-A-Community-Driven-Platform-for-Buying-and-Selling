@@ -18,8 +18,8 @@
             <input type = "text" name="firstName" placeholder = " Fist Name" required>
             <input type = "text" name="lastName" placeholder = "Last Name" required>
             <input type = "email" name="email" placeholder = "Email" required>
-            <input type = "password" name="password" placeholder = "Password" required>
-            <input type = "password" name="confirmPassword" placeholder = "Confirm Password" required>
+            <input type = "password" name="password" placeholder = "Password" required minlength="8" maxlength="20" placeholder="8 characters" >
+            <input type = "password" name="confirmPassword" placeholder = "Confirm Password" required minlength="8" maxlength="20" placeholder="8 characters" >
         <input type="submit" class="btn" value="Create Account" name="createAccount">
         </form>
     <div class = "member">
