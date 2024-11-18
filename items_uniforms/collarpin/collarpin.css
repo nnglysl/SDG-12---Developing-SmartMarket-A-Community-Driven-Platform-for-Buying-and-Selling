@@ -1,0 +1,324 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+body {
+    background-color: #fff4f4; /* Replace this with any color you prefer */
+}
+
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(105vh - 105px); 
+    padding: 80px; 
+    padding-left: 400px;
+}
+
+/* Main product-page */
+.product-page {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+    max-width: 1200px; 
+    width: 100%;
+}
+
+/* Product-details */
+.product-details {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border: 0px solid #ddd; 
+    border-radius: 0px; 
+    background-color: #fff; /*bg color ng container*/
+    width: 100%; 
+}
+
+/* Product image */
+.product-image-gallery {
+    position: relative;
+    width: 100%; 
+    max-width: 400px; 
+    margin: auto; 
+    display: flex;
+    align-items: center;
+}
+
+.main-image {
+    display: flex;
+    justify-content: center; 
+
+}
+
+.slider-image {
+    display: none; 
+    max-width: 100%; 
+}
+
+.slider-image.active {
+    display: block; 
+}
+
+
+.arrow-container {
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 100%; 
+    display: flex;
+    justify-content: space-between; 
+}
+
+.arrow {
+    background: rgba(82, 82, 82, 0.24); /* Transparent bg for arrows */
+    font-size: 1.2em; /* Size of the arrow */
+    cursor: pointer; 
+    width: 30px; /* width for the button */
+    height: 40px; /* height for the button */
+    color: #ffffff; 
+    border: 2px solid #aaaaaa; 
+    outline: none;
+    z-index: 10; 
+}
+
+.left-arrow {
+    margin-left: 0px; 
+}
+
+.right-arrow {
+    margin-right: 0px; 
+}
+
+.product-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main product image */
+.main-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Product title and price */
+.product-title {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 22px;
+    color: #d9534f;
+    font-weight: bold;
+    margin-bottom: 100px;
+}
+
+/* Quantity selector */
+.quantity-selector {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.quantity-selector h4 {
+    margin: 0;
+    font-size: 15px;
+    color: #000000;
+    padding-bottom: 15px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 0px solid #ddd;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.quantity-selector input[type="number"] {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    padding: 4px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    border: 1px solid #ddd;
+}
+
+/* Add to cart and Buy Now buttons */
+.add-to-cart {
+    background-color: #c4616196; 
+    color: white;
+    border: 2px solid #920000f3; 
+    cursor: pointer;
+    color: #920000f3;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.buy-now {
+    background-color: rgb(130, 0, 0);
+    border: 2px solid rgb(130, 0, 0); 
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Seller Info Section */
+.seller-info-section {
+    width: 100%;
+    padding: 20px;
+    border: 0px solid #ddd; 
+    border-radius: 0px;
+    background-color: #ffffff; /*bg color ng container*/
+    margin-top: 30px; 
+}
+
+/* Seller info container */
+.seller-info {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+}
+
+.seller-logo {
+    max-width: 100px;
+    height: 50px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-right: 20px; 
+}
+
+.seller-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.seller-name {
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+/* Seller buttons */
+.seller-buttons {
+    display: flex;
+    gap: 10px; 
+}
+
+.chat-now {
+    background-color: #c4616196; 
+    color: #920000f3;
+    padding: 8px 16px;
+    font-size: 10px;
+    border-radius: 4px;
+    border: 2px solid #920000f3; 
+    cursor: pointer;
+}
+
+.view-shop {
+    background-color: #ffffff; 
+    color: rgb(102, 102, 102);
+    padding: 8px 16px;
+    font-size: 10px;
+    border-radius: 4px;
+    border: 2px solid  rgb(102, 102, 102); 
+    cursor: pointer;
+}
+
+/* Specification */
+.product-specifications {
+    border: 0px solid #ddd; 
+    border-radius: 0px;
+    background-color: #ffffff; /*bg color ng container*/
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.product-specifications h2 {
+    margin-top: 0;
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+
+.product-specifications ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-specifications li {
+    padding: 5px 0;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.spec-label {
+    width: 40%;
+    font-weight: normal;
+    color: #a0a0a0; /*font color ng specification*/
+}
+
+.spec-value {
+    width: 80%; /* distance sa specification */
+}
+
+/* Product Description */
+.product-description {
+    border: 0px solid #ddd; 
+    border-radius: 0px;
+    background-color: #ffffff; /*bg color ng container*/
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.product-description h2 {
+    font-size: 15px; 
+    padding-bottom: 20px;
+}
+
+.product-description p {
+    font-size: 12px; 
+    line-height: 1.6; 
+    color: #000000; 
+}

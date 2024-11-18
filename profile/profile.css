@@ -1,0 +1,172 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffeef2; /* Super light pink background */
+    margin: 0;
+    padding: 20px;
+}
+@import url('https://fonts.google.com/specimen/Nanum+Gothic');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+.submenu a {
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+  
+.submenu a:hover {
+    background-color:rgba(140, 0, 0, 0.829);
+}
+  
+/* Show the submenu on hover */
+.bx-menu:hover + .submenu,
+.submenu:hover {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 30;
+    justify-content: center;
+}
+
+.grid-item {
+    position: relative;
+  }
+
+  
+.profile-container {
+    max-width: 1000px;
+    margin: 150px auto;
+    text-align: center;
+    background: #ffffff; /* White background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+}
+
+/* Profile Header */
+.profile-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-header h2 {
+    margin: 5px 0;
+    font-size: 1.5rem;
+    color: #333333; /* Dark gray for headings */
+}
+
+.profile-header p {
+    color: #666666; /* Medium gray for text */
+    font-size: 0.9rem;
+}
+.profile-pic{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.profile-info p{
+    font-size: 17px;
+}
+/* Edit Profile Button */
+.edit-profile {
+    margin-top: 25px;
+    margin-bottom: 9px;
+}
+
+.edit-profile a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: 30px;
+    width: 20%;
+    background: #333333; /* Dark gray button background */
+    box-shadow: 0 5px 10px rgba(51, 51, 51, 0.2); /* Soft shadow */
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.edit-profile a:hover {
+    background: #555555; /* Lighter gray on hover */
+    box-shadow: 0 8px 15px rgba(51, 51, 51, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Account Details */
+.account-details {
+    display: flex;
+    font-size: 1rem;
+    justify-content:  center;
+    margin-bottom: 16px;
+}
+
+.account-details div {
+    background: #f8f8f8; /* Very light gray for contrast */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    width: 50%;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #333333; /* Dark gray for text */
+}
+
+.account-details div:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Profile Navigation */
+.profile-nav {
+    display: flex;                /* Use flexbox for alignment */
+    justify-content: center;      /* Center items horizontally */
+    align-items: center;          /* Center items vertically (if needed) */
+    flex-direction: column;       /* Stack items vertically */
+    text-align: center;           /* Center text */
+         /* Center the div itself */
+}
+
+.profile-nav a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #333333; /* Dark gray for links */
+    display: block;
+    padding: 12px 20px;
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;     
+    background: #ffffff; /* White background for each nav item */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-nav a:hover {
+    background: #eaeaea; /* Light gray on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
