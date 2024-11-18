@@ -1,59 +1,13 @@
 <?php 
-include_once('dbprofile.php'); 
-// Configuration
-$db_host = 'localhost';
-$db_username = 'root';
-$db_password = '';
-$db_name = 'smartmarket';
+require_once 'dbprofile.php';
 
-// Create connection
-$conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Create an instance of EditProfile
+$editProfile = new EditProfile();
 
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
-    // Check if 'name' is set and not empty
-    if (isset($_POST['name']) && !empty(trim($_POST['name']))) {
-        // Get the form data
-        $name = explode(' ', trim($_POST['name']), 2);
-        $firstName = htmlspecialchars($name[0]);
-        $lastName = isset($name[1]) ? htmlspecialchars($name[1]) : ''; // Handle case where last name is not provided
-    } else {
-        // Handle the error for name not provided
-        die("Name is required.");
-    }
+// Fetch the buyer information for display
+$buyer = $editProfile->getBuyer(); // Use the getter method
 
-    $username = htmlspecialchars($_POST['username']);
-    $gender = htmlspecialchars($_POST['gender']);
-    $phone = htmlspecialchars($_POST['phone']);
-    $email = htmlspecialchars($_POST['email']);
-
-    // Prepare an SQL statement
-    if ($stmt = $conn->prepare("UPDATE buyer SET first_name = ?, last_name = ?, username = ?, gender = ?, phone_number = ?, email = ? WHERE buyer_id = ?")) {
-        
-        // Assuming you have the user ID stored in a session
-        $buyerId = $_SESSION['buyer_id']; // Make sure this session variable is set
-
-        // Bind parameters
-        $stmt->bind_param("ssssssi", $firstName, $lastName, $username, $gender, $phone, $email, $buyerId);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            $message = "Profile updated successfully.";
-        } else {
-            $message = "Error updating profile: " . $stmt->error;
-        }
-
-        // Close the statement
-        $stmt->close();
-    } else {
-        $message = "Error preparing statement: " . $conn->error;
-    }
-}
-
+$message = ''; // Initialize message variable
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,13 @@
 <?php
-include('dbprofile.php');
+require_once '../dbconnection/dbcon.php';
+require_once 'dbprofile.php'; 
+
+$profile = new EditProfile();
+$buyer = $profile->getBuyer();
+
+$message = $profile->updateProfile();
+
+
 ?>
 
 <!DOCTYPE html>

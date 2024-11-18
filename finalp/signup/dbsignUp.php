@@ -1,44 +1,45 @@
 <?php
-session_start(); // Start the session
-require_once('../dbconnection/dbcon.php');
+class UserRegistration {
+    private $conn;
 
+    // Constructor to initialize the database connection
+    public function __construct($dbConnection) {
+        $this->conn = $dbConnection;
+    }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["createAccount"])) {
-    $userName = $_POST["userName"];
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
-    //check the length of the password
-    // Check if passwords match
-    if ($password != $confirmPassword) {
-        echo "Passwords do not match";
-    } else {
+    // Method to create a new account
+    public function createAccount($userName, $firstName, $lastName, $email, $password, $confirmPassword) {
+        // Check if passwords match
+        if ($password !== $confirmPassword) {
+            return "Passwords do not match";
+        }
+
         // Hash the password before storing
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $hashed_confirm_password = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
         // Query to check if email already exists
-        $query = "SELECT * FROM buyer WHERE email = '$email'";
-        $result = $conn->query($query);
+        $query = "SELECT * FROM buyer WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            echo "Email already exists";
+            return "Email already exists";
         } else {
-            
             // Insert user data into the database
-            $query = "INSERT INTO buyer (userName,first_name,last_name ,email, password, confirm_password) VALUES ('$userName','$firstName' ,'$lastName', '$email','$hashed_password', '$hashed_confirm_password')";
-            $result = $conn->query($query);
+            $query = "INSERT INTO buyer (userName, first_name, last_name, email, password, confirm_password) VALUES (?, ?, ?, ?, ?,?)";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("sssss", $userName, $firstName, $lastName, $email, $hashed_password,$hashed_confirm_password);
+            $result = $stmt->execute();
 
             if ($result) {
-                echo "Registration Successful";
-                header("Location: ../login/login.html");
+                return "Registration Successful";
             } else {
-                echo "Registration failed";
+                return "Registration failed: " . $this->conn->error;
             }
         }
     }
 }
-
 ?>
