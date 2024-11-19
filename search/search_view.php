@@ -57,22 +57,23 @@ function fetchProducts($search_query, $sort, $condition, $min_price, $max_price)
         <li><a href="/final/shop/shop.php">SHOP</a></li>
     </ul>
 
-    <!-- Search Bar Container -->
     <div class="search-container">
-    <form method="post" action="/final/home/home.php">
-        <label for="search">Search</label>
-        <div class="search-bar-wrapper">
-            <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-            <button type="submit" name="submit" class="search-button">
-                <i class="bx bx-search"></i>
-            </button>
+            <form method="post" action="/final/home/home.php">
+                <div class="search-bar-wrapper">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
+                    <button type="submit" name="submit" class="search-button">
+                        <i class="bx bx-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Result Container: Initially empty, shown only when there are results -->
+            <?php if (!empty($results)) { ?>
+                <div class="result-container">
+                    <?php echo $results; ?>
+                </div>
+            <?php } ?>
         </div>
-    </form>
-    <!-- Result Container -->
-    <div class="result-container">
-        <?php if (!empty($results)) { echo $results; } ?>
-    </div>
-    </div>
 
     <div class="navicon">
         <a href="/profile/profile.php"><i class="bx bx-user"></i></a>

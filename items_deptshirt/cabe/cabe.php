@@ -1,6 +1,7 @@
 <?php
 
-include '../db/dbconn.php';
+  include '../../db/dbconn.php';
+  include '../../php/search_bar.php';
 
 ?>
 
@@ -10,38 +11,39 @@ include '../db/dbconn.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CABE Product Page</title>
-    <link rel="stylesheet" href="/finalp/items_deptshirt/cabe/cabe.css" />
+    <link rel="stylesheet" href="/final/items_deptshirt/cabe/cabe.css" />
     <link href="https://fonts.google.com/specimen/Nanum+Gothic" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
-    <link rel="stylesheet" href="/finalp/css/nav.css" />
+    <link rel="stylesheet" href="/final/css/nav.css" />
   </head>
   <body>
     <header>
-      <img src="/finalp/imgs/mainpagelogo.png" alt="Logo" class="logo" />
+      <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
       <ul class="nav">
-        <li><a href="/finalp/home/home.php">HOME</a></li>
-        <li><a href="/finalp/shop/shop.php">SHOP</a></li>
+        <li><a href="/final/home/home.php">HOME</a></li>
+        <li><a href="/final/shop/shop.php">SHOP</a></li>
       </ul>
       
-      <!-- Search Bar Container -->
-    <div class="search-container">
-    <form method="post" action="/finalp/home/home.php">
-        <label for="search">Search</label>
-        <div class="search-bar-wrapper">
-            <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-            <button type="submit" name="submit" class="search-button">
-                <i class="bx bx-search"></i>
-            </button>
+      <div class="search-container">
+            <form method="post" action="/final/home/home.php">
+                <div class="search-bar-wrapper">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
+                    <button type="submit" name="submit" class="search-button">
+                        <i class="bx bx-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Result Container: Initially empty, shown only when there are results -->
+            <?php if (!empty($results)) { ?>
+                <div class="result-container">
+                    <?php echo $results; ?>
+                </div>
+            <?php } ?>
         </div>
-    </form>
-    <!-- Result Container -->
-    <div class="result-container">
-        <?php if (!empty($results)) { echo $results; } ?>
-    </div>
-    </div>
       
       <div class="navicon">
-        <a href="/finalp/profile/profile.php"><i class="bx bx-user"></i></a>
+        <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
         <a href="#"><i class="bx bx-cart"></i></a>
       </div>
     </header>
@@ -127,7 +129,6 @@ include '../db/dbconn.php';
             </div>
           </div>
         </section>
-
 
         <!-- Product Description -->
         <section class="product-description">

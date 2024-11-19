@@ -1,6 +1,7 @@
 <?php
 
-include '../db/dbconn.php';
+  include '../../db/dbconn.php';
+  include '../../php/search_bar.php';
 
 ?>
 
@@ -22,23 +23,24 @@ include '../db/dbconn.php';
         <li><a href="/final/home/home.php">HOME</a></li>
         <li><a href="/final/shop/shop.php">SHOP</a></li>
       </ul>
-      <!-- Search Bar Container -->
-    <div class="search-container">
-    <form method="post" action="/finalp/home/home.php">
-        <label for="search">Search</label>
-        <div class="search-bar-wrapper">
-            <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-            <button type="submit" name="submit" class="search-button">
-                <i class="bx bx-search"></i>
-            </button>
+
+      <div class="search-container">
+            <form method="post" action="/final/home/home.php">
+                <div class="search-bar-wrapper">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
+                    <button type="submit" name="submit" class="search-button">
+                        <i class="bx bx-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Result Container: Initially empty, shown only when there are results -->
+            <?php if (!empty($results)) { ?>
+                <div class="result-container">
+                    <?php echo $results; ?>
+                </div>
+            <?php } ?>
         </div>
-    </form>
-    <!-- Result Container -->
-    <div class="result-container">
-        <?php if (!empty($results)) { echo $results; } ?>
-    </div>
-    </div>
-      
 
       <div class="navicon">
         <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
@@ -54,7 +56,7 @@ include '../db/dbconn.php';
                 <img
                     id="mainImage1"
                     class="slider-image active"
-                    src="/finalp/imgs/department shirts/cas.png"
+                    src="/final/imgs/department shirts/cas.png"
                     alt="Product Image"
                 />
                 </div>

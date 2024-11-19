@@ -1,6 +1,7 @@
 <?php
 
-include '../db/dbconn.php';
+    include '../db/dbconn.php'; // Include your database connection
+    include '../php/search_bar.php';
 
 ?>
 
@@ -18,15 +19,28 @@ include '../db/dbconn.php';
 <body>
     
     <header>
-        <img src="/finalp/imgs/mainpagelogo.png" alt="Logo" class="logo">
+        <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo">
         <ul class="nav">
             <li><a href="/final/home/home.php">HOME</a></li>
             <li><a href="/final/shop/shop.php">SHOP</a></li>
         </ul>
-        <!-- Search Bar -->
+
         <div class="search-container">
-            <input type="text" placeholder="Search" class="search-bar">
-            <button type="submit" class="search-button"><i class='bx bx-search'></i></button>
+            <form method="post" action="/final/home/home.php">
+                <div class="search-bar-wrapper">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
+                    <button type="submit" name="submit" class="search-button">
+                        <i class="bx bx-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Result Container: Initially empty, shown only when there are results -->
+            <?php if (!empty($results)) { ?>
+                <div class="result-container">
+                    <?php echo $results; ?>
+                </div>
+            <?php } ?>
         </div>
 
         <div class="navicon">
