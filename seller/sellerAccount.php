@@ -9,34 +9,22 @@
 </head>
 <body>
 <header>
-    <!-- Back Button -->
-    <div class="back-button">
-        <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
-    </div>
-
 
     <img src="/imgs/mainpagelogo.png" alt="Logo" class="logo">
-
-
     <ul class="nav">
         <li><a href="/home/home.html">HOME</a></li>
         <li><a href="/shop/school_supplies/school supplies.html">MANAGE SHOP</a></li>
     </ul>
-
-
     <!-- Search Bar -->
     <div class="search-container">
         <input type="text" placeholder="Search" class="search-bar">
         <button type="submit" class="search-button"><i class='bx bx-search'></i></button>
     </div>
-
-
     <div class="navicon">
         <a href="/profile/profile.html"><i class='bx bx-user'></i></a>
         <a href="#"><i class='bx bx-cart'></i></a>
     </div>
 </header>
-
 
 <div class="profile-container">
     <div class="profile-header">
@@ -54,12 +42,9 @@
         </div>
     </div>
 
-
     <div class="profile-nav">
         <a href="createProduct.html"><i class="fas fa-box"></i> Add Product </a>
     </div>
-
-
     <!-- Account Details Section -->
     <div class="account-details">
         <div class="orders">

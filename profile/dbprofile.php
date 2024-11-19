@@ -1,11 +1,11 @@
 <?php
-session_start(); // Start the session to access session variables
-require_once('../dbconnection/dbcon.php'); // Include your database connection file
+session_start(); 
+require_once('../dbconnection/dbcon.php'); 
 
 class EditProfile
 {
     private $buyer_id;
-    private $buyer; // Keep this private
+    private $buyer; 
     private $db;
 
     public function __construct()
@@ -25,7 +25,7 @@ class EditProfile
         $conn = $this->db->getConnection(); // Get the database connection
 
         // Fetch user data from the database
-        $sql = $conn->prepare("SELECT * FROM buyers WHERE buyer_id = ?");
+        $sql = $conn->prepare("SELECT * FROM buyer WHERE buyer_id = ?");
         $sql->bind_param("i", $this->buyer_id);
         $sql->execute();
         $result = $sql->get_result();
@@ -72,7 +72,7 @@ class EditProfile
             $conn = $this->db->getConnection();
 
             // Prepare an SQL statement
-            if ($stmt = $conn->prepare("UPDATE buyers SET first_name = ?, last_name = ?, username = ?, gender = ?, phone_number = ?, email = ? WHERE buyer_id = ?")) {
+            if ($stmt = $conn->prepare("UPDATE buyer SET first_name = ?, last_name = ?, username = ?, gender = ?, phone_number = ?, email = ? WHERE buyer_id = ?")) {
 
                 // Bind parameters
                 $stmt->bind_param("ssssssi", $firstName, $lastName, $username, $gender, $phone, $email, $this->buyer_id);
