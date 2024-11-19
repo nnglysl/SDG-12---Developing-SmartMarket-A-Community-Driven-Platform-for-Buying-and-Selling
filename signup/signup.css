@@ -1,0 +1,71 @@
+@import url('https://fonts.google.com/specimen/Nanum+Gothic');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background-image: url(bg1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.logo {
+    width: 160px; 
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.signup{
+    width: 400px;
+    padding: 30px;
+    margin: 100px auto;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.8);
+    margin-top: 20px;
+}
+h1{
+    font-size: 30px;
+    color: black;
+    margin-bottom: 40px;
+}
+form input{
+    width: 92%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+}
+.login-btn input{
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 90%;
+    color: #fff;
+    cursor: pointer;
+    background: rgb(0, 0, 0);
+}
+button:hover{
+    background: rgba(200, 16, 16, 0.977);
+}
+input:focus{
+    border: 1px solid rgb(192, 192, 192)
+}
+.member{
+    font-size: 12px;
+    margin-top: 8px;
+    color: #636363;
+}
+.member a{
+    color: rgb(17, 107, 143);
+    text-decoration: none;
+}

@@ -1,3 +1,4 @@
+
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
@@ -25,15 +26,14 @@ body {
     text-decoration: none;
     color: black;
     justify-content: center;
-
     padding-left: 20px;
     padding-right: 20px;
 }
-  
+
 .submenu a:hover {
     background-color:rgba(140, 0, 0, 0.829);
 }
-  
+
 /* Show the submenu on hover */
 .bx-menu:hover + .submenu,
 .submenu:hover {
@@ -51,9 +51,8 @@ body {
 
 .grid-item {
     position: relative;
-  }
+}
 
-  
 .profile-container {
     max-width: 1000px;
     margin: 150px auto;
@@ -63,7 +62,6 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     padding: 20px;
 }
-
 /* Profile Header */
 .profile-header img {
     width: 120px;
@@ -115,7 +113,6 @@ body {
     box-shadow: 0 8px 15px rgba(51, 51, 51, 0.3);
     transform: translateY(-2px);
 }
-
 /* Account Details */
 .account-details {
     display: flex;
@@ -139,7 +136,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
-
 /* Profile Navigation */
 .profile-nav {
     display: flex;                /* Use flexbox for alignment */
@@ -158,7 +154,7 @@ body {
     padding: 12px 20px;
     text-align: center;
     width: 50%;
-    margin: 10px auto;     
+    margin: 10px auto;    
     background: #ffffff; /* White background for each nav item */
     border-radius: 10px;
     transition: all 0.3s ease;
