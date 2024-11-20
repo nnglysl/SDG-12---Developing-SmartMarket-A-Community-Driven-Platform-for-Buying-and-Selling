@@ -16,38 +16,7 @@
     <link rel="stylesheet" href="../css/nav.css" />
   </head>
   <body>
-    <header>
-      <img src="/imgs/mainpagelogo.png" alt="Logo" class="logo" />
-
-      <ul class="nav">
-        <li><a href="/home/home.html">HOME</a></li>
-        <li><a href="/shop/school_supplies/school supplies.html">SHOP</a></li>
-      </ul>
-
-      <!-- Search Bar -->
-      <div class="search-container">
-        <input
-          type="text"
-          id="product-search"
-          class="search-bar"
-          name="query"
-          placeholder="Search..."
-        />
-        <button type="submit" class="search-button">
-          <i class="bx bx-search"></i>
-        </button>
-        <ul id="dropdown-results" class="dropdown-results"></ul>
-      </div>
-      <div class="result-container">
-        <ul id="results"></ul>
-      </div>
-      <script src="/javascript/searchbar.js"></script>
-
-      <div class="navicon">
-        <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
-        <a href="#"><i class="bx bx-cart"></i></a>
-      </div>
-    </header>
+  <?php include('../header/header.php'); ?>
 
     <section id="home" class="banner">
       <h1>Preloved and</h1>
@@ -62,30 +31,30 @@
       <div class="products">
         <!-- First Row of Products -->
         <div class="product">
-          <a href="/items_uniforms/peunif/peunif.html">
-            <img src="/imgs/uniforms/peunif.png" alt="PE Uniform" />
+          <a href="../items_uniforms/peunif/peunif.html">
+            <img src="../imgs/uniforms/peunif.png" alt="PE Uniform" />
             <h3>PE Uniform Set</h3>
             <p>₱ 500.00-₱ 650.00</p>
           </a>
         </div>
         <div class="product">
-          <a href="/items_uniforms/collarpin/collarpin.html">
-            <img src="/imgs/uniforms/collarpin.jfif" alt="Collar Pin" />
+          <a href="..items_uniforms/collarpin/collarpin.html">
+            <img src="../imgs/uniforms/collarpin.jfif" alt="Collar Pin" />
             <h3>University Collar Pin</h3>
             <p>₱ 80.00</p>
           </a>
         </div>
         <div class="product">
-          <a href="/items/calcu/calcu.html">
-            <img src="/imgs/school supplies/calcu.png" alt="Calculator" />
+          <a href="../items/calcu/calcu.html">
+            <img src="../imgs/school supplies/calcu.png" alt="Calculator" />
             <h3>Casio Scientific Calculator</h3>
             <p>₱ 500.00</p>
           </a>
         </div>
         <div class="product">
-          <a href="/items_deptshirt/cics/cics.html">
+          <a href="../items_deptshirt/cics/cics.html">
             <img
-              src="/imgs/department shirts/deptshirt.png"
+              src="../imgs/department shirts/deptshirt.png"
               alt="CICS Department Shirt"
             />
             <h3>CICS Department Shirt</h3>

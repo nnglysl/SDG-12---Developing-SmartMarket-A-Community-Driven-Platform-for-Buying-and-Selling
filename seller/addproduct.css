@@ -1,17 +1,4 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fdf2f5;
-    margin: 0;
-    padding: 0; /* Remove any default padding */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Full viewport height */
-}
 
-
-/* Back Button Styling */
 .back-button {
     position: absolute;
     top: 20px;

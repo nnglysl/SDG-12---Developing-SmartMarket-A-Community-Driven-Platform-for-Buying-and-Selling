@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href = https://fonts.google.com/specimen/Nanum+Gothic rel = "stylesheet">
 </head>
 <body>
-    <img src="logo.png" alt="Logo" class="logo">
+    <img src="../imgs/logo.png" alt="Logo" class="logo">
     <div class = "signup">
         <h1>Create an account</h1>
         <form action = "dbsignUp.php" method="post">
