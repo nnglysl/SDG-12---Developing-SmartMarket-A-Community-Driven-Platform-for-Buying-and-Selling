@@ -1,13 +1,11 @@
 <?php 
 require_once 'dbprofile.php';
 
-// Create an instance of EditProfile
 $editProfile = new EditProfile();
+$message = $editProfile->updateProfile();
+$buyer = $editProfile->getBuyer(); 
 
-// Fetch the buyer information for display
-$buyer = $editProfile->getBuyer(); // Use the getter method
 
-$message = ''; // Initialize message variable
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +15,9 @@ $message = ''; // Initialize message variable
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="editprofile.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="editprofile.css">
+    <link rel="stylesheet" href="../css/nav.css" />
 </head>
 <body>
 
@@ -75,7 +75,7 @@ $message = ''; // Initialize message variable
             <button type="button" class="edit-btn" onclick="editField('email')"><i class="fa-solid fa-pen-to-square"></i></button>
         </div>
         <div class="form-buttons">
-            <a href="profile.html" class="back-button">Back</a>
+            <a href="profile.php" class="back-button">Back</a>
             <button type="submit" name="save">Save Changes</button>
         </div>
     </form>

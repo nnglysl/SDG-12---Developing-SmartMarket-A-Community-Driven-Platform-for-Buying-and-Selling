@@ -170,3 +170,19 @@ body {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
 }
+.switch-account {
+    margin-top: 20px;
+    text-align: center;
+}
+.switch-account button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.switch-account button:hover {
+    background-color: #0056b3;
+}

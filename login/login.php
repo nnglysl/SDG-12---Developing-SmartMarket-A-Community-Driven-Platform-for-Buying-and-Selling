@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
     // Attempt to log in the user
     if ($userLogin->login($email, $password)) {
         // Redirect to the home page on successful login
-        header("Location: ../home/home.html");
+        header("Location: ../home/home.php");
         exit;
     } else {
         // Login failed: incorrect email or password
