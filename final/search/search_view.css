@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    background-color: #fff4f4;
+    padding-top: 150px; /* Gap between nav and filter container */
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0;
+    padding: 5px;
+    position: relative;
+    margin-left: 380px;  /* Moves the text 20px from the left */
+}
+
+.filter-bar {
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Space between filter items */
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 218, 218);
+    border: 1px solid rgb(255, 218, 218);
+    border-radius: 0px;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 10px;
+    width: 60%;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flexbox container for Condition and Clear All button */
+.condition-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style for dropdown menus */
+select {
+    padding: 10px 40px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    width: auto; /* Allow the dropdown to fit its content */
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropdown-toggle {
+    padding: 10px 40px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    width: auto;
+}
+
+/* Dropdown content */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+    border: 1px solid #ccc;
+}
+
+/* Show the dropdown on hover or focus */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.price-range {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Style for the price filter inputs */
+.price-range input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Style the "Apply" button */
+.btn-apply {
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-apply:hover {
+    background-color: #0056b3;
+}
+
+/* Clear All button */
+.btn-clear-all {
+    padding: 8px 15px;
+    background-color:#770000e3; /* Red background */
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Hover effect for Clear All button */
+.btn-clear-all:hover {
+    background-color:black;
+}
+
