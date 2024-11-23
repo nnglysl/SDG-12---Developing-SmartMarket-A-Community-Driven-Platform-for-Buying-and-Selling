@@ -74,8 +74,8 @@ select {
 /* Buttons styling */
 .btn-apply {
   padding: 8px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #c4616196; 
+  color: rgb(0, 0, 0);
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -83,7 +83,7 @@ select {
 }
 
 .btn-apply:hover {
-  background-color: #0056b3;
+  background-color: #ffffff;
 }
 
 .btn-clear-all {
@@ -97,7 +97,7 @@ select {
 }
 
 .btn-clear-all:hover {
-  background-color: black;
+  background-color: rgb(86, 0, 0);
 }
 
 /* Product Result Styles */
@@ -105,7 +105,7 @@ select {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Keep 3 equal columns */
   column-gap: 10px; /* Set column gap to 10px */
-  row-gap: 10px; /* Set row gap to 10px */
+  row-gap: 15px; /* Set row gap to 10px */
   padding: 10px; /* Reduce padding around the container */
   justify-content: center;
   box-sizing: border-box;
@@ -116,15 +116,13 @@ select {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px; /* Keep padding small within the card */
-  max-width: 250px; /* Control the maximum width of the product */
+  max-width: 300px; /* Control the maximum width of the product */
   width: 100%; /* Ensure full width inside the grid column */
   text-align: center;
   transition: transform 0.3s ease;
   margin: 0 auto; /* Center each product within its grid item */
   box-sizing: border-box;
 }
-
-
 
 
 .product img {
@@ -139,13 +137,14 @@ select {
 }
 
 .price {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .condition {
-  font-size: 14px;
+  font-size: 12px;
   color: #777;
 }
 
