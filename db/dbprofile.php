@@ -1,20 +1,11 @@
 <?php
-<<<<<<< HEAD
 session_start();
 require_once('dbcon.php');
-=======
-session_start(); 
-require_once('../dbconnection/dbcon.php'); 
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 
 class EditProfile
 {
     private $buyer_id;
-<<<<<<< HEAD
     private $buyer;
-=======
-    private $buyer; 
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
     private $db;
 
     public function __construct()

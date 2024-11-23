@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
 require_once('../db/dbcon.php'); // Include your database connection
 require_once('../db/dblogin.php'); // Include the UserLogin class
-=======
-require_once('../dbconnection/dbcon.php'); // Include your database connection
-require_once('dblogin.php'); // Include the UserLogin class
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 
 // Create a new database connection
 $database = new Database();
@@ -35,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -66,35 +60,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
         </div>
 </body>
 
-=======
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href="/finalp/bg1.jpg">
-    <link href = https://fonts.google.com/specimen/Nanum+Gothic
-    rel = "stylesheet">
-    <link rel = "stylesheet" href="login.css">
-    rel = "stylesheet">
-</head>
-<body>
-    
-    <img src="/finalp/imgs/logo.png" alt="Logo" class="logo">
-    <div class = "wrapper">
-        <h2>Log In</h2>
-        <form method="post" action="">
-            <input type = "email" name="email" placeholder = "Email">
-            <input type = "password" name="password" placeholder = "Password">
-            <div class = "remember">
-                <input type = "checkbox" id = "checkbox"> <label for = "checkbox"> Remember me </label>
-            </div>
-        <input type="submit" class="login-btn" value="Log In" name="logIn">
-        </form>
-    <div class = "account">
-        Don't have an account? <a href = "../signup/signup.php">
-            Create an account
-        </a>
-
-    </div>
-</body>
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 </html>

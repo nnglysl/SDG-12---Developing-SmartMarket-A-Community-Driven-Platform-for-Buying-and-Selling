@@ -33,11 +33,7 @@ header {
 /* Navigation Styling */
 .nav {
   display: flex;
-<<<<<<< HEAD
   gap: 15px;
-=======
-  gap: 15px; 
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 }
 
 .nav a {
@@ -60,22 +56,14 @@ header {
 .search-container {
   display: flex;
   flex-direction: column; /* Stack the search bar and results vertically */
-<<<<<<< HEAD
   align-items: center;
-=======
-  align-items: center; 
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
   position: relative;
   z-index: 100;
 }
 
 .search-bar-wrapper {
   position: relative;
-<<<<<<< HEAD
   width: 300px;
-=======
-  width: 300px; 
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 }
 
 .search-bar {
@@ -110,48 +98,6 @@ header {
   color: #5b0b00;
 }
 
-<<<<<<< HEAD
-=======
-/* Result Container Styling */
-.result-container {
-  padding: 0 10px 0 10px;
-  width: 100%;
-  max-width: 500px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: none; 
-  color: #000000;
-}
-
-.result-container:not(:empty) {
-  display: block; /* Show results if not empty */
-}
-
-.result-container ul {
-  margin: 0;
-  padding: 0;
-}
-
-.result-container ul li {
-  margin: 5px 0;
-}
-
-.result-container ul li a {
-  color: #000;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 5px;
-  display: block;
-}
-
-.result-container ul li a:hover {
-  background-color: rgba(140, 0, 0, 0.829);
-  color: white;
-  border-radius: 5px;
-}
-
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 /* Nav Icon Styling */
 .navicon {
   display: flex;

@@ -1,12 +1,7 @@
 <?php
 
-<<<<<<< HEAD
 include '../db/dbcon.php';
 include '../php/search_bar.php';
-=======
-    include '../db/dbconn.php'; // Include your database connection
-    include '../php/search_bar.php';
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 
 ?>
 
@@ -34,32 +29,15 @@ include '../php/search_bar.php';
         </ul>
 
         <div class="search-container">
-<<<<<<< HEAD
             <form method="get" action="/final/search/search_view.php">
                 <div class="search-bar-wrapper">
                     <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
                         value="<?php echo htmlspecialchars($search_query); ?>" required>
                     <button type="submit" class="search-button">
-=======
-            <form method="post" action="/final/home/home.php">
-                <div class="search-bar-wrapper">
-                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-                    <button type="submit" name="submit" class="search-button">
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
                         <i class="bx bx-search"></i>
                     </button>
                 </div>
             </form>
-<<<<<<< HEAD
-=======
-
-            <!-- Result Container: Initially empty, shown only when there are results -->
-            <?php if (!empty($results)) { ?>
-                <div class="result-container">
-                    <?php echo $results; ?>
-                </div>
-            <?php } ?>
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
         </div>
 
         <div class="navicon">

@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 include '../../db/dbcon.php';
 include '../../php/search_bar.php'
 
@@ -33,37 +32,6 @@ include '../../php/search_bar.php'
           <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
             value="<?php echo htmlspecialchars($search_query); ?>" required>
           <button type="submit" class="search-button">
-=======
-  include '../../db/dbconn.php';
-  include '../../php/search_bar.php'
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blouse Product Page</title>
-    <link rel="stylesheet" href="/final/items_uniforms/blouse/blouse.css" />
-    <link href="https://fonts.google.com/specimen/Nanum+Gothic" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
-    <link rel="stylesheet" href="/final/css/nav.css" />
-  </head>
-  <body>
-    <header>
-      <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
-      <ul class="nav">
-        <li><a href="/final/home/home.php">HOME</a></li>
-        <li><a href="/final/shop/shop.php">SHOP</a></li>
-      </ul>
-      
-      <div class="search-container">
-      <form method="post" action="/final/home/home.php">
-        <div class="search-bar-wrapper">
-          <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-          <button type="submit" name="submit" class="search-button">
->>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
             <i class="bx bx-search"></i>
           </button>
         </div>
