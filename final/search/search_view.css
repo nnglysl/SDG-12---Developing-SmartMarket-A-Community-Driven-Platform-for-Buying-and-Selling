@@ -1,0 +1,166 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+body {
+  background-color: #fff4f4;
+  padding-top: 150px; /* Gap between nav and filter container */
+}
+
+/* Typography */
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+  padding: 5px;
+  position: relative;
+  margin-left: 380px; /* Moves the text 20px from the left */
+}
+
+/* Filter Bar */
+.filter-bar {
+  margin-top: 5%;
+  display: grid; /* Use grid for layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+  gap: 30px; /* Space between grid items */
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 218, 218);
+  border: 1px solid rgb(255, 218, 218);
+  border-radius: 0px;
+  padding: 20px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Style for dropdown menus */
+select {
+  padding: 10px 40px 10px 20px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  width: auto; /* Allow the dropdown to fit its content */
+}
+
+/* Style for the price filter inputs */
+.price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-range input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Buttons styling */
+.btn-apply {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.btn-apply:hover {
+  background-color: #0056b3;
+}
+
+.btn-clear-all {
+  padding: 8px 15px;
+  background-color: #770000e3; /* Red background */
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-clear-all:hover {
+  background-color: black;
+}
+
+/* Product Result Styles */
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product h4 {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.product p {
+  font-size: 14px;
+  color: #777;
+}
+
+.product .price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+  margin: 5px 0;
+}
+
+.product .condition {
+  font-size: 12px;
+  font-style: italic;
+  color: #999;
+}
+
+.result-container {
+  display: flex; /* Activates Flexbox */
+  flex-wrap: wrap; /* Allows wrapping if there are too many items */
+  justify-content: flex-start; /* Aligns items to the left */
+  gap: 30px; /* Adds spacing between items */
+  padding: 50px; /* Optional: Adds some padding around the container */
+  box-sizing: border-box; /* Ensures padding is included in width calculations */
+}
+
+.product {
+  flex: 1 1 calc(25% - 20px); /* Each product takes up 25% width, accounting for gap */
+  max-width: calc(25% - 20px); /* Limits width to 25% */
+  background-color: #fff; /* Optional: Adds a background color */
+  border: 1px solid #ddd; /* Optional: Adds a border */
+  border-radius: 8px; /* Optional: Rounds corners */
+  text-align: center; /* Centers content inside the product box */
+  box-sizing: border-box; /* Ensures padding doesn't break layout */
+  padding: 10px; /* Optional: Adds padding inside each product */
+}
+
+@media (max-width: 768px) {
+  .product {
+    flex: 1 1 calc(50% - 20px); /* For smaller screens, 2 products per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    flex: 1 1 100%; /* For very small screens, 1 product per row */
+  }
+}
