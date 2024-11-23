@@ -1,0 +1,115 @@
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}
+
+
+.back-button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.back-button i {
+    margin-right: 8px;
+}
+
+
+/* Container Styles for Add Product */
+.add-product-container {
+    background: #fff; /* White container */
+    padding: 30px 40px; /* Increased padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 500px; /* Reduced width to eliminate excess white space */
+    text-align: left; /* Align content to the left for readability */
+    box-sizing: border-box; /* Include padding in dimensions */
+}
+
+
+/* Heading Styles */
+.add-product-container h1 {
+    font-size: 2rem;
+    color: #333; /* Dark gray heading */
+    margin-bottom: 20px;
+}
+
+
+/* Form Layout */
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form fields */
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between label and input */
+}
+
+
+label {
+    font-size: 1rem;
+    color: #333;
+}
+
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; /* Include padding in width */
+    width: 100%; /* Ensure inputs take up full width */
+}
+
+
+textarea {
+    resize: vertical; /* Allow resizing of textarea */
+    min-height: 100px; /* Minimum height for textarea */
+}
+
+
+/* Submit Button */
+.submit-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #fc00a8; /* Green button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%; /* Full-width button */
+}
+
+
+.submit-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+
+    .add-product-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+}

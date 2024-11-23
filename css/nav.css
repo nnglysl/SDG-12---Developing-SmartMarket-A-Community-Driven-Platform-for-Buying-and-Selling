@@ -1,0 +1,118 @@
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* Header Styling */
+header {
+  display: flex;
+  justify-content: space-between; /* Aligns elements in the header */
+  align-items: center; /* Centers items vertically */
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 10%; /* Adjust padding as needed */
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+}
+
+/* Navigation Styling */
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.nav a {
+  color: black;
+  font-size: 19px;
+  text-transform: capitalize;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.nav a:hover {
+  background-color: rgba(140, 0, 0, 0.829);
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* Search Bar Container Styling */
+.search-container {
+  display: flex;
+  flex-direction: column; /* Stack the search bar and results vertically */
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search-bar:focus {
+  border-color: #545454;
+}
+
+/* Search Button Styling */
+.search-button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+  font-size: 20px;
+  padding: 0;
+}
+
+.search-button:hover {
+  color: #5b0b00;
+}
+
+/* Nav Icon Styling */
+.navicon {
+  display: flex;
+  align-items: center;
+}
+
+.navicon i {
+  margin-right: 20px;
+  color: black;
+  font-size: 25px;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+}
+
+.navicon i:hover {
+  transform: scale(1.1);
+  color: rgb(130, 0, 0);
+}
