@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require_once '../db/dbprofile.php';
+=======
+require_once 'dbprofile.php'; 
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 require_once 'switchaccount.php'; // Include the AccountSwitcher class
 
 $profile = new EditProfile();
@@ -18,25 +22,39 @@ if (isset($_POST['switch_account'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile - Desktop View</title>
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
     <link rel="stylesheet" href="../css/nav.css" />
 
 </head>
 
+=======
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="../css/nav.css" />
+
+</head>
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 <body>
     <?php include('../header/header.php'); ?>
     <div class="profile-container">
         <div class="profile-header">
             <div class="profile-pic">
+<<<<<<< HEAD
                 <img src="user.jpg" alt="<?php echo htmlspecialchars($buyer['username']); ?>">
                 <!-- Use user's name as alt text -->
+=======
+                <img src="user.jpg" alt="<?php echo htmlspecialchars($buyer['username']); ?>"> <!-- Use user's name as alt text -->
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
             </div>
             <div class="profile-info">
                 <h2><?php echo htmlspecialchars($buyer['username']); ?></h2> <!-- Display user's name -->
@@ -53,11 +71,19 @@ if (isset($_POST['switch_account'])) {
         <div class="account-details">
             <div class="account-section ship">
                 <label><i class="fas fa-inbox"></i> To Ship</label>
+<<<<<<< HEAD
                 <p>No items to ship.</p>
             </div>
             <div class="account-section receive">
                 <label><i class="fas fa-truck"></i> To Receive</label>
                 <p>No items to receive.</p>
+=======
+                <p>No items to ship.</p> 
+            </div>
+            <div class="account-section receive">
+                <label><i class="fas fa-truck"></i> To Receive</label>
+                <p>No items to receive.</p> 
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
             </div>
         </div>
         <div class="switch-account">
@@ -68,5 +94,8 @@ if (isset($_POST['switch_account'])) {
         </div>
     </div>
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4b3911f02e1ce4b4ec13ff391a248cfa6225f7e
 </html>
