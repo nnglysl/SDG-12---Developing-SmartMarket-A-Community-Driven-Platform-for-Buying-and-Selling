@@ -35,6 +35,7 @@ h3 {
   width: 60%;
   margin: 0 auto;
   gap: 20px; /* Equal gap between filter items */
+  margin-bottom: 30px;
 }
 
 /* Filter Item */
@@ -44,6 +45,84 @@ h3 {
   align-items: center;
   text-align: center;
   gap: 10px; /* Ensures gap between label and element */
+}
+
+/* Price Range Container */
+.price-range-container {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.price-range-container p {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.price-range-container h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.price-range-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.price-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-input label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.price-input input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+#price-slider {
+  width: 100%;
+  appearance: none;
+  height: 8px;
+  background: #836e6e;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+#price-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #580000;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#price-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Style for dropdown menus */
@@ -75,7 +154,7 @@ select {
 /* Buttons Styling */
 .btn-apply {
   padding: 8px 20px;
-  background-color: #c4616196; 
+  background-color: #c4616196;
   color: rgb(0, 0, 0);
   border: none;
   cursor: pointer;
@@ -112,9 +191,9 @@ select {
 /* Product Result Styles */
 .result-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Keep 3 equal columns */
+  grid-template-columns: repeat(3, 0.219fr); /* Keep 3 equal columns */
   column-gap: 10px; /* Set column gap to 10px */
-  row-gap: 15px; /* Set row gap to 10px */
+  row-gap: 45px; /* Set row gap to 10px */
   padding: 10px; /* Reduce padding around the container */
   justify-content: center;
   box-sizing: border-box;
@@ -125,7 +204,7 @@ select {
   font-size: 25px; /* Optional */
   color: #383838; /* Optional */
   margin-top: 20px;
-  padding-left: 375px;
+  padding-left: 50px;
 }
 
 /* Product Card Styles */

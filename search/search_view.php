@@ -76,15 +76,24 @@ include '../php/search_bar.php';
                     </select>
                 </div>
 
-                <div class="filter-item">
-                    <label for="price-range">Price Range:</label>
-                    <div>
-                        <input type="number" name="min_price" id="min-price" placeholder="Min Price"
-                            value="<?php echo htmlspecialchars($min_price); ?>">
-                        <input type="number" name="max_price" id="max-price" placeholder="Max Price"
-                            value="<?php echo htmlspecialchars($max_price); ?>">
+                <div class="filter-item price-range-container">
+                    <h4>Price Range</h4>
+                    <div class="price-range-inputs">
+                        <div class="price-input">
+                            <label for="min-price">Min</label>
+                            <input type="number" name="min_price" id="min-price" placeholder="Min Price"
+                                value="<?php echo htmlspecialchars($min_price); ?>">
+                        </div>
+                        <span>–</span>
+                        <div class="price-input">
+                            <label for="max-price">Max</label>
+                            <input type="number" name="max_price" id="max-price" placeholder="Max Price"
+                                value="<?php echo htmlspecialchars($max_price); ?>">
+                        </div>
                     </div>
+                    <input type="range" id="price-slider" min="0" max="10000" step="100" value="5000" />
                 </div>
+
                 <div class="filter-buttons">
                     <button type="submit" class="btn-apply">Apply</button>
                     <button type="button" class="btn-clear-all" onclick="clearAllFilter()">Clear All</button>
@@ -97,7 +106,8 @@ include '../php/search_bar.php';
             <?php if (!empty($results)) { ?>
                 <?php foreach ($results as $product) { ?>
                     <div class="product">
-                        <img src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Product Image">
+                        <a href="<?php echo htmlspecialchars($product['item_path']); ?>"><img
+                                src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Product Image"></a>
                         <h4><?php echo htmlspecialchars($product['product_name']); ?></h4>
                         <p class="price">PHP <?php echo htmlspecialchars(number_format($product['price'], 2)); ?></p>
                         <p class="condition"><?php echo htmlspecialchars($product['condition']); ?></p>
@@ -110,23 +120,37 @@ include '../php/search_bar.php';
     </main>
 
     <script>
+        const minInput = document.getElementById("min-price");
+        const maxInput = document.getElementById("max-price");
+        const slider = document.getElementById("price-slider");
+
+        slider.addEventListener("input", () => {
+            const value = parseInt(slider.value, 10);
+            minInput.value = Math.max(value - 2000, 0);
+            maxInput.value = value;
+        });
+
+        [minInput, maxInput].forEach(input => {
+            input.addEventListener("input", () => {
+                const min = parseInt(minInput.value, 10) || 0;
+                const max = parseInt(maxInput.value, 10) || 0;
+                if (min < max) {
+                    slider.value = max;
+                }
+            });
+        });
+
         function clearAllFilter() {
             document.getElementById('sort').value = 'best-match';
             document.getElementById('condition').value = 'new';
             document.getElementById('min-price').value = '';
             document.getElementById('max-price').value = '';
-
-            const url = new URL(window.location.href);
-            url.searchParams.delete('sort');
-            url.searchParams.delete('condition');
-            url.searchParams.delete('min_price');
-            url.searchParams.delete('max_price');
-
-            // Preserve the search query
-            const searchQuery = url.searchParams.get('search');
-            window.location.href = '/final/search/search_view.php?search=${searchQuery}';
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.delete('sort');
+            urlParams.delete('min_price');
+            urlParams.delete('max_price');
+            window.location.href = window.location.pathname;
         }
-
     </script>
 
 </body>

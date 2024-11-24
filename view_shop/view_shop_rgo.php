@@ -26,21 +26,15 @@
         </ul>
 
         <div class="search-container">
-            <form method="post" action="/final/home/home.php">
+            <form method="get" action="/final/search/search_view.php">
                 <div class="search-bar-wrapper">
-                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-                    <button type="submit" name="submit" class="search-button">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
+                        value="<?php echo htmlspecialchars($search_query); ?>" required>
+                    <button type="submit" class="search-button">
                         <i class="bx bx-search"></i>
                     </button>
                 </div>
             </form>
-
-            <!-- Result Container: Initially empty, shown only when there are results -->
-            <?php if (!empty($results)) { ?>
-                <div class="result-container">
-                    <?php echo $results; ?>
-                </div>
-            <?php } ?>
         </div>
 
         <div class="navicon">
