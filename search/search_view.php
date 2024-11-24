@@ -86,7 +86,7 @@ include '../php/search_bar.php';
                     </div>
                 </div>
                 <div class="filter-buttons">
-                    <button type="submit" class="btn-apply">Apply Filters</button>
+                    <button type="submit" class="btn-apply">Apply</button>
                     <button type="button" class="btn-clear-all" onclick="clearAllFilter()">Clear All</button>
                 </div>
             </div>

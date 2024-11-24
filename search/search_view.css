@@ -25,24 +25,25 @@ h3 {
 /* Filter Bar */
 .filter-bar {
   margin-top: 5%;
-  display: grid; /* Use grid for layout */
-  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-  gap: 30px; /* Space between grid items */
+  display: flex;
+  justify-content: space-between; /* Ensures equal space between items */
   align-items: center;
-  justify-content: center;
   background-color: rgb(255, 218, 218);
   border: 1px solid rgb(255, 218, 218);
   border-radius: 0px;
   padding: 20px;
   width: 60%;
   margin: 0 auto;
+  gap: 20px; /* Equal gap between filter items */
 }
 
+/* Filter Item */
 .filter-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 10px; /* Ensures gap between label and element */
 }
 
 /* Style for dropdown menus */
@@ -60,7 +61,7 @@ select {
 .price-range {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .price-range input {
@@ -71,7 +72,7 @@ select {
   width: 100%;
 }
 
-/* Buttons styling */
+/* Buttons Styling */
 .btn-apply {
   padding: 8px 20px;
   background-color: #c4616196; 
@@ -100,6 +101,14 @@ select {
   background-color: rgb(86, 0, 0);
 }
 
+/* Filter Buttons Container */
+.filter-buttons {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Adds space between the buttons */
+  width: auto; /* Aligns properly with filter items */
+}
+
 /* Product Result Styles */
 .result-container {
   display: grid;
@@ -111,6 +120,15 @@ select {
   box-sizing: border-box;
 }
 
+.result-container > p {
+  text-align: left;
+  font-size: 25px; /* Optional */
+  color: #383838; /* Optional */
+  margin-top: 20px;
+  padding-left: 375px;
+}
+
+/* Product Card Styles */
 .product {
   background-color: white;
   border-radius: 10px;
@@ -123,7 +141,6 @@ select {
   margin: 0 auto; /* Center each product within its grid item */
   box-sizing: border-box;
 }
-
 
 .product img {
   width: 100%;
