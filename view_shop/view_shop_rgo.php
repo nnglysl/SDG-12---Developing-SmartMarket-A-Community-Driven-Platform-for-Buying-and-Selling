@@ -1,6 +1,6 @@
 <?php
 
-    include '../db/dbconn.php'; // Include your database connection
+    include '../db/dbcon.php'; // Include your database connection
     include '../php/search_bar.php';
 
 ?>
