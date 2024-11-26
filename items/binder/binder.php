@@ -3,6 +3,22 @@
 include '../../db/dbcon.php';
 include '../../php/search_bar.php';
 
+// Database connection to fetch product variations
+$database = new Database();
+$conn = $database->getConnection();
+
+// Fetch product details and variations from the database
+$product_id = 7; // For example, the binder product ID is 7
+$query = "SELECT * FROM product_variations WHERE product_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$variations = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// Close connection
+$stmt->close();
+$database->closeConnection();
+
 ?>
 
 <!DOCTYPE html>
@@ -62,9 +78,16 @@ include '../../php/search_bar.php';
           <div class="product-options">
             <h3>Colors</h3>
             <div class="color-options">
-              <button>White</button>
-              <button>Pink</button>
-              <button>Clear</button>
+              <?php foreach ($variations as $variation): ?>
+                <?php if ($variation['variation_type'] == 'color'): ?>
+                  <button class="color-option" 
+                          data-color="<?= htmlspecialchars($variation['variation_value']) ?>" 
+                          data-image="/final/imgs/school supplies/<?= strtolower($variation['variation_value']) ?>-binder.jpg"
+                          data-stock="<?= htmlspecialchars($variation['stock']) ?>">
+                    <?= htmlspecialchars($variation['variation_value']) ?>
+                  </button>
+                <?php endif; ?>
+              <?php endforeach; ?>
             </div>
           </div>
 
@@ -75,6 +98,7 @@ include '../../php/search_bar.php';
               <input type="number" id="quantity" value="1" min="1" />
               <button id="increase">+</button>
             </div>
+            <p id="stock-info"></p> <!-- To show available stock -->
           </div>
 
           <!-- js for quantity-->
@@ -83,7 +107,10 @@ include '../../php/search_bar.php';
               .getElementById("increase")
               .addEventListener("click", function () {
                 let quantityInput = document.getElementById("quantity");
-                quantityInput.value = parseInt(quantityInput.value) + 1;
+                let maxStock = parseInt(quantityInput.getAttribute('max'));
+                if (parseInt(quantityInput.value) < maxStock) {
+                  quantityInput.value = parseInt(quantityInput.value) + 1;
+                }
               });
 
             document
@@ -126,6 +153,31 @@ include '../../php/search_bar.php';
       </section>
     </div>
   </main>
+
+  <!-- JavaScript for Color Selection -->
+  <script>
+    const colorButtons = document.querySelectorAll('.color-option');
+    const mainImage = document.getElementById('mainImage1');
+    const quantityInput = document.getElementById('quantity');
+    const stockInfo = document.getElementById('stock-info');
+
+    colorButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const selectedImage = this.getAttribute('data-image');
+        const selectedStock = this.getAttribute('data-stock');
+        mainImage.src = selectedImage;
+        quantityInput.max = selectedStock;
+        stockInfo.textContent = 'Available stock: ' + selectedStock;
+
+        // Optional: Add a class to highlight the selected button
+        colorButtons.forEach(btn => btn.classList.remove('selected'));
+        this.classList.add('selected');
+
+        // Reset the quantity to 1 when changing color
+        quantityInput.value = 1;
+      });
+    });
+  </script>
 </body>
 
 </html>

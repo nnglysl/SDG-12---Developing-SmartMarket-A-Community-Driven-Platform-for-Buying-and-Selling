@@ -140,7 +140,11 @@ body {
 }
 
 .color-options button:hover {
-  background-color: #e0e0e0;
+  background-color: #570000;
+}
+.size-options button.active {
+  background-color: #5b0000;
+  color: white;
 }
 
 /* Quantity selector */

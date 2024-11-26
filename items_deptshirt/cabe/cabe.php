@@ -1,8 +1,25 @@
 <?php
-
 include '../../db/dbcon.php';
 include '../../php/search_bar.php';
 
+// Database connection to fetch product variations
+$database = new Database();
+$conn = $database->getConnection();
+
+// Fetch product variations (size, stock, and variation type) from the database
+$product_id = 3; 
+$query = "SELECT variation_value, stock, variation_type FROM product_variations WHERE product_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Fetch all variations as an associative array
+$variations = $result->fetch_all(MYSQLI_ASSOC);
+
+// Close connection
+$stmt->close();
+$database->closeConnection();
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +60,7 @@ include '../../php/search_bar.php';
       <a href="#"><i class="bx bx-cart"></i></a>
     </div>
   </header>
+
   <main class="product-page">
     <div class="center-container">
       <!-- Product Details -->
@@ -58,14 +76,24 @@ include '../../php/search_bar.php';
           <h1 class="product-title">CABE Department Shirt</h1>
           <p class="product-price">₱ 500</p>
 
+          <!-- Size Options -->
           <div class="product-options">
             <h3>Sizes</h3>
             <div class="size-options">
-              <button>Small</button>
-              <button>Medium</button>
-              <button>Large</button>
+              <?php foreach ($variations as $variation): ?>
+                <?php if ($variation['variation_type'] == 'size'): ?>
+                  <button class="size-option" 
+                          data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
+                          data-stock="<?= htmlspecialchars($variation['stock']) ?>">
+                    <?= htmlspecialchars($variation['variation_value']) ?>
+                  </button>
+                <?php endif; ?>
+              <?php endforeach; ?>
             </div>
           </div>
+
+          <!-- Hidden input to store selected size -->
+          <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
 
           <div class="quantity-selector">
             <h4>Quantity</h4>
@@ -74,25 +102,75 @@ include '../../php/search_bar.php';
               <input type="number" id="quantity" value="1" min="1" />
               <button id="increase">+</button>
             </div>
+            <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
           </div>
 
-          <!-- js for quantity-->
+          <!-- Js for quantity adjustment and size selection -->
           <script>
-            document
-              .getElementById("increase")
-              .addEventListener("click", function () {
-                let quantityInput = document.getElementById("quantity");
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-              });
+            // Store the variations from the server-side to JavaScript
+            const stockData = <?php echo json_encode($variations); ?>;
+            let selectedSize = null;
 
-            document
-              .getElementById("decrease")
-              .addEventListener("click", function () {
-                let quantityInput = document.getElementById("quantity");
-                if (quantityInput.value > 1) {
-                  quantityInput.value = parseInt(quantityInput.value) - 1;
+            // Update quantity limits based on selected size
+            function updateQuantityLimits() {
+              const quantityInput = document.getElementById("quantity");
+              const stockInfo = document.getElementById("stock-info");
+              const maxStock = stockData.find(item => item.variation_value === selectedSize)?.stock;
+
+              if (maxStock) {
+                quantityInput.max = maxStock;
+                stockInfo.textContent = 'Available stock: ' + maxStock;
+
+                // Disable or enable increase/decrease buttons
+                document.getElementById("increase").disabled = quantityInput.value >= maxStock;
+                document.getElementById("decrease").disabled = quantityInput.value <= 1;
+
+                // Ensure the quantity doesn't exceed the stock
+                if (parseInt(quantityInput.value) > maxStock) {
+                  quantityInput.value = maxStock;
                 }
+              } else {
+                stockInfo.textContent = 'Please select a size.';
+              }
+            }
+
+            // Handle size button click
+            document.querySelectorAll('.size-options button').forEach(button => {
+              button.addEventListener('click', function () {
+                // Remove active class from all buttons
+                document.querySelectorAll('.size-options button').forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to the clicked button
+                this.classList.add('active');
+
+                // Get the selected size and stock
+                selectedSize = this.getAttribute('data-size');
+                const stock = this.getAttribute('data-stock');
+                
+                // Update the hidden input value
+                document.getElementById('selectedSizeInput').value = selectedSize;
+
+                // Update quantity limits
+                updateQuantityLimits();
               });
+            });
+
+            // Increase/decrease quantity buttons
+            document.getElementById("increase").addEventListener("click", function () {
+              const quantityInput = document.getElementById("quantity");
+              if (selectedSize && parseInt(quantityInput.value) < stockData.find(item => item.variation_value === selectedSize)?.stock) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                updateQuantityLimits();
+              }
+            });
+
+            document.getElementById("decrease").addEventListener("click", function () {
+              const quantityInput = document.getElementById("quantity");
+              if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                updateQuantityLimits();
+              }
+            });
           </script>
 
           <div class="product-buttons">
@@ -120,14 +198,15 @@ include '../../php/search_bar.php';
       <section class="product-description">
         <h2>Product Description</h2>
         <p>
-          CABE Department Shirt
-          Small - W:14 L:26
-          Medium - W:20 L:27
-          Large - W:21 L:28
+          CABE Department Shirt<br>
+          Small - W:14 L:26<br>
+          Medium - W:20 L:27<br>
+          Large - W:21 L:28<br>
         </p>
       </section>
     </div>
   </main>
+
 </body>
 
 </html>

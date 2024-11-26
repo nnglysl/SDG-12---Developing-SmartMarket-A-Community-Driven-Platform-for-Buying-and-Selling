@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 10:41 AM
+-- Generation Time: Nov 26, 2024 at 02:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,15 +44,20 @@ INSERT INTO `product_variations` (`variation_id`, `product_id`, `variation_type`
 (1, 7, 'color', 'White', 70.00, 3),
 (2, 7, 'color', 'Pink', 70.00, 2),
 (3, 7, 'color', 'Clear', 70.00, 4),
-(4, 1, 'size', 'Small', 500.00, 50),
-(5, 1, 'size', 'Medium', 500.00, 50),
+(4, 1, 'size', 'Small', 500.00, 25),
+(5, 1, 'size', 'Medium', 500.00, 100),
 (6, 1, 'size', 'Large', 500.00, 50),
-(7, 2, 'size', 'Small', 500.00, 50),
+(7, 2, 'size', 'Small', 500.00, 40),
 (8, 2, 'size', 'Medium', 500.00, 50),
-(9, 2, 'size', 'Large', 500.00, 50),
-(10, 3, 'size', 'Small', 500.00, 50),
+(9, 2, 'size', 'Large', 500.00, 15),
+(10, 3, 'size', 'Small', 500.00, 20),
 (11, 3, 'size', 'Medium', 500.00, 50),
-(12, 3, 'size', 'Large', 500.00, 50);
+(12, 3, 'size', 'Large', 500.00, 30),
+(13, 4, NULL, NULL, 500.00, 1),
+(14, 5, NULL, NULL, 50.00, 200),
+(15, 6, NULL, NULL, 50.00, 80),
+(16, 8, NULL, NULL, 400.00, 1),
+(17, 9, NULL, NULL, 250.00, 1);
 
 --
 -- Indexes for dumped tables
@@ -73,7 +78,7 @@ ALTER TABLE `product_variations`
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `variation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `variation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
