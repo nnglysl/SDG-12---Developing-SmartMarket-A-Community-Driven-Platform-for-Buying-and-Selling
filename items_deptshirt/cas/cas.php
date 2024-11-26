@@ -6,7 +6,6 @@ include '../../php/search_bar.php';
 $database = new Database();
 $conn = $database->getConnection();
 
-// Fetch product variations (size, stock, and variation type) from the database
 $product_id = 2; 
 $query = "SELECT variation_value, stock, variation_type FROM product_variations WHERE product_id = ?";
 $stmt = $conn->prepare($query);
@@ -16,7 +15,6 @@ $result = $stmt->get_result();
 
 $variations = $result->fetch_all(MYSQLI_ASSOC);
 
-// Close connection
 $stmt->close();
 $database->closeConnection();
 ?>
@@ -105,11 +103,9 @@ $database->closeConnection();
 
           <!-- Js for quantity adjustment and size selection -->
           <script>
-            // Store the variations from the server-side to JavaScript
             const stockData = <?php echo json_encode($variations); ?>;
             let selectedSize = null;
 
-            // Update quantity limits based on selected size
             function updateQuantityLimits() {
               const quantityInput = document.getElementById("quantity");
               const stockInfo = document.getElementById("stock-info");
@@ -132,13 +128,12 @@ $database->closeConnection();
               }
             }
 
-            // Handle size button click
+            // size button 
             document.querySelectorAll('.size-options button').forEach(button => {
               button.addEventListener('click', function () {
-                // Remove active class from all buttons
+
                 document.querySelectorAll('.size-options button').forEach(btn => btn.classList.remove('active'));
 
-                // Add active class to the clicked button
                 this.classList.add('active');
 
                 // Get the selected size and stock
@@ -191,7 +186,6 @@ $database->closeConnection();
           </div>
         </div>
       </section>
-
 
       <!-- Product Description -->
       <section class="product-description">
