@@ -14,7 +14,7 @@
 .banner {
     width: 100%;
     height: 80vh;
-    background-image: url(/imgs/bannern.jpg);
+    background-image: url(/final/imgs/bannern.jpg);
     background-position: center;
     background-size: cover;
     display: flex; 
@@ -75,7 +75,7 @@ h1 {
 /* Shop Section Styles */
 .shop-section {
     padding: 60px;
-    background-color: #ffffff;
+    background-color: #fff4f4;
     text-align: center;
 }
 
@@ -120,18 +120,4 @@ h1 {
 
 .shop-section .product:hover {
     transform: translateY(-10px);
-}
-
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .shop-section .product {
-        width: calc(50% - 40px);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .shop-section .product {
-        width: 100%;
-    }
 }

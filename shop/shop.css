@@ -10,79 +10,69 @@
     text-decoration: none;
 }
 
-
-.banner {
-    width: 100%;
-    height: 80vh;
-    background-image: url(bannern.jpg);
-    background-position: center;
-    background-size: cover;
-    display: flex; /* Changed from grid to flex */
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding-left: 10%;
-}
-
-h1 {
-    font-size: 60px;
-    color: rgb(255, 255, 255);
-    text-align:left;
-    line-height: 1.1;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    padding-right: 1100px;
-    font-weight: 700;
-}
-
-.banner p {
-    font-size: 60px;
-    color: rgb(255, 255, 255);
-    text-align:left;
-    line-height: 1.1;
-    margin-bottom: 10px;
-    padding-right: 1000px;
-    font-weight: 700;
-    padding-bottom: 50px;
-}
-
-.banner .btn {
-    padding: 10px 20px;
-    background-color: #ffffff;
-    color: #080000;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    text-transform: capitalize;
-    border-radius: 50px;
-    border: 2px solid #ffffff;
-    transition: 0.3s ease-in-out;
-    max-width: 150px;
-    margin-top: 20px; /* Optional, for spacing */
-    align-self: flex-start;
-}
-
-.btn:hover {
-    background-color: #000000;
-    color: #ffffff;
-    border: 2px solid #000000;
-}
-
-.btn i {
-    vertical-align: left;
-}
-
 /* Shop Section Styles */
+.shop-section-first{
+    padding: 60px;
+    background-color: #fff4f4;
+    text-align: center;
+    padding-top: 180px;
+}
+
+.shop-section-first .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.shop-section-first .product {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(33.333% - 40px);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.shop-section-first .product img {
+    height: 200px; 
+    width: auto; 
+    max-width: 100%; 
+    object-fit: cover; 
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.shop-section-first .product h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+}
+
+.shop-section-first .product p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.shop-section-first .product:hover {
+    transform: translateY(-10px);
+}
+
 .shop-section {
     padding: 60px;
-    background-color: #ffffff;
+    background-color: #fff4f4;
     text-align: center;
+    padding-top: 5px;
 }
 
 .shop-section .products {
     display: flex;
     flex-wrap: wrap;
-    gap: 100px;
+    gap: 50px;
     justify-content: center;
 }
 
@@ -98,8 +88,14 @@ h1 {
 }
 
 .shop-section .product img {
-    max-width: 100%;
+    height: 200px; 
+    width: auto; 
+    max-width: 100%; 
+    object-fit: cover; 
+    display: block;
+    margin: 0 auto;
     border-radius: 8px;
+    margin-top: 20px;
 }
 
 .shop-section .product h3 {
@@ -117,59 +113,22 @@ h1 {
     transform: translateY(-10px);
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .shop-section .product {
-        width: calc(50% - 40px);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .shop-section .product {
-        width: 100%;
-    }
-}
-
-/* Sidebar styling */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #ffffff;
-    padding-top: 100px;
-    z-index: 20;
-}
-
-.sidebar-nav {
-    padding: 50px;
-}
-
-.sidebar h2 {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 30px;
-}
-
-.sidebar ul {
+.dropdown-results {
+    list-style-type: none;
     padding: 0;
-}
-
-.sidebar ul li {
-    margin: 15px 0;
-}
-
-.sidebar ul li a {
-    color: #333;
-    font-size: 1em;
-    padding: 8px;
-    display: block;
-    transition: background-color 0.3s;
-}
-
-.sidebar ul li a:hover {
-    background-color: rgba(140, 0, 0, 0.1);
-    color: #8c0000;
-}
-
+    margin: 0;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+  
+  .dropdown-results li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-results li:hover {
+    background-color: #f0f0f0;
+  }

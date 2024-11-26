@@ -1,5 +1,5 @@
 <?php
-require_once 'dbprofile.php'; 
+require_once '../db/dbprofile.php';
 require_once 'switchaccount.php'; // Include the AccountSwitcher class
 
 $profile = new EditProfile();
@@ -18,22 +18,25 @@ if (isset($_POST['switch_account'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile - Desktop View</title>
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
     <link rel="stylesheet" href="../css/nav.css" />
 
 </head>
+
 <body>
     <?php include('../header/header.php'); ?>
     <div class="profile-container">
         <div class="profile-header">
             <div class="profile-pic">
-                <img src="user.jpg" alt="<?php echo htmlspecialchars($buyer['username']); ?>"> <!-- Use user's name as alt text -->
+                <img src="user.jpg" alt="<?php echo htmlspecialchars($buyer['username']); ?>">
+                <!-- Use user's name as alt text -->
             </div>
             <div class="profile-info">
                 <h2><?php echo htmlspecialchars($buyer['username']); ?></h2> <!-- Display user's name -->
@@ -50,19 +53,21 @@ if (isset($_POST['switch_account'])) {
         <div class="account-details">
             <div class="account-section ship">
                 <label><i class="fas fa-inbox"></i> To Ship</label>
-                <p>No items to ship.</p> 
+                <p>No items to ship.</p>
             </div>
             <div class="account-section receive">
                 <label><i class="fas fa-truck"></i> To Receive</label>
-                <p>No items to receive.</p> 
+                <p>No items to receive.</p>
             </div>
         </div>
         <div class="switch-account">
             <p>Want to sell? Switch to your Seller Account:</p>
             <form method="post">
+                <input type="hidden" name="buyer_id" value="<?php echo htmlspecialchars($buyer['buyer_id']); ?>">
                 <button type="submit" name="switch_account">Switch to Seller Account</button>
             </form>
         </div>
     </div>
 </body>
+
 </html>

@@ -5,9 +5,8 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 body {
-    background-color: #fff4f4; /* Replace this with any color you prefer */
+    background-color: #fff4f4; 
 }
-
 
 .center-container {
     display: flex;

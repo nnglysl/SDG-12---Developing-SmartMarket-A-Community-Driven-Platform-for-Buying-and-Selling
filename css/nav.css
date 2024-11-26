@@ -1,3 +1,4 @@
+/* General Styling */
 * {
   margin: 0;
   padding: 0;
@@ -8,32 +9,31 @@
   text-decoration: none;
 }
 
+/* Header Styling */
 header {
+  display: flex;
+  justify-content: space-between; /* Aligns elements in the header */
+  align-items: center; /* Centers items vertically */
   background-color: #ffffff;
-  color: #ffffff;
   position: fixed;
   width: 100%;
   height: 80px;
   top: 0;
   right: 0;
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  /*justify-content: space-between;*/
-  padding: 20px 10%;
+  padding: 0 10%; /* Adjust padding as needed */
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
   max-width: 120px;
   height: auto;
-  padding-top: 10px;
 }
 
+/* Navigation Styling */
 .nav {
   display: flex;
-  padding-left: 400px;
-  padding-right: 110px;
+  gap: 15px; 
 }
 
 .nav a {
@@ -48,14 +48,99 @@ header {
 
 .nav a:hover {
   background-color: rgba(140, 0, 0, 0.829);
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   border-radius: 5px;
 }
 
+/* Search Bar Container Styling */
+.search-container {
+  display: flex;
+  flex-direction: column; /* Stack the search bar and results vertically */
+  align-items: center; 
+  position: relative;
+  z-index: 100;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 300px; 
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search-bar:focus {
+  border-color: #545454;
+}
+
+/* Search Button Styling */
+.search-button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+  font-size: 20px;
+  padding: 0;
+}
+
+.search-button:hover {
+  color: #5b0b00;
+}
+
+/* Result Container Styling */
+.result-container {
+  padding: 0 10px 0 10px;
+  width: 100%;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none; 
+  color: #000000;
+}
+
+.result-container:not(:empty) {
+  display: block; /* Show results if not empty */
+}
+
+.result-container ul {
+  margin: 0;
+  padding: 0;
+}
+
+.result-container ul li {
+  margin: 5px 0;
+}
+
+.result-container ul li a {
+  color: #000;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px;
+  display: block;
+}
+
+.result-container ul li a:hover {
+  background-color: rgba(140, 0, 0, 0.829);
+  color: white;
+  border-radius: 5px;
+}
+
+/* Nav Icon Styling */
 .navicon {
   display: flex;
   align-items: center;
-  padding-left: 30px;
 }
 
 .navicon i {
@@ -69,69 +154,4 @@ header {
 .navicon i:hover {
   transform: scale(1.1);
   color: rgb(130, 0, 0);
-}
-
-/* Search Container */
-/* Search Container */
-.search-container {
-  display: flex;
-  align-items: center;
-  border: 2px solid #f4efef;
-  border-radius: 10px;
-  overflow: visible; /* Ensure the dropdown isn't clipped */
-  background-color: #ffffff;
-  margin-left: 20px;
-  position: relative; /* Needed for positioning dropdown within this container */
-}
-
-/* Dropdown Results */
-.dropdown-results {
-  position: absolute;
-  top: 100%; /* Position right below the search bar */
-  left: 0;
-  width: 100%; /* Match the width of the search bar */
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-top: none;
-  list-style: none;
-  max-height: 200px; /* Set max height and make it scrollable */
-  overflow-y: auto;
-  display: none; /* Initially hidden, show only when needed */
-  z-index: 1000; /* Ensure it's on top of other elements */
-  margin-top: 5px; /* Small gap between search bar and dropdown */
-  border-radius: 0 0 10px 10px; /* Round bottom corners */
-}
-
-.dropdown-results li {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.dropdown-results li:hover {
-  background-color: #f0f0f0;
-}
-
-/* Search Bar */
-.search-bar {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: #000000;
-}
-
-/* Search Button */
-.search-button {
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  color: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-button i {
-  font-size: 18px; /* Icon size */
 }
