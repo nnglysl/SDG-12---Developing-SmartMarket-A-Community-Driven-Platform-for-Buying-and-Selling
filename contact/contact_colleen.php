@@ -1,5 +1,9 @@
 <?php
-include '../db/dbcon.php'; 
+include '../db/dbcon.php';
+
+// Instantiate the Database class and get the connection
+$db = new Database();
+$conn = $db->getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -9,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO contact_submissions (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
 
-    // Execute the statement
     if ($stmt->execute()) {
         echo "<script>alert('Message sent successfully!');</script>";
     } else {
@@ -53,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <div class="contact-container">
-        <form action="" method="POST" class="contact"> 
+        <form action="https://formsubmit.co/glyselannesales@gmail.com" method="POST" class="contact"> 
             <div class="contact-title">
                 <h1>Get in touch</h1>
                 <hr>
