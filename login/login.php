@@ -34,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/finalp/bg1.jpg">
+    <link rel="stylesheet" href="/final/imgs/bg1.jpg">
     <link href=https://fonts.google.com/specimen/Nanum+Gothic rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/final/imgs/login.css">
 </head>
 
 <body>
