@@ -18,7 +18,7 @@ class Cancel {
 
         // Execute the statement
         if ($stmt->execute()) {
-            echo "New order recorded successfully";
+            echo "Cancel order recorded successfully";
         } else {
             echo "Error: " . $stmt->error;
         }
