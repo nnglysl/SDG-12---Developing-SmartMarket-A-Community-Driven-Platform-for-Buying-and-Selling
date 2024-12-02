@@ -37,7 +37,7 @@
 
         <div class="navicon">
             <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
-            <a href="#"><i class="bx bx-cart"></i></a>
+            <a href="../seller/cart.php"><i class="bx bx-cart"></i></a>
         </div>
         </header>
 </body>
