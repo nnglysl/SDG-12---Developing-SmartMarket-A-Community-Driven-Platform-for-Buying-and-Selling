@@ -54,7 +54,6 @@ $database->closeConnection();
       <a href="#"><i class="bx bx-cart"></i></a>
     </div>
   </header>
-
   <main class="product-page">
     <div class="center-container">
       <!-- Product Details -->

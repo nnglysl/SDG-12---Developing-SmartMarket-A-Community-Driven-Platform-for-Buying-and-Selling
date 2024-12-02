@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8e7f1; /* Super light pink background */
+    color: #333; /* Dark text for readability */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #222;
+    color: white;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.sidebar-item:hover {
+    background-color: #ffb6c1;
+    color: #333;
+}
+
+.sidebar-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8e7f1; /* Super light pink background */
+    color: #333; /* Dark text for readability */
+}
+
+
+/* Container styles */
+.container {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* Header right section (Switch Account button) */
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+/* Switch Account button styles */
+.switch-account {
+    padding: 10px;
+    background-color: #fcfcfc; /* Black button */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Add transition */
+}
+.switch-account .icon {
+    margin-right: 5px;
+    font-size: 18px;
+}
+/* Button hover effect */
+.switch-account:hover {
+    background-color: #f546ac; /* Light pink background on hover */
+    color: #000; /* Change text to black on hover */
+}
+
+.switch-account:active {
+    background-color: #fa36a8; /* Light pink when pressed */
+    color: #000;
+}
+.profile-card, .product-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-card img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+/* Shop management styles */
+.shop-management h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.product-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-card p {
+    font-size: 16px;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 200px;
+    }
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

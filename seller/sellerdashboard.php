@@ -26,7 +26,6 @@
             height: 100vh; /* Full height */
             position: fixed; /* Fixed position */
             padding-top: 20px; /* Padding at the top */
-        }
         nav ul {
             list-style: none;
             padding: 0;
@@ -127,3 +126,26 @@
 
 </body>
 </html> 
+=======
+    <link rel="stylesheet" href="sellerdashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <?php include('../sidebar/sidebar.php'); ?>
+    <div class="container">
+    <div class="header">
+        <div class="header-right">
+            <form action="switchtobuyer.php" method="post">
+                <button type="submit" class="btn switch-account" id="switch-account">
+                    <span class="icon">&#x1F464;</span> Switch Account
+                </button>
+            </form>
+        </div>
+    </div>
+        
+        <div class="content">
+            <div class="profile-card">
+                <h3>Shop Name: <span id="seller-name"><?php echo htmlspecialchars($sellerInfo['shop_name']); ?></span></h3>
+                <br>     
+                <p>Email: <span id="seller-email"><?php echo htmlspecialchars($sellerInfo['email']); ?></span></p>
