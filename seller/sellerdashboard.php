@@ -26,6 +26,7 @@
             height: 100vh; /* Full height */
             position: fixed; /* Fixed position */
             padding-top: 20px; /* Padding at the top */
+        }
         nav ul {
             list-style: none;
             padding: 0;
@@ -86,12 +87,11 @@
         <h1>Seller Dashboard</h1>
         <ul>
             <li><a href="#profile">Profile</a></li>
-            <li><a href="addproduct.phpt">Add Product</a></li>
+            <li><a href="addproduct.php">Add Product</a></li>
             <li><a href="earnings.php">Earnings</a></li>
             <li><a href="#shop-management">Shop Management</a></li>
         </ul>
     </nav>
-
 
     <main>
         <section id="profile">
@@ -109,7 +109,7 @@
             <div class="product-cards">
                 <!-- Example product card -->
                 <div class="product-card">
-                    <img src="product-image .jpg" alt="Product Image">
+                    <img src="product-image.jpg" alt="Product Image">
                     <div>
                         <h4>Product Name</h4>
                         <p>Price: $<span>29.99</span></p>
@@ -123,10 +123,9 @@
             </div>
         </section>
     </main>
-
 </body>
-</html> 
-=======
+</html>
+
     <link rel="stylesheet" href="sellerdashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -149,3 +148,5 @@
                 <h3>Shop Name: <span id="seller-name"><?php echo htmlspecialchars($sellerInfo['shop_name']); ?></span></h3>
                 <br>     
                 <p>Email: <span id="seller-email"><?php echo htmlspecialchars($sellerInfo['email']); ?></span></p>
+            </div>
+        </div>
