@@ -141,9 +141,12 @@ body {
 }
 
 .color-options button:hover {
-    background-color: #e0e0e0;
+    background-color: #570000;
 }
-
+.size-options button.active {
+    background-color: #5b0000;
+    color: white;
+  }
 /* Quantity selector */
 .quantity-selector {
     display: flex;
@@ -158,6 +161,14 @@ body {
     font-size: 15px;
     color: #000000;
     padding-bottom: 15px;
+}
+
+/* "Available stock" */
+#stock-info {
+    padding-top: 10px;
+    font-size: 10px; 
+    font-weight:lighter; 
+    color: #333; 
 }
 
 .buttons {

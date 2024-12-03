@@ -11,7 +11,7 @@ class Cancel {
     }
 
     // Method to create a new order
-    public function createOrder($product_name, $color, $size, $reason, $quantity, $price) {
+    public function createOrder($product_name, $reason, $quantity, $price) {
         // Prepare and bind
         $stmt = $this->conn->prepare("INSERT INTO cancelledorders (product_name, reason, quantity, price) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssid", $product_name, $reason, $quantity, $price);

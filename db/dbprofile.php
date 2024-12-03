@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('dbcon.php');
+require_once('../db/dbcon.php');
 
 class EditProfile
 {
@@ -49,52 +49,60 @@ class EditProfile
     }
 
     public function updateProfile()
-    {
-        // Check if the form is submitted
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
-            // Check if 'name' is set and not empty
-            if (isset($_POST['name']) && !empty(trim($_POST['name']))) {
-                // Get the form data
-                $name = explode(' ', trim($_POST['name']), 2);
-                $firstName = htmlspecialchars($name[0]);
-                $lastName = isset($name[1]) ? htmlspecialchars($name[1]) : ''; // Handle case where last name is not provided
-            } else {
-                // Handle the error for name not provided
-                die("Name is required.");
-            }
+{
+    // Check if the form is submitted
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
+        $username = htmlspecialchars(trim($_POST['username']));
+        $address = htmlspecialchars(trim($_POST['address'])); // Capture the address input
 
-            $username = htmlspecialchars($_POST['username']);
-            $gender = htmlspecialchars($_POST['gender']);
-            $phone = htmlspecialchars($_POST['phone']);
-            $email = htmlspecialchars($_POST['email']);
-
-            // Get the database connection from the Database class
-            $conn = $this->db->getConnection();
-
-            // Prepare an SQL statement
-            if ($stmt = $conn->prepare("UPDATE buyer SET first_name = ?, last_name = ?, username = ?, gender = ?, phone_number = ?, email = ? WHERE buyer_id = ?")) {
-
-                // Bind parameters
-                $stmt->bind_param("ssssssi", $firstName, $lastName, $username, $gender, $phone, $email, $this->buyer_id);
-
-                // Execute the statement
-                if ($stmt->execute()) {
-                    $message = "Profile updated successfully.";
-                } else {
-                    $message = "Error updating profile: " . $stmt->error;
-                }
-
-                // Close the statement
-                $stmt->close();
-            } else {
-                $message = "Error preparing statement: " . $conn->error;
-            }
-
-            // Return the message
-            return $message;
+        // Validate required fields
+        if (empty($username) || empty($gender) || empty($phone) || empty($email) || empty($address)) {
+            return "All fields are required.";
         }
 
-        return '';
+        // Get the database connection from the Database class
+        $conn = $this->db->getConnection();
+
+        // Update the SQL query to include the address
+        if ($stmt = $conn->prepare("UPDATE buyer SET username = ?, address = ? WHERE buyer_id = ?")) {
+            $stmt->bind_param("sssssi", $username, $address, $this->buyer_id);
+            // Execute the statement
+            if ($stmt->execute()) {
+                return "Profile updated successfully.";
+            } else {
+                return "Error updating profile: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            return "Error preparing statement: " . $conn->error;
+        }
+    }
+
+    return '';
+}
+
+    // Method to save the profile picture path
+    public function saveProfilePicture($filePath)
+    {
+        // Get the database connection from the Database class
+        $conn = $this->db->getConnection();
+
+        // Prepare the update statement
+        if ($stmt = $conn->prepare("UPDATE buyer SET profile_picture = ? WHERE buyer_id = ?")) {
+            $stmt->bind_param("si", $filePath, $this->buyer_id);
+            // Execute the statement
+            if ($stmt->execute()) {
+                return "Profile picture updated successfully.";
+            } else {
+                return "Error updating profile picture: " . $stmt->error;
+            }
+            // Close the statement
+            $stmt->close();
+        } else {
+            return "Error preparing statement: " . $conn->error;
+        }
     }
 
     // Destructor to close the database connection

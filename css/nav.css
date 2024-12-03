@@ -33,7 +33,7 @@ header {
 /* Navigation Styling */
 .nav {
   display: flex;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .nav a {
@@ -56,14 +56,14 @@ header {
 .search-container {
   display: flex;
   flex-direction: column; /* Stack the search bar and results vertically */
-  align-items: center; 
+  align-items: center;
   position: relative;
   z-index: 100;
 }
 
 .search-bar-wrapper {
   position: relative;
-  width: 300px; 
+  width: 300px;
 }
 
 .search-bar {
@@ -96,45 +96,6 @@ header {
 
 .search-button:hover {
   color: #5b0b00;
-}
-
-/* Result Container Styling */
-.result-container {
-  padding: 0 10px 0 10px;
-  width: 100%;
-  max-width: 500px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: none; 
-  color: #000000;
-}
-
-.result-container:not(:empty) {
-  display: block; /* Show results if not empty */
-}
-
-.result-container ul {
-  margin: 0;
-  padding: 0;
-}
-
-.result-container ul li {
-  margin: 5px 0;
-}
-
-.result-container ul li a {
-  color: #000;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 5px;
-  display: block;
-}
-
-.result-container ul li a:hover {
-  background-color: rgba(140, 0, 0, 0.829);
-  color: white;
-  border-radius: 5px;
 }
 
 /* Nav Icon Styling */

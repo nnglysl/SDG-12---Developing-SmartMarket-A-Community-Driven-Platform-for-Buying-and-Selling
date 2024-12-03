@@ -1,144 +1,258 @@
+/* General Reset */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Nanum Gothic', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 body {
-    background-color: #fff4f4;
-    padding-top: 150px; /* Gap between nav and filter container */
+  background-color: #fff4f4;
+  padding-top: 150px; /* Gap between nav and filter container */
 }
 
+/* Typography */
 h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin: 20px 0;
-    padding: 5px;
-    position: relative;
-    margin-left: 380px;  /* Moves the text 20px from the left */
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+  padding: 5px;
+  position: relative;
+  margin-left: 380px; /* Moves the text 20px from the left */
 }
 
+/* Filter Bar */
 .filter-bar {
-    margin-top: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px; /* Space between filter items */
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 218, 218);
-    border: 1px solid rgb(255, 218, 218);
-    border-radius: 0px;
-    margin: 0 auto;
-    width: fit-content;
-    padding: 10px;
-    width: 60%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between; /* Ensures equal space between items */
+  align-items: center;
+  background-color: rgb(255, 218, 218);
+  border: 1px solid rgb(255, 218, 218);
+  border-radius: 0px;
+  padding: 20px;
+  width: 60%;
+  margin: 0 auto;
+  gap: 20px; /* Equal gap between filter items */
+  margin-bottom: 30px;
 }
 
+/* Filter Item */
 .filter-item {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px; /* Ensures gap between label and element */
 }
 
-/* Flexbox container for Condition and Clear All button */
-.condition-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Price Range Container */
+.price-range-container {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.price-range-container p {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.price-range-container h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.price-range-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.price-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-input label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.price-input input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+#price-slider {
+  width: 100%;
+  appearance: none;
+  height: 8px;
+  background: #836e6e;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+#price-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #580000;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#price-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Style for dropdown menus */
 select {
-    padding: 10px 40px 10px 20px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #fff;
-    cursor: pointer;
-    width: auto; /* Allow the dropdown to fit its content */
-}
-
-/* Dropdown container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown button */
-.dropdown-toggle {
-    padding: 10px 40px 10px 20px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #fff;
-    cursor: pointer;
-    width: auto;
-}
-
-/* Dropdown content */
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1;
-    border: 1px solid #ccc;
-}
-
-/* Show the dropdown on hover or focus */
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.price-range {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  padding: 10px 40px 10px 20px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  width: auto; /* Allow the dropdown to fit its content */
 }
 
 /* Style for the price filter inputs */
-.price-range input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
+.price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Style the "Apply" button */
+.price-range input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Buttons Styling */
 .btn-apply {
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    width: 100%;
+  padding: 8px 20px;
+  background-color: #c4616196;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .btn-apply:hover {
-    background-color: #0056b3;
+  background-color: #ffffff;
 }
 
-/* Clear All button */
 .btn-clear-all {
-    padding: 8px 15px;
-    background-color:#770000e3; /* Red background */
-    color: white;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
+  padding: 8px 15px;
+  background-color: #770000e3; /* Red background */
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-/* Hover effect for Clear All button */
 .btn-clear-all:hover {
-    background-color:black;
+  background-color: rgb(86, 0, 0);
 }
 
+/* Filter Buttons Container */
+.filter-buttons {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Adds space between the buttons */
+  width: auto; /* Aligns properly with filter items */
+}
+
+/* Product Result Styles */
+.result-container {
+  display: grid;
+  grid-template-columns: repeat(3, 0.219fr); /* Keep 3 equal columns */
+  column-gap: 10px; /* Set column gap to 10px */
+  row-gap: 45px; /* Set row gap to 10px */
+  padding: 10px; /* Reduce padding around the container */
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.result-container > p {
+  text-align: left;
+  font-size: 25px; /* Optional */
+  color: #383838; /* Optional */
+  margin-top: 20px;
+  padding-left: 50px;
+}
+
+/* Product Card Styles */
+.product {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px; /* Keep padding small within the card */
+  max-width: 300px; /* Control the maximum width of the product */
+  width: 100%; /* Ensure full width inside the grid column */
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin: 0 auto; /* Center each product within its grid item */
+  box-sizing: border-box;
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.price {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.condition {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .product {
+    flex: 1 1 calc(50% - 20px); /* 2 products per row for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    flex: 1 1 100%; /* 1 product per row for very small screens */
+  }
+}

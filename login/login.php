@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/finalp/bg1.jpg">
+    <link rel="stylesheet" href="bg1.jpg">
     <link href=https://fonts.google.com/specimen/Nanum+Gothic rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../login/logins.css">
 </head>
 
 <body>
 
-    <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo">
+    <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo">
     <div class="wrapper">
         <h2>Log In</h2>
         <form method="post" action="">

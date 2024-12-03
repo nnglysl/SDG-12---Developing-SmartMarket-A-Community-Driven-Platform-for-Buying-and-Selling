@@ -1,95 +1,66 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    height: 100vh;
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
 }
 
 
-.sidebar {
-    width: 250px;
-    background-color: #222;
-    color: white;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 50px;
-}
-
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-
-
-
-.sidebar-item {
+.back-button a {
     text-decoration: none;
-    color: white;
-    display: block;
-    padding: 15px 20px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: inherit;
 }
 
 
-
-
-.sidebar-item:hover {
-    background-color: #ffb6c1;
-    color: #333;
+.back-button i {
+    margin-right: 8px;
 }
 
 
-
-
-.sidebar-item i {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-
-
-
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
-    background-color: #fef1f1;
-
-
+/* Container Styles for Add Product */
 .add-product-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 50px;
-    background-color: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: #fff; /* White container */
+    padding: 30px 40px; /* Increased padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 500px; /* Reduced width to eliminate excess white space */
+    text-align: left; /* Align content to the left for readability */
+    box-sizing: border-box; /* Include padding in dimensions */
 }
 
 
+/* Heading Styles */
 .add-product-container h1 {
     font-size: 2rem;
-    color: #000;
-    text-align: center;
+    color: #333; /* Dark gray heading */
     margin-bottom: 20px;
+}
+
+
+/* Form Layout */
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form fields */
 }
 
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between label and input */
 }
 
 
-.form-group label {
+label {
     font-size: 1rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+    color: #333;
 }
 
 
@@ -97,63 +68,48 @@ input[type="text"],
 input[type="number"],
 textarea,
 input[type="file"] {
-    width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    color: #333;
-    margin-top: 5px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Include padding in width */
+    width: 100%; /* Ensure inputs take up full width */
 }
 
 
 textarea {
-    resize: vertical;
+    resize: vertical; /* Allow resizing of textarea */
+    min-height: 100px; /* Minimum height for textarea */
 }
 
 
+/* Submit Button */
 .submit-button {
-    background-color: #000;
+    padding: 12px 20px;
+    font-size: 1rem;
     color: white;
-    padding: 15px 30px;
-    font-size: 1.1rem;
+    background-color: #fc00a8; /* Green button */
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%; /* Full-width button */
 }
 
 
 .submit-button:hover {
-    background-color: #f104a2;
+    background-color: #45a049; /* Darker green on hover */
 }
 
 
-/* Input focus effect */
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus,
-input[type="file"]:focus {
-    border-color: #ffb6c1; /* Light pink color on focus */
-    outline: none;
-}
-
-
-/* Mobile responsiveness */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 200px; /* Adjust sidebar width for smaller screens */
-    }
-
-
-    .main-content {
-        margin-left: 200px;
-        width: calc(100% - 200px);
+    body {
+        padding: 10px;
     }
 
 
     .add-product-container {
-        width: 100%;
+        padding: 20px;
+        max-width: 100%;
     }
-}}
+}

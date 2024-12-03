@@ -1,9 +1,22 @@
 <?php
-
 include '../../db/dbcon.php';
-include '../../php/search_bar.php'
+include '../../php/search_bar.php';
 
-  ?>
+$database = new Database();
+$conn = $database->getConnection();
+
+$product_id = 5; 
+
+$query = "SELECT stock FROM product_variations WHERE product_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$stmt->bind_result($stock);
+$stmt->fetch();
+
+$stmt->close();
+$database->closeConnection();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,25 +38,17 @@ include '../../php/search_bar.php'
       <li><a href="/final/home/home.php">HOME</a></li>
       <li><a href="/final/shop/shop.php">SHOP</a></li>
     </ul>
-
     <div class="search-container">
-      <form method="post" action="/final/items/search/search_view.php">
+      <form method="get" action="/final/search/search_view.php">
         <div class="search-bar-wrapper">
-          <input type="text" name="search" class="search-bar" id="search" placeholder="Search" required>
-          <button type="submit" name="submit" class="search-button">
+          <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
+            value="<?php echo htmlspecialchars($search_query); ?>" required>
+          <button type="submit" class="search-button">
             <i class="bx bx-search"></i>
           </button>
         </div>
       </form>
-
-      <!-- Result Container: Initially empty, shown only when there are results -->
-      <?php if (!empty($results)) { ?>
-        <div class="result-container">
-          <?php echo $results; ?>
-        </div>
-      <?php } ?>
     </div>
-
     <div class="navicon">
       <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
       <a href="#"><i class="bx bx-cart"></i></a>
@@ -71,25 +76,49 @@ include '../../php/search_bar.php'
               <input type="number" id="quantity" value="1" min="1" />
               <button id="increase">+</button>
             </div>
+            <p id="stock-info">Available stock: <?php echo $stock; ?></p>
           </div>
 
-          <!-- js for quantity-->
+          <!-- JS for Quantity -->
           <script>
-            document
-              .getElementById("increase")
-              .addEventListener("click", function () {
-                let quantityInput = document.getElementById("quantity");
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-              });
+            const stock = <?php echo $stock; ?>; 
 
-            document
-              .getElementById("decrease")
-              .addEventListener("click", function () {
-                let quantityInput = document.getElementById("quantity");
-                if (quantityInput.value > 1) {
-                  quantityInput.value = parseInt(quantityInput.value) - 1;
-                }
-              });
+            // Update quantity limits based on stock
+            function updateQuantityLimits() {
+              const quantityInput = document.getElementById("quantity");
+              const stockInfo = document.getElementById("stock-info");
+
+              quantityInput.max = stock;
+              stockInfo.textContent = 'Available stock: ' + stock;
+
+              // Disable or enable buttons based on available stock
+              document.getElementById("increase").disabled = quantityInput.value >= stock;
+              document.getElementById("decrease").disabled = quantityInput.value <= 1;
+
+              // Ensure the quantity doesn't exceed the stock
+              if (parseInt(quantityInput.value) > stock) {
+                quantityInput.value = stock;
+              }
+            }
+
+            // Increase/decrease quantity buttons
+            document.getElementById("increase").addEventListener("click", function () {
+              const quantityInput = document.getElementById("quantity");
+              if (parseInt(quantityInput.value) < stock) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                updateQuantityLimits();
+              }
+            });
+
+            document.getElementById("decrease").addEventListener("click", function () {
+              const quantityInput = document.getElementById("quantity");
+              if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                updateQuantityLimits();
+              }
+            });
+
+            updateQuantityLimits();
           </script>
 
           <div class="product-buttons">
@@ -112,7 +141,6 @@ include '../../php/search_bar.php'
           </div>
         </div>
       </section>
-
 
       <!-- Product Description -->
       <section class="product-description">

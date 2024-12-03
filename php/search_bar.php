@@ -1,37 +1,81 @@
 <?php
 
-require_once '../db/dbcon.php';
+require_once __DIR__ .'/../db/dbcon.php';
 
-$results = "";
+class ProductSearch
+{
+    private $conn;
+    private $search_query;
+    private $sort;
+    private $condition;
+    private $min_price;
+    private $max_price;
 
-// Create an instance of the Database class
-$db = new Database();
-$conn = $db->getConnection();
+    public function __construct($conn, $search_query = '', $sort = 'best-match', $condition = 'all', $min_price = '', $max_price = '')
+    {
+        $this->conn = $conn;
+        $this->search_query = $search_query;
+        $this->sort = $sort;
+        $this->condition = $condition;
+        $this->min_price = $min_price;
+        $this->max_price = $max_price;
+    }
 
+    public function fetchProducts()
+    {
+        $query = "SELECT * FROM products WHERE product_name LIKE ?";
 
-if (isset($_POST['submit'])) {
-
-    $searchTerm = trim($_POST['search']);
-    $searchTerm = $conn->real_escape_string($searchTerm);
-
-
-    $query = "SELECT * FROM products WHERE name LIKE '%$searchTerm%'";
-    $result = $conn->query($query);
-
-
-    if ($result->num_rows > 0) {
-        $results .= '<ul>';
-        while ($row = $result->fetch_assoc()) {
-
-            $productLink = htmlspecialchars($row['product_page_link']);
-            $results .= '<li><a href="' . $productLink . '">' . htmlspecialchars($row['name']) . '</a></li>';
+        if (!empty($this->condition) && $this->condition !== 'all') {
+            $query .= " AND `condition` = ?";
         }
-        $results .= '</ul>';
-    } else {
-        $results .= '<p>No results found for "' . htmlspecialchars($searchTerm) . '"</p>';
+
+        if ($this->min_price != '' && $this->max_price != '') {
+            $query .= " AND price BETWEEN ? AND ?";
+        }
+
+        if ($this->sort == 'price-high-low') {
+            $query .= " ORDER BY price DESC";
+        } elseif ($this->sort == 'price-low-high') {
+            $query .= " ORDER BY price ASC";
+        }
+
+        $stmt = $this->conn->prepare($query);
+
+        $search_query = '%' . $this->search_query . '%';
+
+        if (!empty($this->condition) && $this->condition !== 'all' && $this->min_price !== '' && $this->max_price !== '') {
+            $stmt->bind_param("ssdd", $search_query, $this->condition, $this->min_price, $this->max_price);
+        } elseif (!empty($this->condition) && $this->condition !== 'all') {
+            $stmt->bind_param("ss", $search_query, $this->condition);
+        } elseif ($this->min_price !== '' && $this->max_price !== '') {
+            $stmt->bind_param("sdd", $search_query, $this->min_price, $this->max_price);
+        } else {
+            $stmt->bind_param("s", $search_query);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+
+        $stmt->close();
+
+        return $products;
     }
 }
 
+$database = new Database();
+$conn = $database->getConnection();
 
-$conn->close();
+$search_query = $_GET['search'] ?? '';
+$sort = $_GET['sort'] ?? 'best-match';
+$condition = $_GET['condition'] ?? 'all';
+$min_price = $_GET['min_price'] ?? '';
+$max_price = $_GET['max_price'] ?? '';
+
+$productSearch = new ProductSearch($conn, $search_query, $sort, $condition, $min_price, $max_price);
+$results = $productSearch->fetchProducts();
 ?>

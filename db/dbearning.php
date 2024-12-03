@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../dbconnection/dbcon.php'; // Adjust the path as necessary
+require_once __DIR__ . '/dbcon.php'; // Adjust the path as necessary
 
 class Earnings {
     private $conn;
