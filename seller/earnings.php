@@ -1,5 +1,5 @@
 <?php
-require_once 'dbearning.php'; // Adjust the path as needed
+require_once '../db/dbearning.php'; // Adjust the path as needed
 
 // Create an instance of the Earnings class
 $earnings = new Earnings();

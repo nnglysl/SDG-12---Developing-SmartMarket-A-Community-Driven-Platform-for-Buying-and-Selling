@@ -20,11 +20,12 @@ class AccountSwitcher {
         if ($result->num_rows > 0) {
             // Buyer is already a seller
             $seller = $result->fetch_assoc();
-            // Redirect to seller profile
-            header("Location: seller_profile.php?id=" . $seller['id']); // Assuming 'id' is the seller's unique identifier
+                session_start();
+                $_SESSION['seller_id'] = $seller['seller_id'];
+            header("Location: ../seller/sellerdashboard.php"); // Assuming 'id' is the seller's unique identifier
         } else {
-            // Buyer is not a seller, redirect to create account form
-            header('Location: sellerregister.php'); // Make sure to add .php extension
+            // Buyer is not a seller, redirect to create account form with buyer ID
+            header('Location: ../seller/sellerregister.php?buyer_id=' . $this->buyerID); // Pass the buyer ID as a query parameter
         }
         exit();
     }

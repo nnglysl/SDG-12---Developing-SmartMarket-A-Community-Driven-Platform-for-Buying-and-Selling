@@ -2,7 +2,7 @@
 
 include '../php/search_bar.php';
 
-$query = "SELECT * FROM products ORDER BY RAND() LIMIT 3"; // Fetch random products
+$query = "SELECT * FROM products ORDER BY RAND() LIMIT 3"; // Fetch 3 random products
 $result = mysqli_query($conn, $query);
 
 ?>

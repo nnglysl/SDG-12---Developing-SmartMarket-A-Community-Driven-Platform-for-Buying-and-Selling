@@ -12,21 +12,28 @@
         <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
 
         <ul class="nav">
-            <li><a href="../home/home.php">HOME</a></li>
-            <li><a href="/shop/school_supplies/school supplies.html">SHOP</a></li>
+            <li><a href="/final/home/home.php">HOME</a></li>
+            <li><a href="/final/shop/shop.php">SHOP</a></li>
         </ul>
 
+        <!-- Search Bar -->
         <div class="search-container">
-            <form method="get" action="/final/search/search_view.php">
-                <div class="search-bar-wrapper">
-                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
-                        value="<?php echo htmlspecialchars($search_query); ?>" required>
-                    <button type="submit" class="search-button">
-                        <i class="bx bx-search"></i>
-                    </button>
-                </div>
-            </form>
+            <input
+            type="text"
+            id="product-search"
+            class="search-bar"
+            name="query"
+            placeholder="Search..."
+            />
+            <button type="submit" class="search-button">
+            <i class="bx bx-search"></i>
+            </button>
+            <ul id="dropdown-results" class="dropdown-results"></ul>
         </div>
+        <div class="result-container">
+            <ul id="results"></ul>
+        </div>
+        <script src="/javascript/searchbar.js"></script>
 
         <div class="navicon">
             <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
