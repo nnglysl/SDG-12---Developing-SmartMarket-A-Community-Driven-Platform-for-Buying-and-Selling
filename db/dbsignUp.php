@@ -50,7 +50,7 @@ class UserRegistration {
 
         //Validate email domain
         if (!preg_match("/@g\.batstate-u.edu\.ph$/", $email)) {
-            return "Email must be from the domain '@g.batstate-u-edu.ph'.";
+            return "Email must be from the domain '@g.batstate-u.edu.ph'.";
         }
 
         // Check if passwords match
