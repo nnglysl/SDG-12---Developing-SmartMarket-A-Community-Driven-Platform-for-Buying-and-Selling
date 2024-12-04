@@ -190,10 +190,10 @@ body {
                         <p>Price: ₱<?php echo htmlspecialchars(number_format($order['item_price'], 2)); ?></p>
                         <div class="item-quantity">
                             <label for="quantity_<?php echo $order['id']; ?>">Quantity:</label>
-                            <input type="number" id="quantity_<?php echo $order['id']; ?>" name="quantity[]" value="<?php echo htmlspecialchars($order['item_quantity']); ?>" min="1" readonly>
+                            <input type="number" id="quantity_<?php echo $order['id']; ?>" name="quantity[]" value="<?php echo htmlspecialchars($order['quantity']); ?>" min="1" readonly>
                         </div>
                     </div>
-                    <div class="item-price">₱<?php echo htmlspecialchars(number_format($orderManager->calculateTotalAmount($order['item_price'], $order['item_quantity']), 2)); ?></div>
+                    <div class="item-price">₱<?php echo htmlspecialchars(number_format($orderManager->calculateTotalAmount($order['item_price'], $order['quantity']), 2)); ?></div>
                 </div>
             <?php endforeach; ?>
 
@@ -201,7 +201,7 @@ body {
                 <div class="summary-item">
                     <span>Subtotal</span>
                     <span>₱<?php echo htmlspecialchars(number_format(array_sum(array_map(function($order) use ($orderManager) {
-                        return $orderManager->calculateTotalAmount($order['item_price'], $order['item_quantity']);
+                        return $orderManager->calculateTotalAmount($order['item_price'], $order['quantity']);
                     }, $orders)), 2)); ?></span>
                 </div>
                 <div class="summary-item">
@@ -211,7 +211,7 @@ body {
                 <div class="summary-item" style="font-weight: bold;">
                     <span>Total</span>
                     <span>₱<?php echo htmlspecialchars(number_format(array_sum(array_map(function($order) use ($orderManager) {
-                        return $orderManager->calculateTotalAmount($order['item_price'], $order['item_quantity']);
+                        return $orderManager->calculateTotalAmount($order['item_price'], $order['quantity']);
                     }, $orders)), 2)); ?></span>
                 </div>
             </div>

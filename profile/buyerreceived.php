@@ -8,12 +8,21 @@ session_start();
 $buyer_id = $_SESSION['buyer_id']; 
 
 // Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_ids'])) {
-    // Get the selected order IDs
-    $order_ids = $_POST['order_ids'];
-    
-    // Update the status of each selected order to 'delivered'
-    foreach ($order_ids as $order_id) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Check if the action is to cancel orders
+    if (isset($_POST['action']) && $_POST['action'] === 'cancel' && isset($_POST['order_ids'])) {
+        // Get the selected order IDs
+        $order_ids = $_POST['order_ids'];
+        
+        // Cancel each selected order
+        foreach ($order_ids as $order_id) {
+            $orderManager->cancelOrder($order_id); // Ensure this method exists in your class
+        }
+    }
+
+    // Check if the action is to mark orders as delivered
+    if (isset($_POST['single_order_id'])) {
+        $order_id = $_POST['single_order_id'];
         $orderManager->updateOrderStatus($order_id, 'delivered'); // Ensure this method exists in your class
     }
 }
@@ -206,7 +215,7 @@ body {
                         <p>Price: ₱<?php echo htmlspecialchars(number_format($order['item_price'], 2)); ?></p>
                         <div class="item-quantity">
                             <label for="quantity_<?php echo $order['id']; ?>">Quantity:</label>
-                            <input type="number" id="quantity_<?php echo $order['id']; ?>" name="quantity[]" value="<?php echo htmlspecialchars($order['item_quantity']); ?>" min="1" readonly>
+                            <input type="number" id="quantity_<?php echo $order['id']; ?>" name="quantity[]" value="<?php echo htmlspecialchars($order['quantity']); ?>" min="1" readonly>
                         </div>
                     </div>
                     <div class="action-buttons">

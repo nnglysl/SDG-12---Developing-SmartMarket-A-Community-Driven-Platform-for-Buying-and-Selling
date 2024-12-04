@@ -26,6 +26,7 @@ $pendingPayouts = $data['pendingPayouts'];
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
+    <?php include('../sidebar/sidebar.php'); ?>
     <div class="earning-container">
         <h1>Earnings Overview</h1>
         <div class="earning-summary">

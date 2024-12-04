@@ -104,6 +104,7 @@ p {
                     <th>Buyer Name</th>
                     <th>Order ID</th>
                     <th>Product Name</th>
+                    <th>Price</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -114,7 +115,8 @@ p {
                         <td><?php echo htmlspecialchars($order['buyer_id']); ?></td>
                         <td><?php echo htmlspecialchars($order['buyer_name']); ?></td>
                         <td><?php echo htmlspecialchars($order['order_id']); ?></td>
-                        <td><?php echo htmlspecialchars($order['product_name']); ?></td>
+                        <td><?php echo htmlspecialchars($order['item_name']); ?></td>
+                        <td><?php echo htmlspecialchars($order['price_name']); ?></td>
                         <td><?php echo htmlspecialchars($order['order_status']); ?></td>
                         <td>
                             <form action="" method="POST">

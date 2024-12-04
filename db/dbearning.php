@@ -10,18 +10,19 @@ class Earnings {
     }
 
     public function getEarningsData() {
-        $sql = "SELECT date, amount, status FROM earnings";
-        $result = $this->conn->query($sql);
+        // Fetch total earnings from orders table where order_status is 'delivered'
+        $sqlDelivered = "SELECT created_at, item_price, order_status FROM orders WHERE order_status = 'delivered'";
+        $resultDelivered = $this->conn->query($sqlDelivered);
 
         $earningsData = [];
         $totalEarnings = 0;
         $pendingPayouts = 0;
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+        if ($resultDelivered->num_rows > 0) {
+            while ($row = $resultDelivered->fetch_assoc()) {
                 $earningsData[] = $row;
                 $totalEarnings += $row['amount'];
-                if ($row['status'] === 'Pending') {
+                if ($row['status'] === 'to ship') {
                     $pendingPayouts += $row['amount'];
                 }
             }
@@ -34,3 +35,4 @@ class Earnings {
         ];
     }
 }
+?>

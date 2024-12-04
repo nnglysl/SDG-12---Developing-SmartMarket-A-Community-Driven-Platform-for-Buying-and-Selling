@@ -6,7 +6,7 @@ $database = new Database();
 $conn = $database->getConnection(); 
 
 // Fetch all products with their shop names
-$query = "SELECT p.product_name, p.price, p.quantity, p.image_path, p.description, s.shop_name 
+$query = "SELECT p.product_name, p.price, p.image_path, p.description, s.shop_name 
           FROM products p 
           JOIN seller s ON p.seller_id = s.seller_id";
 
@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $query);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apparel Store</title>
-    <link rel="stylesheet" href="Home.css"/>
+    <link rel="stylesheet" href="home.css"/>
     <link href="https://fonts.google.com/specimen/Nanum+Gothic" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
     <link rel="stylesheet" href="../css/nav.css" />
