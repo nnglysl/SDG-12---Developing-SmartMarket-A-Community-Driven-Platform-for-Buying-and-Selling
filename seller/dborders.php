@@ -18,9 +18,9 @@ class OrderManager {
     }
 
     public function markAsShipped($orderId) {
-        $query = "UPDATE orders SET order_status = 'ship' WHERE id = ?";
+        $query = "UPDATE orders SET order_status = 'to receive' WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $orderId); // "i" indicates the type is integer
+        $stmt->bind_param("i", $orderId); 
         return $stmt->execute();
     }
 
@@ -38,7 +38,7 @@ class OrderManager {
             // Insert into cancelledorders
             $cancelQuery = "INSERT INTO cancelledorders (product_name, quantity, price, item_picture) VALUES (?, ?, ?, ?)";
             $cancelStmt = $this->conn->prepare($cancelQuery);
-            $reason = "Order canceled by user"; // You may want to pass this as an argument
+            $reason = "Order canceled by user";
             $cancelStmt->bind_param("ssid", $order['item_name'], $reason, $order['item_quantity'], $order['item_price']);
             $cancelStmt->execute();
 
@@ -51,10 +51,10 @@ class OrderManager {
             // Close statements
             $cancelStmt->close();
             $deleteStmt->close();
-            return true; // Indicate success
+            return true; 
         }
 
-        return false; // Indicate failure (order not found)
+        return false; 
     }
 
     public function getOrders() {
@@ -62,15 +62,15 @@ class OrderManager {
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as an associative array
+        return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
     public function getReceivedOrder() {
-        $query = "SELECT * FROM orders WHERE order_status = 'received' ORDER BY created_at DESC";
+        $query = "SELECT * FROM orders WHERE order_status = 'to receive' ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as an associative array
+        return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
     public function getCanceledOrders() {
@@ -85,9 +85,8 @@ class OrderManager {
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as an associative array
+        return $result->fetch_all(MYSQLI_ASSOC); 
     }
-
 
     public function closeConnection() {
         $this->conn->close();

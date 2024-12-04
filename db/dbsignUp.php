@@ -49,7 +49,7 @@ class UserRegistration {
         }
 
         //Validate email domain
-        if (!preg_match("/@g\.batstate-u-edu\.ph$/", $email)) {
+        if (!preg_match("/@g\.batstate-u.edu\.ph$/", $email)) {
             return "Email must be from the domain '@g.batstate-u-edu.ph'.";
         }
 

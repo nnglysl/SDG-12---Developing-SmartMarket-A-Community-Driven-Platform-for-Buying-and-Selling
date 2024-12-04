@@ -1,3 +1,19 @@
+<?php
+// Include your database connection
+require_once '../db/dbcon.php';
+
+// Create a new database connection
+$database = new Database();
+$conn = $database->getConnection(); // Get the connection
+
+// Fetch all products with their shop names
+$query = "SELECT p.product_name, p.price, p.quantity, p.image_path, p.description, s.shop_name 
+          FROM products p 
+          JOIN seller s ON p.seller_id = s.seller_id";
+
+$result = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +45,7 @@
                             <img src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Product Image" />
                             <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
                             <p>₱ <?php echo htmlspecialchars(number_format($product['price'], 2)); ?></p>
-                            <p class="condition"><?php echo htmlspecialchars($product['condition']); ?></p>
+                            <p class="shop-name">Sold by: <?php echo htmlspecialchars($product['shop_name']); ?></p>
                         </a>
                     </div>
                 <?php } ?>

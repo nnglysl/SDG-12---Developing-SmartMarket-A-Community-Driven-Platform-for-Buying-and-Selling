@@ -4,27 +4,6 @@ require_once 'dborders.php'; // Include the order manager class
 $orderManager = new OrderManager();
 $orders = $orderManager->getOrders(); // Fetch all orders
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
-    $orderIds = $_POST['order_ids'] ?? []; // Get selected order IDs
-
-    // Process the action
-    if (!empty($orderIds)) {
-        if ($_POST['action'] == 'ship') {
-            foreach ($orderIds as $orderId) {
-                $orderManager->markAsShipped($orderId); // Mark each order as shipped
-            }
-        } elseif ($_POST['action'] == 'cancel') {
-            foreach ($orderIds as $orderId) {
-                $orderManager->cancelOrder($orderId); // Cancel each order
-            }
-        }
-    }
-
-    // Redirect to the same page to avoid form resubmission
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-}
-
 $orderManager->closeConnection();
 ?>
 
@@ -185,15 +164,15 @@ body {
     }
 
     .item-price {
-        margin-top: 10px; /* Space above price */
+        margin-top: 10px;
     }
 
     .action-buttons {
-        flex-direction: column; /* Stack buttons vertically */
+        flex-direction: column;
     }
 
     .ship-btn, .cancel-btn {
-        margin: 5px 0; /* Space between stacked buttons */
+        margin: 5px 0; 
     }
 } </style>
 </head>

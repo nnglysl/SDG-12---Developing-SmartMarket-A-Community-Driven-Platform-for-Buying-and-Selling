@@ -205,10 +205,6 @@ body {
                     <span>₱<?php echo htmlspecialchars(number_format(array_sum(array_map(function($order) use ($orderManager) {
                     }, $orders)), 2)); ?></span>
                 </div>
-                <div class="summary-item">
-                    <span>Shipping Method</span>
-                    <span>COD</span>
-                </div>
             </div>
         </form>
     </div>
