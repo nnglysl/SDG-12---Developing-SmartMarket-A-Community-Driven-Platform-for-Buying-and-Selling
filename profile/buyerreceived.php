@@ -2,13 +2,26 @@
 // Include the OrderManager class
 require_once '../profile/buyerorder.php';
 
-
 $orderManager = new BuyerOrder();
 
 session_start();
 $buyer_id = $_SESSION['buyer_id']; 
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_ids'])) {
+    // Get the selected order IDs
+    $order_ids = $_POST['order_ids'];
+    
+    // Update the status of each selected order to 'delivered'
+    foreach ($order_ids as $order_id) {
+        $orderManager->updateOrderStatus($order_id, 'delivered'); // Ensure this method exists in your class
+    }
+}
+
+// Fetch the orders for the buyer
 $orders = $orderManager->getReceivedOrder($buyer_id);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -196,18 +209,17 @@ body {
                             <input type="number" id="quantity_<?php echo $order['id']; ?>" name="quantity[]" value="<?php echo htmlspecialchars($order['item_quantity']); ?>" min="1" readonly>
                         </div>
                     </div>
+                    <div class="action-buttons">
+                        <button type="submit" name="single_order_id" value="<?php echo htmlspecialchars($order['id']); ?>" class="ship-btn">Mark as Delivered</button>
+                        <button type="button" class="cancel-btn">Cancel</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
 
             <div class="cart-summary">
                 <div class="summary-item">
                     <span>Subtotal</span>
-                    <span>₱<?php echo htmlspecialchars(number_format(array_sum(array_map(function($order) use ($orderManager) {
-                    }, $orders)), 2)); ?></span>
-                </div>
-                <div class="summary-item">
-                    <span>Shipping Method</span>
-                    <span>COD</span>
+                    <span>₱<?php echo htmlspecialchars(number_format(array_sum(array_column($orders, 'item_price')), 2)); ?></span>
                 </div>
             </div>
         </form>

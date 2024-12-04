@@ -59,102 +59,77 @@ class BuyerOrder {
     }
 
     public function countShipOrders($buyer_id) {
-        // Prepare the SQL statement
-        $sql = "SELECT COUNT(*) FROM orders WHERE order_status = 'ship' AND buyer_id = ?";
+        $count = 0;
+
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'to ship' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
-    
-        if ($stmt === false) {
-            die('Prepare failed: ' . htmlspecialchars($this->conn->error));
-        }
-    
-        // Bind parameters
         $stmt->bind_param("i", $buyer_id);
+        $stmt->execute();
+        $stmt->bind_result($count);
         
-        // Execute the statement
-        if (!$stmt->execute()) {
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
-        }
-    
-        // Bind the result to a variable
-        $stmt->bind_result($orderCount);
-    
         // Fetch the result
-        if (!$stmt->fetch()) {
-            // If fetch fails, initialize to 0
-            $orderCount = 0;
+        if ($stmt->fetch()) {
+            // The count will be assigned to $count
+        } else {
+            $count = 0; // Default to 0 if no results found
         }
-    
-        // Close the statement
-        $stmt->close();
         
-        // Return the count
-        return $orderCount;
+        $stmt->close();
+        return $count;
     }
     
     public function countReceivedOrders($buyer_id) {
-        // Prepare the SQL statement
-        $sql = "SELECT COUNT(*) FROM orders WHERE order_status = 'received' AND buyer_id = ?";
+        $count = 0;
+
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'to receive' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
-    
-        if ($stmt === false) {
-            die('Prepare failed: ' . htmlspecialchars($this->conn->error));
-        }
-    
-        // Bind parameters
         $stmt->bind_param("i", $buyer_id);
+        $stmt->execute();
+        $stmt->bind_result($count);
         
-        // Execute the statement
-        if (!$stmt->execute()) {
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
-        }
-    
-        // Bind the result to a variable
-        $stmt->bind_result($orderCount);
-    
         // Fetch the result
-        if (!$stmt->fetch()) {
-            // If fetch fails, initialize to 0
-            $orderCount = 0;
+        if ($stmt->fetch()) {
+            // The count will be assigned to $count
+        } else {
+            $count = 0; // Default to 0 if no results found
         }
-    
-        // Close the statement
-        $stmt->close();
         
-        // Return the count
-        return $orderCount;
+        $stmt->close();
+        return $count;
     }
     
     public function countDeliveredOrders($buyer_id) {
-        // Prepare the SQL statement
-        $sql = "SELECT COUNT(*) FROM orders WHERE order_status = 'completed' AND buyer_id = ?";
+        $count = 0;
+        
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'completed' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
-    
-        if ($stmt === false) {
-            die('Prepare failed: ' . htmlspecialchars($this->conn->error));
-        }
-    
-        // Bind parameters
         $stmt->bind_param("i", $buyer_id);
+        $stmt->execute();
+        $stmt->bind_result($count);
         
-        // Execute the statement
-        if (!$stmt->execute()) {
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
-        }
-    
-        // Bind the result to a variable
-        $stmt->bind_result($orderCount);
-    
         // Fetch the result
-        if (!$stmt->fetch()) {
-            // If fetch fails, initialize to 0
-            $orderCount = 0;
+        if ($stmt->fetch()) {
+            // The count will be assigned to $count
+        } else {
+            $count = 0; // Default to 0 if no results found
         }
-    
-        // Close the statement
-        $stmt->close();
         
-        // Return the count
-        return $orderCount;
+        $stmt->close();
+        return $count;
+    }
+
+    public function updateOrderStatus($order_id, $status) {
+        global $conn; // Ensure you have access to the database connection
+
+        $query = "UPDATE orders SET status = ? WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("si", $status, $order_id); // "si" means string and integer
+
+        if ($stmt->execute()) {
+            return true; // Successfully updated
+        } else {
+            return false; // Failed to update
+        }
     }
 }
 ?>

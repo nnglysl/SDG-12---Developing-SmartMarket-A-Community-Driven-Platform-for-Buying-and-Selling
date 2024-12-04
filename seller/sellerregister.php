@@ -8,9 +8,7 @@ $dbConnection = $database->getConnection();
 if (isset($_GET['buyer_id'])) {
     $buyerID = $_GET['buyer_id']; 
 } else {
-    // Handle the case where buyerID is not set
-    // For example, redirect to an error page or login page
-    header("Location: login.php"); // Redirect to login page
+    header("Location: login.php"); 
     exit();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,7 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($dbConnection)) {
         $sellerAccount = new SellerAccount($dbConnection);
         $result = $sellerAccount->createAccount($username, $email, $password, $confirmPassword, $store_name, $buyerID);
-        echo $result; // Display the result message
+        if ($result === true) { // Assuming createAccount returns true on success
+            header("Location: dashboard.php"); // Redirect to dashboard
+            exit();
+        } else {
+            echo $result; // Display the error message
+        }
     } else {
         echo "Database connection not established.";
     }

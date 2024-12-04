@@ -21,7 +21,7 @@ $result = mysqli_query($conn, $query);
 
         <ul class="nav">
             <li><a href="../home/home.php">HOME</a></li>
-            <li><a href="/shop/school_supplies/school supplies.html">SHOP</a></li>
+            <li><a href="../shop/shop.php">SHOP</a></li>
         </ul>
 
         <div class="search-container">
