@@ -1,11 +1,21 @@
 <?php
 
-include '../php/search_bar.php';
+require_once '../db/dbcon.php'; 
+require_once '../php/search_bar.php';
+require_once '../db/dbhome.php';
 
-$query = "SELECT * FROM products ORDER BY RAND() LIMIT 3"; // Fetch random products
-$result = mysqli_query($conn, $query);
+$dbInstance = new Database(); 
+$dbConnection = $dbInstance->getConnection(); 
 
+if ($dbConnection->connect_error) {
+    die("Failed to establish a database connection: " . $dbConnection->connect_error);
+}
+
+$homeInstance = new home($dbConnection);
+
+$products = $homeInstance->getRandomProducts();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,27 +31,23 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
-
     <header>
         <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
-
         <ul class="nav">
             <li><a href="/final/home/home.php">HOME</a></li>
             <li><a href="/final/shop/shop.php">SHOP</a></li>
         </ul>
-
         <div class="search-container">
             <form method="get" action="/final/search/search_view.php">
                 <div class="search-bar-wrapper">
-                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
-                        value="<?php echo htmlspecialchars($search_query); ?>" required>
+                    <input type="text" name="search" class="search-bar" placeholder="Search"
+                        value="<?php echo isset($search_query) ? htmlspecialchars($search_query) : ''; ?>" required />
                     <button type="submit" class="search-button">
                         <i class="bx bx-search"></i>
                     </button>
                 </div>
             </form>
         </div>
-
         <div class="navicon">
             <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
             <a href="#"><i class="bx bx-cart"></i></a>
@@ -51,14 +57,13 @@ $result = mysqli_query($conn, $query);
     <section id="home" class="banner">
         <h1>Preloved and</h1>
         <p>Brand New Items</p>
-
         <a href="/final/shop/shop.php" class="btn">Shop Now <i class="bx bx-right-arrow-alt"></i></a>
     </section>
 
     <section id="shop" class="shop-section-first" aria-labelledby="shop-heading">
         <div class="products">
-            <?php if ($result && mysqli_num_rows($result) > 0) { ?>
-                <?php while ($product = mysqli_fetch_assoc($result)) { ?>
+            <?php if (!empty($products)) { ?>
+                <?php foreach ($products as $product) { ?>
                     <div class="product">
                         <a href="<?php echo htmlspecialchars($product['item_path']); ?>">
                             <img src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Product Image" />
