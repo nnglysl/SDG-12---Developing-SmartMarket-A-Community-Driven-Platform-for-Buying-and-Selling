@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2024 at 08:25 AM
+-- Generation Time: Dec 04, 2024 at 04:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,66 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `buyer`
+--
+
+CREATE TABLE `buyer` (
+  `buyer_id` int(11) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `verification_code` int(11) NOT NULL,
+  `verify` enum('not verified','verified') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `buyer`
+--
+
+INSERT INTO `buyer` (`buyer_id`, `username`, `first_name`, `last_name`, `email`, `password`, `address`, `profile_picture`, `verification_code`, `verify`) VALUES
+(1, 'asa', 'Colleen', 'Perez', 'coco@gmail.com', '$2y$10$WLfo/I3NZdFK74i6x.KIuuA2rzI7kbAUzFAzrvkiUHr3RirRmepJW', NULL, '', 0, 'not verified'),
+(12, 'coco3', 'colleen', 'Perez', 'rjcatapang12@gmail.com', '$2y$10$JwhQDTKIs8IYCgM..iXcC.PiVb6NodV0Ma3VnLgAGnyxOpMlOc49G', NULL, NULL, 3296, 'verified'),
+(14, 'cocococo', 'colleen', 'Perez', '23-07395@g.batstate-u.edu.ph', '$2y$10$T0C2Agz5FjVNuG/zu3KXMue0Qekv1ZnhG.EhhnxbZ8xVLGyj4r0RK', NULL, '../uploads/674f11f689fb5_user.jpg', 7755, 'verified'),
+(15, 'sadsadgfs', 'colleen', 'Perez', '23-38343@g.batstate-u.edu.ph', '$2y$10$6CvTgKyJp/2lC86vAKVU/.0pd7hYl.w/uN8ctns7pKpyeaA8UrQOC', NULL, '../uploads/674fb65bb1bb3_user.jpg', 2573, 'verified');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cancelledorders`
+--
+
+CREATE TABLE `cancelledorders` (
+  `cancel_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `item_picture` varchar(255) NOT NULL,
+  `cancel_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `product_picture` varchar(255) NOT NULL,
+  `size` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contact_submissions`
 --
 
@@ -40,12 +100,8 @@ CREATE TABLE `contact_submissions` (
 --
 
 INSERT INTO `contact_submissions` (`submission_id`, `name`, `email`, `message`, `submitted_at`) VALUES
-(1, 'gly', 'glyselannesales@gmail.com', 'fdgdfg', '2024-11-29 10:05:54'),
-(2, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:06:35'),
 (3, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:08:30'),
-(4, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:08:54'),
-(5, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:17:34'),
-(6, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:18:30');
+(5, 'gly', 'glyselannesales@gmail.com', 'test', '2024-11-29 10:17:34');
 
 -- --------------------------------------------------------
 
