@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/final/db/dbcon.php';
+require_once __DIR__ .'/../db/dbcon.php';
 
 class ProductSearch
 {

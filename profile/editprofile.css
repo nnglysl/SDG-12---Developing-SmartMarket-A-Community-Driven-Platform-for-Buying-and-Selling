@@ -41,7 +41,7 @@ h2 {
     display: none;
 }
 
-button, a {
+.form-buttons button{
     width: 100%;
     padding: 10px;
     background-color: #c2adad;
@@ -64,7 +64,7 @@ button:hover {
 }
 
 
-.form-buttons button, a{
+.form-buttons button{
     width: 48%;
     padding: 10px;
     border: none;

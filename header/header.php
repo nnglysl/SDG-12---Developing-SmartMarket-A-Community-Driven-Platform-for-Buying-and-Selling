@@ -1,9 +1,11 @@
 <?php
 
-include '../php/search_bar.php';
+require_once '../php/search_bar.php';
+
+$query = "SELECT * FROM products ORDER BY RAND() LIMIT 3"; // Fetch random products
+$result = mysqli_query($conn, $query);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +20,8 @@ include '../php/search_bar.php';
         <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
 
         <ul class="nav">
-            <li><a href="/final/home/home.php">HOME</a></li>
-            <li><a href="/final/shop/shop.php">SHOP</a></li>
+            <li><a href="../home/home.php">HOME</a></li>
+            <li><a href="../shop/shop.php">SHOP</a></li>
         </ul>
 
         <!-- Search Bar -->
@@ -36,9 +38,11 @@ include '../php/search_bar.php';
         </div>
 
         <div class="navicon">
-            <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
-            <a href="#"><i class="bx bx-cart"></i></a>
+            <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
+            <a href="../seller/cart.php"><i class="bx bx-cart"></i></a>
+            <a href="../logout/logout.php"><i class="bx bx-log-out"></i></a>
         </div>
+        
         </header>
 </body>
 </html>

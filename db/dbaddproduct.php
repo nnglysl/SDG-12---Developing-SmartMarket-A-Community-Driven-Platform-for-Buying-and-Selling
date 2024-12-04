@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../dbconnection/dbcon.php';
+require_once __DIR__ . '/../db/dbcon.php';
 
 class ProductManager
 {

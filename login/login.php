@@ -1,6 +1,6 @@
 <?php
-require_once('../db/dbcon.php'); // Include your database connection
-require_once('../db/dblogin.php'); // Include the UserLogin class
+require_once '../db/dbcon.php'; // Include your database connection
+require_once '../db/dblogin.php'; // Include the UserLogin class
 
 // Create a new database connection
 $database = new Database();
@@ -36,12 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bg1.jpg">
     <link href=https://fonts.google.com/specimen/Nanum+Gothic rel="stylesheet">
-    <link rel="stylesheet" href="/final/login/login.css">
+    <link rel="stylesheet" href="../login/logins.css">
 </head>
 
 <body>
 
-    <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo">
+    <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo">
     <div class="wrapper">
         <h2>Log In</h2>
         <form method="post" action="">

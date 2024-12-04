@@ -4,6 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .sidebar {
+    width: 250px;
+    background-color: #222;
+    color: white;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.sidebar-item:hover {
+    background-color: #ffb6c1;
+    color: #333;
+}
+
+.sidebar-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    </style>
 </head>
 <body>
         <div class="sidebar">
@@ -11,10 +56,11 @@
                 <li><a href="../seller/sellerdashboard.php" class="sidebar-item"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="../seller/addproduct.php" class="sidebar-item"><i class="fas fa-box"></i> Add Product</a></li>
                 <li><a href="../seller/earnings.php" class="sidebar-item"><i class="fas fa-wallet"></i> Earnings</a></li>
-                <li><a href="#" class="sidebar-item"><i class="fas fa-truck"></i> To Ship</a></li>
-                <li><a href="#" class="sidebar-item"><i class="fas fa-times-circle"></i> Cancelled</a></li>
-                <li><a href="#" class="sidebar-item"><i class="fas fa-star"></i> Ratings</a></li>
-                <li><a href="#" class="sidebar-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li><a href="../seller/toShip.php" class="sidebar-item"><i class="fas fa-truck"></i> To Ship</a></li>
+                <li><a href="../seller/received.php" class="sidebar-item"><i class="fas fa-times-circle"></i>To Receive</a></li>
+                <li><a href="../seller/completedorder.php" class="sidebar-item"><i class="fas fa-times-circle"></i>Completed</a></li>
+                <li><a href="../seller/cancelorder.php" class="sidebar-item"><i class="fas fa-times-circle"></i> Cancelled</a></li>
+                <li><a href="../logout/logout.php" class="sidebar-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
 </body>
