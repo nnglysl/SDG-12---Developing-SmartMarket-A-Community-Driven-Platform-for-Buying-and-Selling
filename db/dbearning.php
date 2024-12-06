@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/dbcon.php'; // Adjust the path as necessary
+require_once __DIR__ . '/../dbconnection/dbcon.php'; // Adjust the path as necessary
 
 class Earnings {
     private $conn;
@@ -10,19 +10,18 @@ class Earnings {
     }
 
     public function getEarningsData() {
-        // Fetch total earnings from orders table where order_status is 'delivered'
-        $sqlDelivered = "SELECT created_at, item_price, order_status FROM orders WHERE order_status = 'delivered'";
-        $resultDelivered = $this->conn->query($sqlDelivered);
+        $sql = "SELECT date, amount, status FROM earnings";
+        $result = $this->conn->query($sql);
 
         $earningsData = [];
         $totalEarnings = 0;
         $pendingPayouts = 0;
 
-        if ($resultDelivered->num_rows > 0) {
-            while ($row = $resultDelivered->fetch_assoc()) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 $earningsData[] = $row;
                 $totalEarnings += $row['amount'];
-                if ($row['status'] === 'to ship') {
+                if ($row['status'] === 'Pending') {
                     $pendingPayouts += $row['amount'];
                 }
             }
@@ -35,4 +34,3 @@ class Earnings {
         ];
     }
 }
-?>

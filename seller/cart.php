@@ -1,11 +1,13 @@
 <?php
 session_start();
 require_once 'dbcart.php';
-require_once 'dborders.php';
+require_once '../db/Seller.php';
+require_once '../db/dbcon.php';
 
 $cart = new ShoppingCart();
-$orderManager = new OrderManager();
+$orderManager = new Market();
 
+$message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     
@@ -13,18 +15,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = intval($_POST['id']);
         $quantity = intval($_POST['quantity']);
         $cart->updateItem($id, $quantity);
+
     } elseif ($action === 'delete') {
         $selected_items = $_POST['selected_items'] ?? []; 
         foreach ($selected_items as $id) {
             $cart->deleteItem(intval($id));
-            echo "Item with ID $id has been deleted from the cart.<br>"; 
         }
-    } elseif ($action === 'checkout') {
 
+    } elseif ($action === 'checkout') {
         $selected_item_ids = $_POST['selected_items'] ?? []; 
         $buyer_id = $_SESSION['buyer_id'] ?? null;
+        $buyer_address = $_SESSION['address'] ?? null; 
     
-        // Check if any items were selected
+        if (empty($buyer_address)) {
+            header('Location: ../profile/profile.php');
+            exit;
+        }
+    
         if (empty($selected_item_ids)) {
             echo "Please select at least one item for checkout.";
         } else {
@@ -32,15 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $orderCreated = true; 
     
             foreach ($selected_item_ids as $selected_item_id) {
-                // Fetch the item details from the cart
                 $item = null;
                 foreach ($cartItems as $cartItem) {
                     if ($cartItem['id'] == $selected_item_id) {
-                        $item = $cartItem; // Found the selected item
+                        $item = $cartItem; 
                         break;
                     }
                 }
-    
                 if ($item === null) {
                     echo "Item with ID $selected_item_id not found in the cart.<br>";
                     $orderCreated = false; 
@@ -54,22 +59,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 );
     
                 if ($itemOrderCreated) {
-                    echo "Order created successfully for item: " . htmlspecialchars($item['product_name']) . "<br>"; 
+                    $message = "Order created successfully for item: " . htmlspecialchars($item['product_name']) . "<br>"; 
                     $cart->deleteItem(intval($item['id'])); 
                 } else {
-                    echo "Failed to create order for item: " . htmlspecialchars($item['product_name']) . "<br>";
+                    $message =  "Failed to create order for item: " . htmlspecialchars($item['product_name']) . "<br>";
                     $orderCreated = false; 
                 }
             }
             if ($orderCreated) {
-                echo "All selected orders have been created successfully.";
-            } else {
-                echo "Some orders could not be created.";
+                $message =  "All selected orders have been created successfully.";
+            } else $message =  "Some orders could not be created.";
             }
         }
-
     }
-}
+
 // Calculate total
 $total = $cart->calculateTotal();
 $items = $cart->getCart();
@@ -82,105 +85,28 @@ $items = $cart->getCart();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="../css/nav.css"/>
-    <style> body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-
-.cart-container {
-    width: 70%;
-    margin: 200px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.cart-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.cart-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 20px;
-}
-
-.item-details {
-    flex: 1;
-}
-
-.item-details h4 {
-    margin: 0;
-    font-size: 18px;
-    color: #555;
-}
-
-.item-details p {
-    margin: 5px 0;
-    color: #777;
-}
-
-.item-quantity {
-    margin-top: 10px;
-}
-
-.item-price {
-    font-size: 18px;
-    color: #333;
-    margin-left: 20px;
-    min-width: 100px;
-}
-
-.delete-btn, .checkout-btn {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.delete-btn:hover, .checkout-btn:hover {
-    background-color: #ff1a1a;
-}
-
-.cart-summary {
-    margin-top: 20px;
-    padding: 10px;
-    border-top: 2px solid #ddd;
-}
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
-.summary-item span {
-    font-size: 16px;
-    color: #333;
-}
-
-.summary-item:last-child {
-    font-weight: bold;
-    font-size: 18px;
-}
-</style>
-</head>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="../css/cart.css"/>
 <body>
-<?php include('../header/header.php'); ?>
+<header>
+        <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
+
+        <ul class="nav">
+            <li><a href="../home/home.php">HOME</a></li>
+            <li><a href="../shop/shop.php">SHOP</a></li>
+        </ul>
+
+        <div class="navicon">
+            <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
+            <a href="../seller/cart.php"><i class="bx bx-cart"></i></a>
+            <a href="../logout/logout.php"><i class="bx bx-log-out"></i></a>
+        </div>
+        
+        </header>
+
 <div class="cart-container">
     <div class="cart-title">My Cart</div>
+    <?php echo htmlspecialchars($message)?>
     <form method="POST" id="cart-form">
     <?php foreach ($items as $item): ?>
         <div class="cart-item">
@@ -193,6 +119,7 @@ $items = $cart->getCart();
                 <div class="item-quantity">
                     <label for="quantity_<?php echo $item['id']; ?>">Quantity:</label>
                     <input type="number" name="quantity[<?php echo $item['id']; ?>]" id="quantity_<?php echo $item['id']; ?>" value="1" min="1" required>
+                    <button type="submit" name="action" value="update" class="delete-btn">Update</button></button>
                 </div>
             </div>
             <div class="item-price">₱<?php echo number_format($item['price'], 2); ?></div>
@@ -215,8 +142,8 @@ $items = $cart->getCart();
         </div>
 
         <div class="cart-actions">
-        <button type="submit" name="action" value="delete" class="delete-btn">Delete Selected</button>
-        <button type="submit" name="action" value="checkout" class="checkout-btn">Checkout Selected</button>
+        <button type="submit" name="action" value="delete" class="delete-btn">Delete</button>
+        <button type="submit" name="action" value="checkout" class="checkout-btn">Checkout</button>
     </div>
     </form>
 </div>

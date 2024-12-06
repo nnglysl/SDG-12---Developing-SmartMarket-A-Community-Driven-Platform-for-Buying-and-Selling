@@ -1,11 +1,11 @@
 <?php
 session_start(); // Start the session
 require_once '../db/dbcon.php'; // database connection
-require_once '../db/dbsignUp.php'; // UserRegistration class
+require_once '../db/Account.php'; // UserRegistration class
 
 $database = new Database();
 $conn = $database->getConnection();
-
+$message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
     $firstName = $_POST["firstName"];
@@ -23,14 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../verify/verify.php");
         exit();
     } else {
-        echo $response;
+        $message = $response;
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,24 +42,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo">
     <div class="signup">
         <h1>Create an account</h1>
-        <form action="" method="post" enctype="multipart/form-data">
+        <?php echo htmlspecialchars($message)?>
+
+        <form action="" method="post"> 
             <input type="text" name="firstName" placeholder="First Name" required>
             <input type="text" name="lastName" placeholder="Last Name" required>
-            <input type="text" name="userName" placeholder="Username" required minlength="5" maxlength="20" pattern="[A-Za-z0-9_]{5,20}" title="Username must be between 5 and 20 characters and contain only letters, numbers, and underscores.">
+            <input type="text" name="userName" placeholder="Username" required >
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required minlength="8" maxlength="20">
-            <input type="password" name="confirmPassword" placeholder="Confirm Password" required minlength="8" maxlength="20">
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
             <input type="submit" class="btn" value="Create Account" name="createAccount">
         </form>
         <div class="member"> Already have an account? <a href="../login/login.php"> Log In</a>
         </div>
     </div>
 </body>
-
-
 </html>
-
-
-
-
-

@@ -10,40 +10,23 @@ class OrderManager {
     }
 
 
-    public function createOrder($itemName, $itemQuantity, $itemPrice, $buyerId, $image) {
-        // Prepare the SQL query
-        $query = "INSERT INTO orders (item_name, quantity, item_price, order_status, buyer_id, item_picture, created_at) VALUES (?, ?, ?, 'to ship', ?, ?, NOW())";
+    public function createOrder($itemName, $itemPrice, $itemQuantity, $totalAmount, $image) {
+        $query = "INSERT INTO orders (item_name, item_price, item_quantity, total_amount, item_picture, order_status) VALUES (?, ?, ?, ?, ?, 'pending')";
         $stmt = $this->conn->prepare($query);
-    
-        // Check if the statement was prepared successfully
-        if ($stmt === false) {
-            die('Prepare failed: ' . htmlspecialchars($this->conn->error));
-        }
-    
-        // Bind parameters
-        $stmt->bind_param("sidis", $itemName, $itemQuantity, $itemPrice, $buyerId, $image);
-    
-        // Execute the statement
-        if ($stmt->execute()) {
-            // Optionally, you can return the last inserted ID
-            $orderId = $stmt->insert_id;
-            $stmt->close(); // Close the statement
-            return $orderId; // Return the order ID
-        } else {
-            // Handle execution error
-            die('Execute failed: ' . htmlspecialchars($stmt->error));
-        }
+        $stmt->bind_param("sdids", $itemName, $itemPrice, $itemQuantity, $totalAmount, $image);
+        return $stmt->execute();
     }
 
     public function markAsShipped($orderId) {
-        $query = "UPDATE orders SET order_status = 'to receive' WHERE id = ?";
+        $query = "UPDATE orders SET order_status = 'ship' WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $orderId); 
+        $stmt->bind_param("i", $orderId); // "i" indicates the type is integer
         return $stmt->execute();
     }
 
     public function cancelOrder($orderId) {
-        $query = "SELECT * FROM orders WHERE id = ?";
+        // First, retrieve the order details to be stored in cancelledorders
+        $query = "SELECT item_name, quantity, item_price, item_picture FROM orders WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $orderId);
         $stmt->execute();
@@ -55,7 +38,7 @@ class OrderManager {
             // Insert into cancelledorders
             $cancelQuery = "INSERT INTO cancelledorders (product_name, quantity, price, item_picture) VALUES (?, ?, ?, ?)";
             $cancelStmt = $this->conn->prepare($cancelQuery);
-            $reason = "Order canceled by user";
+            $reason = "Order canceled by user"; // You may want to pass this as an argument
             $cancelStmt->bind_param("ssid", $order['item_name'], $reason, $order['item_quantity'], $order['item_price']);
             $cancelStmt->execute();
 
@@ -68,10 +51,10 @@ class OrderManager {
             // Close statements
             $cancelStmt->close();
             $deleteStmt->close();
-            return true; 
+            return true; // Indicate success
         }
 
-        return false; 
+        return false; // Indicate failure (order not found)
     }
 
     public function getOrders() {
@@ -79,30 +62,12 @@ class OrderManager {
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); 
-    }
-
-    public function getReceivedOrder() {
-        $query = "SELECT * FROM orders WHERE order_status = 'to receive' ORDER BY created_at DESC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); 
+        return $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as an associative array
     }
 
     public function getCanceledOrders() {
-        $stmt = $this->conn->prepare("SELECT * FROM orders WHERE order_status = 'cancel' ORDER BY created_at DESC");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getDelieveredOrder() {
-        $query = "SELECT * FROM orders WHERE order_status = 'delivered' ORDER BY created_at DESC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC); 
+        $stmt = $this->conn->query("SELECT * FROM orders WHERE order_status = 'cancel' ORDER BY created_at DESC");
+        return $stmt->fetch_all(MYSQLI_ASSOC);
     }
 
     public function closeConnection() {
