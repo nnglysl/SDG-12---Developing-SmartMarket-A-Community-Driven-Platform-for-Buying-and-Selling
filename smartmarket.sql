@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 01:54 PM
+-- Generation Time: Dec 06, 2024 at 09:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,10 +46,11 @@ CREATE TABLE `buyer` (
 
 INSERT INTO `buyer` (`buyer_id`, `username`, `first_name`, `last_name`, `email`, `password`, `address`, `profile_picture`, `verification_code`, `verify`) VALUES
 (1, 'asa', 'Colleen', 'Perez', 'coco@gmail.com', '$2y$10$WLfo/I3NZdFK74i6x.KIuuA2rzI7kbAUzFAzrvkiUHr3RirRmepJW', NULL, '', 0, 'not verified'),
+(6, 'colleen_perez', 'Colleen', 'Perez', 'glyselannesales@gmail.com', 'colleenperez0781', 'Batangas', NULL, 0, 'verified'),
+(7, 'rgo_official', 'Glysel', 'Sales', '23-32379@g.batstate-u.edu.ph', 'rgoofficial2304', 'Batangas', NULL, 0, 'verified'),
 (12, 'coco3', 'colleen', 'Perez', 'rjcatapang12@gmail.com', '$2y$10$JwhQDTKIs8IYCgM..iXcC.PiVb6NodV0Ma3VnLgAGnyxOpMlOc49G', NULL, NULL, 3296, 'verified'),
 (14, 'cocococo', 'colleen', 'Perez', '23-07395@g.batstate-u.edu.ph', '$2y$10$T0C2Agz5FjVNuG/zu3KXMue0Qekv1ZnhG.EhhnxbZ8xVLGyj4r0RK', NULL, '../uploads/674f11f689fb5_user.jpg', 7755, 'verified'),
 (15, 'sadsadgfs', 'colleen', 'Perez', '23-38343@g.batstate-u.edu.ph', '$2y$10$6CvTgKyJp/2lC86vAKVU/.0pd7hYl.w/uN8ctns7pKpyeaA8UrQOC', NULL, '../uploads/674fb65bb1bb3_user.jpg', 2573, 'verified'),
-(16, 'kendemz', 'ken', 'payo', '23-12345@g.batstate-u.edu.ph', '$2y$10$5yRpWKJvzpHpcWjm25n7CuVRsm3ZniezcTt2/kprALELqyNns3Yfu', NULL, '../uploads/67526fd94e466_WIN_20240601_19_38_49_Pro.jpg', 9141, 'verified'),
 (17, 'gly_sales', 'glysel', 'sales', '23-32379@g.batstate-u.edu.ph', '$2y$10$h/anqtlj4pWVHkfFfFWiJOqXxR1Vyy..mjQDT3z5vcvGkPZUpFqv6', NULL, '../uploads/675292f7c80b8_Back to school Instagram post Square.png', 6793, 'verified');
 
 -- --------------------------------------------------------
@@ -88,7 +89,14 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `product_name`, `price`, `quantity`, `product_picture`, `size`) VALUES
-(24, 'Preloved College Blouse', 250.00, 1, '/final/imgs/uniforms/blouse.jpg', '');
+(24, 'Preloved College Blouse', 250.00, 1, '/final/imgs/uniforms/blouse.jpg', ''),
+(25, 'CABE Department Shirt', 500.00, 1, '/final/imgs/department shirts/cas.png', ''),
+(26, 'CABE Department Shirt', 500.00, 1, '/final/imgs/department shirts/cas.png', ''),
+(27, 'CABE Department Shirt', 500.00, 1, '/final/imgs/department shirts/cas.png', ''),
+(28, 'CABE Department Shirt', 500.00, 1, '/final/imgs/department shirts/cas.png', 'Large'),
+(29, 'Second Hand Casio Scientific Calculator', 500.00, 1, '/final/imgs/school supplies/calcu.png', ''),
+(30, 'Second Hand Casio Scientific Calculator', 500.00, 1, '/final/imgs/school supplies/calcu.png', ''),
+(31, 'Preloved College Blouse', 250.00, 1, '/final/imgs/uniforms/blouse.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -146,11 +154,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `item_name`, `quantity`, `item_price`, `order_status`, `created_at`, `item_picture`, `buyer_id`) VALUES
-(11, 'CABE Department Shirt', 1, 500.00, 'to ship', '2024-12-04 14:29:02', '/final/imgs/department shirts/cabe.png', 15),
-(12, 'CABE Department Shirt', 1, 500.00, 'to ship', '2024-12-06 03:36:22', '/final/imgs/department shirts/cics.png', 16),
-(13, 'CABE Department Shirt', 1, 500.00, 'to ship', '2024-12-06 03:36:22', '/final/imgs/department shirts/cics.png', 16),
-(14, 'CABE Department Shirt', 1, 500.00, 'to ship', '2024-12-06 03:38:12', '/final/imgs/department shirts/cas.png', 16),
-(15, 'CABE Department Shirt', 4, 500.00, 'to ship', '2024-12-06 03:38:27', '/final/imgs/department shirts/cabe.png', 16);
+(11, 'CABE Department Shirt', 1, 500.00, 'to ship', '2024-12-04 14:29:02', '/final/imgs/department shirts/cabe.png', 15);
 
 -- --------------------------------------------------------
 
@@ -175,15 +179,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `description`, `image_path`, `condition`, `created_at`, `item_path`, `seller_id`) VALUES
-(1, 'CICS Department Shirt', 500.00, 'CICS Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cics.png', 'new', '2024-11-22 13:55:25', '/final/items_deptshirt/cics/cics.php', 5),
-(2, 'CAS Department Shirt', 500.00, 'CAS Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cas.png', 'new', '2024-11-22 13:55:25', '/final/items_deptshirt/cas/cas.php', 5),
-(3, 'CABE Department Shirt', 500.00, 'CABE Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cabe.png', 'new', '0000-00-00 00:00:00', '/final/items_deptshirt/cabe/cabe.php', 5),
-(4, 'Second Hand Casio Scientific Calculator', 500.00, 'Second Hand Scientific Calculator', '/final/imgs/school supplies/calcu.png', 'lightly-used', '2024-11-23 16:39:34', '/final/items/calcu/calcu.php', 5),
-(5, 'ID Lace', 50.00, 'BSU ID Lace', '/final/imgs/school supplies/idlace.jpg', 'new', '2024-11-23 23:52:24', '/final/items/idlace/idlace.php', 5),
-(6, 'University Collar Pin', 50.00, 'Size: 1inch', '/final/imgs/uniforms/collarpin.jfif', 'new', '2024-11-23 23:52:24', '/final/items_uniforms/collarpin/collarpin.php', 5),
-(7, 'B5 Binder Notebook', 70.00, '26 holes Product Size: B5(275*215mm) Number of Sheets: 60 Sheets', '/final/imgs/school supplies/binder.jpg', 'new', '2024-11-23 23:52:24', '/final/items/binder/binder.php', 5),
-(8, 'Preloved PE Uniform Set', 400.00, 'Size: Small', '/final/imgs/uniforms/peunif.png', 'lightly-used', '2024-11-23 23:52:24', '/final/items_uniforms/peunif/peunif.php', 5),
-(9, 'Preloved College Blouse', 250.00, 'Size: Medium', '/final/imgs/uniforms/blouse.jpg', 'lightly-used', '2024-11-23 23:52:24', '/final/items_uniforms/blouse/blouse.php', 5);
+(1, 'CICS Department Shirt', 500.00, 'CICS Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cics.png', 'new', '2024-11-22 13:55:25', '/final/items_deptshirt/cics/cics.php', 7),
+(2, 'CAS Department Shirt', 500.00, 'CAS Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cas.png', 'new', '2024-11-22 13:55:25', '/final/items_deptshirt/cas/cas.php', 7),
+(3, 'CABE Department Shirt', 500.00, 'CABE Department Shirt Small - W:14 L:26 Medium - W:20 L:27 Large - W:21 L:28', '/final/imgs/department shirts/cabe.png', 'new', '0000-00-00 00:00:00', '/final/items_deptshirt/cabe/cabe.php', 7),
+(4, 'Second Hand Casio Scientific Calculator', 500.00, 'Second Hand Scientific Calculator', '/final/imgs/school supplies/calcu.png', 'lightly-used', '2024-11-23 16:39:34', '/final/items/calcu/calcu.php', 6),
+(5, 'ID Lace', 50.00, 'BSU ID Lace', '/final/imgs/school supplies/idlace.jpg', 'new', '2024-11-23 23:52:24', '/final/items/idlace/idlace.php', 7),
+(6, 'University Collar Pin', 50.00, 'Size: 1inch', '/final/imgs/uniforms/collarpin.jfif', 'new', '2024-11-23 23:52:24', '/final/items_uniforms/collarpin/collarpin.php', 7),
+(7, 'B5 Binder Notebook', 70.00, '26 holes Product Size: B5(275*215mm) Number of Sheets: 60 Sheets', '/final/imgs/school supplies/binder.jpg', 'new', '2024-11-23 23:52:24', '/final/items/binder/binder.php', 6),
+(8, 'Preloved PE Uniform Set', 400.00, 'Size: Small', '/final/imgs/uniforms/peunif.png', 'lightly-used', '2024-11-23 23:52:24', '/final/items_uniforms/peunif/peunif.php', 6),
+(9, 'Preloved College Blouse', 250.00, 'Size: Medium', '/final/imgs/uniforms/blouse.jpg', 'lightly-used', '2024-11-23 23:52:24', '/final/items_uniforms/blouse/blouse.php', 6);
 
 -- --------------------------------------------------------
 
@@ -246,7 +250,9 @@ INSERT INTO `seller` (`seller_id`, `email`, `username`, `password`, `shop_name`,
 (2, 'colleenperez05@gmail.com', '', '$2y$10$Pdt8Jfm1uBMZa5U5sfyxnuV4izOpNjVVtxy0TNboRR0esAbvvhGx2', 'coco', 1),
 (3, 'colleenperez05@gmail.com', '', '$2y$10$jr.4QXMq0JjF9Mqg9Xb8ku4nxZ7vRAvIkBbh11XBfal2kmcsgUQha', 'coco', 1),
 (4, '23-07395@g.batstate-u-edu.ph', 'Cocococ', '$2y$10$JCTzn9wPmS0wrw6ndBhjQ.ZHeg87g67wZt7dl0L7GntlBh05YGG2K', 'COCOCOCO', 14),
-(5, '23-07395@g.batstate-u-edu.ph', 'azsdasdsa', '$2y$10$7FpgOTEha6ISYYHINXQhaez2togGm6Zm3yNpQJDMQoLITLX711gIG', 'dsadafdasad', 15);
+(5, '23-07395@g.batstate-u-edu.ph', 'azsdasdsa', '$2y$10$7FpgOTEha6ISYYHINXQhaez2togGm6Zm3yNpQJDMQoLITLX711gIG', 'dsadafdasad', 15),
+(6, 'glyselannesales@gmail.com', 'colleen_perez', 'colleenperez0781', 'Colleen Perez', 6),
+(7, '23-32379@g.batstate-u.edu.ph', 'rgo_official', 'rgoofficial2304', 'Resource Generation Office', 7);
 
 --
 -- Indexes for dumped tables
@@ -331,7 +337,7 @@ ALTER TABLE `cancelledorders`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `contact_submissions`
@@ -355,7 +361,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
