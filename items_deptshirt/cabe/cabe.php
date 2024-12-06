@@ -15,6 +15,27 @@ $result = $stmt->get_result();
 $variations = $result->fetch_all(MYSQLI_ASSOC);
 
 $stmt->close();
+
+session_start();
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Get the product details from the form
+  $product_id = $_POST['product_id'];
+  $product_name = $_POST['product_name'];
+  $product_price = $_POST['product_price'];
+  $selected_size = $_POST['selected_size'];
+  $quantity = intval($_POST['quantity']);
+  $product_image = $_POST['product_image']; 
+  require_once '../../seller/dbcart.php';
+  $cart = new ShoppingCart();
+
+  $cart->addItem($product_name, $product_price, $quantity, $selected_size, $product_image);
+
+  header('Location: /final/seller/cart.php'); 
+  exit();
+}
+
 $database->closeConnection();
 ?>
 
@@ -30,32 +51,35 @@ $database->closeConnection();
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <link rel="stylesheet" href="/final/css/nav.css" />
 </head>
-
 <body>
-  <header>
-    <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
-    <ul class="nav">
-      <li><a href="/final/home/home.php">HOME</a></li>
-      <li><a href="/final/shop/shop.php">SHOP</a></li>
-    </ul>
+<header>
+        <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
 
-    <div class="search-container">
-      <form method="get" action="/final/search/search_view.php">
-        <div class="search-bar-wrapper">
-          <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
-            value="<?php echo htmlspecialchars($search_query); ?>" required>
-          <button type="submit" class="search-button">
-            <i class="bx bx-search"></i>
-          </button>
+        <ul class="nav">
+            <li><a href="../home/home.php">HOME</a></li>
+            <li><a href="../shop/shop.php">SHOP</a></li>
+        </ul>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form method="get" action="/final/search/search_view.php">
+                <div class="search-bar-wrapper">
+                    <input type="text" name="search" class="search-bar" id="search" placeholder="Search"
+                        value="<?php echo htmlspecialchars($search_query); ?>" required>
+                    <button type="submit" class="search-button">
+                        <i class="bx bx-search"></i>
+                    </button>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
 
-    <div class="navicon">
-      <a href="/final/profile/profile.php"><i class="bx bx-user"></i></a>
-      <a href="#"><i class="bx bx-cart"></i></a>
-    </div>
-  </header>
+        <div class="navicon">
+            <a href="../profile/profile.php"><i class="bx bx-user"></i></a>
+            <a href="../seller/cart.php"><i class="bx bx-cart"></i></a>
+            <a href="../logout/logout.php"><i class="bx bx-log-out"></i></a>
+        </div>
+        
+        </header>
   <main class="product-page">
     <div class="center-container">
       <!-- Product Details -->
@@ -71,36 +95,48 @@ $database->closeConnection();
           <h1 class="product-title">CABE Department Shirt</h1>
           <p class="product-price">₱ 500</p>
 
-          <!-- Size Options -->
-          <div class="product-options">
-            <h3>Sizes</h3>
-            <div class="size-options">
-              <?php foreach ($variations as $variation): ?>
-                <?php if ($variation['variation_type'] == 'size'): ?>
-                  <button class="size-option" 
-                          data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
-                          data-stock="<?= htmlspecialchars($variation['stock']) ?>">
-                    <?= htmlspecialchars($variation['variation_value']) ?>
-                  </button>
-                <?php endif; ?>
-              <?php endforeach; ?>
+          
+          <form id="addToCartForm" method="POST" action="">
+            <input type="hidden" name="product_id" value="<?= $product_id; ?>">
+            <input type="hidden" name="product_name" value="CABE Department Shirt">
+            <input type="hidden" name="product_price" value="500">
+            <input type="hidden" name="product_image" value="/final/imgs/department shirts/cabe.png">
+            <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
+            <input type="hidden" id="quantityInput" name="quantity" value="1">
+
+            <!-- Size Options -->
+            <div class="product-options">
+              <h3>Sizes</h3>
+              <div class="size-options">
+                <?php foreach ($variations as $variation): ?>
+                  <?php if ($variation['variation_type'] == 'size'): ?>
+                    <button type="button" class="size-option" 
+                            data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
+                            data-stock="<?= htmlspecialchars($variation['stock']) ?>">
+                      <?= htmlspecialchars($variation['variation_value']) ?>
+                    </button>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </div>
             </div>
-          </div>
 
-          <!-- Hidden input to store selected size -->
-          <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
-
-          <div class="quantity-selector">
-            <h4>Quantity</h4>
-            <div class="buttons">
-              <button id="decrease">-</button>
-              <input type="number" id="quantity" value="1" min="1" />
-              <button id="increase">+</button>
+            <div class="quantity-selector">
+              <h4>Quantity</h4>
+              <div class="buttons">
+                <button type="button" id="decrease">-</button>
+                <input type="number" id="quantity" value="1" min="1" />
+                <button type="button" id="increase">+</button>
+              </div>
+              <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
             </div>
-            <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
-          </div>
 
-          <!-- Js for quantity adjustment and size selection -->
+            <div class="product-buttons">
+              <button type="submit" class="add-to-cart">Add to Cart</button>
+              <button class="buy-now">Buy Now</button>
+            </div>
+          </form>
+
+          <!-- JavaScript for quantity adjustment and size selection -->
           <script>
             const stockData = <?php echo json_encode($variations); ?>;
             let selectedSize = null;
@@ -128,18 +164,16 @@ $database->closeConnection();
               }
             }
 
-            //size button
+            // Size button event listener
             document.querySelectorAll('.size-options button').forEach(button => {
               button.addEventListener('click', function () {
-
                 document.querySelectorAll('.size-options button').forEach(btn => btn.classList.remove('active'));
-
                 this.classList.add('active');
 
                 // Get the selected size and stock
                 selectedSize = this.getAttribute('data-size');
                 const stock = this.getAttribute('data-stock');
-                
+
                 // Update the hidden input value
                 document.getElementById('selectedSizeInput').value = selectedSize;
 
@@ -164,12 +198,13 @@ $database->closeConnection();
                 updateQuantityLimits();
               }
             });
+
+            // Update the quantity input value before form submission
+            document.getElementById('addToCartForm').addEventListener('submit', function() {
+              document.getElementById('quantityInput').value = document.getElementById('quantity').value;
+            });
           </script>
 
-          <div class="product-buttons">
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="buy-now">Buy Now</button>
-          </div>
         </div>
       </section>
 
@@ -201,5 +236,4 @@ $database->closeConnection();
   </main>
 
 </body>
-
 </html>

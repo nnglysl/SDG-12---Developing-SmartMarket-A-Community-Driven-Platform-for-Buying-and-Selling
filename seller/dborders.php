@@ -10,11 +10,29 @@ class OrderManager {
     }
 
 
-    public function createOrder($itemName, $itemPrice, $itemQuantity, $totalAmount, $image) {
-        $query = "INSERT INTO orders (item_name, item_price, item_quantity, total_amount, item_picture, order_status) VALUES (?, ?, ?, ?, ?, 'pending')";
+    public function createOrder($itemName, $itemQuantity, $itemPrice, $buyerId, $image) {
+        // Prepare the SQL query
+        $query = "INSERT INTO orders (item_name, quantity, item_price, order_status, buyer_id, item_picture, created_at) VALUES (?, ?, ?, 'to ship', ?, ?, NOW())";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sdids", $itemName, $itemPrice, $itemQuantity, $totalAmount, $image);
-        return $stmt->execute();
+    
+        // Check if the statement was prepared successfully
+        if ($stmt === false) {
+            die('Prepare failed: ' . htmlspecialchars($this->conn->error));
+        }
+    
+        // Bind parameters
+        $stmt->bind_param("sidis", $itemName, $itemQuantity, $itemPrice, $buyerId, $image);
+    
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Optionally, you can return the last inserted ID
+            $orderId = $stmt->insert_id;
+            $stmt->close(); // Close the statement
+            return $orderId; // Return the order ID
+        } else {
+            // Handle execution error
+            die('Execute failed: ' . htmlspecialchars($stmt->error));
+        }
     }
 
     public function markAsShipped($orderId) {
@@ -25,8 +43,7 @@ class OrderManager {
     }
 
     public function cancelOrder($orderId) {
-        // First, retrieve the order details to be stored in cancelledorders
-        $query = "SELECT item_name, quantity, item_price, item_picture FROM orders WHERE id = ?";
+        $query = "SELECT * FROM orders WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $orderId);
         $stmt->execute();

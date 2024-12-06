@@ -219,8 +219,11 @@ body {
                                 <p>Price: $<span><?php echo htmlspecialchars($product['price']); ?></span></p>
                             </div>
                             <div>
-                                <button class="btn">Edit</button>
-                                <button class="btn">Delete</button>
+                                <a href="editshop.php?id=<?php echo htmlspecialchars($product['id']); ?>" class="btn">Edit</a>
+                                <form action="deleteproduct.php" method="post" style="display:inline;">
+                                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id']); ?>">
+                                    <button type="submit" class="btn" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>

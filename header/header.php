@@ -24,6 +24,7 @@ $result = mysqli_query($conn, $query);
             <li><a href="../shop/shop.php">SHOP</a></li>
         </ul>
 
+        <!-- Search Bar -->
         <div class="search-container">
             <form method="get" action="/final/search/search_view.php">
                 <div class="search-bar-wrapper">

@@ -1,13 +1,17 @@
 <?php
 
-class home {
-    private $conn; 
+class Home
+{
+    private $conn;
 
-    public function __construct($dbConnection) {
+    public function __construct($dbConnection)
+    {
         $this->conn = $dbConnection;
     }
 
-    public function getRandomProducts() {
+    // Get Random Products
+    public function getRandomProducts()
+    {
         $query = "SELECT * FROM products ORDER BY RAND() LIMIT 3";
         $result = mysqli_query($this->conn, $query);
 

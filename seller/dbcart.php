@@ -1,17 +1,18 @@
 <?php
-require_once '../db/dbcon.php';
+require_once __DIR__ .'../../db/dbcon.php';
 
 class ShoppingCart {
     private $db;
+    private $items = [];
 
     public function __construct() {
         $database = new Database();
         $this->db = $database->getConnection();
     }
-
-    public function addItem($name, $price, $quantity, $image) {
-        $stmt = $this->db->prepare("INSERT INTO cart_items (name, price, quantity, product_picture) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sdiss", $name, $price, $quantity, $image);
+    
+    public function addItem($name, $price, $quantity, $size, $image) {
+        $stmt = $this->db->prepare("INSERT INTO cart (product_name, price, quantity, size, product_picture) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sdiss", $name, $price, $quantity, $size, $image);
         $stmt->execute();
         $stmt->close();
     }
@@ -42,6 +43,12 @@ class ShoppingCart {
             $total += $item['price'] * $item['quantity'];
         }
         return $total;
+    }
+
+    public function clearCart() {
+        $stmt = $this->db->prepare("DELETE FROM cart");
+        $stmt->execute();
+        $stmt->close();
     }
 
     public function __destruct() {

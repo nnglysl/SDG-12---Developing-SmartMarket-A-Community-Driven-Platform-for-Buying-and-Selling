@@ -1,16 +1,25 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fde4e4; /* Light pink background */
+    color: #333; /* Dark text color */
     display: flex;
     height: 100vh;
 }
 
-
+/* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background-color: #222;
-    color: white;
+    background-color: #222; /* Dark sidebar background */
+    color: white; /* Light text color for sidebar */
     height: 100%;
     position: fixed;
     top: 0;
@@ -18,14 +27,10 @@ body {
     padding-top: 50px;
 }
 
-
 .sidebar ul {
     list-style-type: none;
     padding: 0;
 }
-
-
-
 
 .sidebar-item {
     text-decoration: none;
@@ -36,67 +41,63 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
-
-
 .sidebar-item:hover {
-    background-color: #ffb6c1;
-    color: #333;
+    background-color: #ffb6c1; /* Light pink hover effect */
+    color: #333; /* Dark text color on hover */
 }
-
-
-
 
 .sidebar-item i {
     margin-right: 10px;
     font-size: 1.2rem;
 }
 
-
-
-
+/* Main Content */
 .main-content {
-    margin-left: 250px;
+    margin-left: 250px; /* Account for sidebar width */
     padding: 20px;
     width: calc(100% - 250px);
-    background-color: #fef1f1;
-
-
-.add-product-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 50px;
-    background-color: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+/* Add Product Container */
+.add-product-container {
+    background-color: white;
+    color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 700px; /* Adjusted for smaller screens */
+}
 
 .add-product-container h1 {
     font-size: 2rem;
     color: #000;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-
+/* Form Styles */
 .form-group {
     margin-bottom: 20px;
 }
 
-
 .form-group label {
-    font-size: 1rem;
-    font-weight: bold;
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
+    color: #444;
 }
-
 
 input[type="text"],
 input[type="number"],
 textarea,
-input[type="file"] {
+input[type="file"],
+select {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -107,53 +108,73 @@ input[type="file"] {
     margin-top: 5px;
 }
 
-
 textarea {
-    resize: vertical;
+    resize: none; /* Prevent vertical resizing */
 }
 
-
-.submit-button {
-    background-color: #000;
-    color: white;
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* File Upload */
+input[type="file"] {
+    padding: 5px;
 }
 
-
-.submit-button:hover {
-    background-color: #f104a2;
-}
-
-
-/* Input focus effect */
-input[type="text"]:focus,
-input[type="number"]:focus,
+/* Input Focus Effect */
+input:focus,
 textarea:focus,
-input[type="file"]:focus {
-    border-color: #ffb6c1; /* Light pink color on focus */
+select:focus {
+    border-color: #ffb6c1; /* Light pink focus effect */
     outline: none;
 }
 
+/* Buttons */
+.submit-button,
+.cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
 
-/* Mobile responsiveness */
+.submit-button {
+    background-color: #000000; /* Dark button background */
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: maroon; /* Slightly lighter background on hover */
+}
+
+.cancel-button {
+    background-color: #ccc; /* Light gray button */
+    color: #333;
+    margin-left: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #aaa; /* Darker gray on hover */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
-        width: 200px; /* Adjust sidebar width for smaller screens */
+        width: 200px; /* Narrower sidebar on smaller screens */
     }
-
 
     .main-content {
         margin-left: 200px;
         width: calc(100% - 200px);
     }
 
-
     .add-product-container {
-        width: 100%;
+        padding: 15px;
+        width: 90%; /* Full width with some margin */
     }
-}}
+
+    .submit-button,
+    .cancel-button {
+        font-size: 14px;
+        padding: 8px 16px; /* Adjusted padding for smaller buttons */
+    }
+}

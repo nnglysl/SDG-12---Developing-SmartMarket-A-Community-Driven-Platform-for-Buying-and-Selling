@@ -11,7 +11,7 @@ class BuyerOrder {
     }
 
     public function getShipOrder($buyer_id) {
-        $sql = "SELECT * FROM orders WHERE order_status = 'ship' AND buyer_id = ?";
+        $sql = "SELECT * FROM orders WHERE order_status = 'to ship' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $buyer_id); // Assuming buyer_id is an integer
         $stmt->execute();
@@ -25,10 +25,8 @@ class BuyerOrder {
         $stmt->close();
         return $orders;
     }
-
-
     public function getReceivedOrder($buyer_id) {
-        $sql = "SELECT * FROM orders WHERE order_status = 'received' AND buyer_id = ?";
+        $sql = "SELECT * FROM orders WHERE order_status = 'to receive' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $buyer_id); // Assuming buyer_id is an integer
         $stmt->execute();
@@ -43,7 +41,7 @@ class BuyerOrder {
         return $orders;
     }
     public function getDeliveredOrder($buyer_id) {
-        $sql = "SELECT * FROM orders WHERE order_status = 'received' AND buyer_id = ?";
+        $sql = "SELECT * FROM orders WHERE order_status = 'to receive' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $buyer_id); // Assuming buyer_id is an integer
         $stmt->execute();
@@ -80,8 +78,7 @@ class BuyerOrder {
     
     public function countReceivedOrders($buyer_id) {
         $count = 0;
-
-        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'to receive' AND buyer_id = ?";
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status ='to receive' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $buyer_id);
         $stmt->execute();
@@ -101,7 +98,7 @@ class BuyerOrder {
     public function countDeliveredOrders($buyer_id) {
         $count = 0;
         
-        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'completed' AND buyer_id = ?";
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE order_status = 'delivered' AND buyer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $buyer_id);
         $stmt->execute();
@@ -121,7 +118,7 @@ class BuyerOrder {
     public function updateOrderStatus($order_id, $status) {
         global $conn; // Ensure you have access to the database connection
 
-        $query = "UPDATE orders SET status = ? WHERE id = ?";
+        $query = "UPDATE orders SET order_status = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $status, $order_id); // "si" means string and integer
 
@@ -130,6 +127,10 @@ class BuyerOrder {
         } else {
             return false; // Failed to update
         }
+    }
+
+    public function cancelOrder($order_id) {
+        return $this->updateOrderStatus($order_id, 'cancel');
     }
 }
 ?>

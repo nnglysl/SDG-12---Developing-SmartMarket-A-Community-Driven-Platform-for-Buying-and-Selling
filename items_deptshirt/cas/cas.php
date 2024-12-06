@@ -16,6 +16,25 @@ $result = $stmt->get_result();
 $variations = $result->fetch_all(MYSQLI_ASSOC);
 
 $stmt->close();
+
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Get the product details from the form
+  $product_id = $_POST['product_id'];
+  $product_name = $_POST['product_name'];
+  $product_price = $_POST['product_price'];
+  $selected_size = $_POST['selected_size'];
+  $quantity = intval($_POST['quantity']);
+  $product_image = $_POST['product_image']; 
+  require_once '../../seller/dbcart.php';
+  $cart = new ShoppingCart();
+
+  $cart->addItem($product_name, $product_price, $quantity, $selected_size, $product_image);
+
+  header('Location: /final/seller/cart.php'); 
+  exit();
+}
+
 $database->closeConnection();
 ?>
 
@@ -72,34 +91,45 @@ $database->closeConnection();
           <h1 class="product-title">CAS Department Shirt</h1>
           <p class="product-price">₱ 500</p>
 
-          <!-- Size Options -->
-          <div class="product-options">
-            <h3>Sizes</h3>
-            <div class="size-options">
-              <?php foreach ($variations as $variation): ?>
-                <?php if ($variation['variation_type'] == 'size'): ?>
-                  <button class="size-option" 
-                          data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
-                          data-stock="<?= htmlspecialchars($variation['stock']) ?>">
-                    <?= htmlspecialchars($variation['variation_value']) ?>
-                  </button>
-                <?php endif; ?>
-              <?php endforeach; ?>
-            </div>
-          </div>
+          <form id="addToCartForm" method="POST" action="">
+            <input type="hidden" name="product_id" value="<?= $product_id; ?>">
+            <input type="hidden" name="product_name" value="CABE Department Shirt">
+            <input type="hidden" name="product_price" value="500">
+            <input type="hidden" name="product_image" value="/final/imgs/department shirts/cas.png">
+            <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
+            <input type="hidden" id="quantityInput" name="quantity" value="1">
 
-          <!-- Hidden input to store selected size -->
-          <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
-
-          <div class="quantity-selector">
-            <h4>Quantity</h4>
-            <div class="buttons">
-              <button id="decrease">-</button>
-              <input type="number" id="quantity" value="1" min="1" />
-              <button id="increase">+</button>
+            <!-- Size Options -->
+            <div class="product-options">
+              <h3>Sizes</h3>
+              <div class="size-options">
+                <?php foreach ($variations as $variation): ?>
+                  <?php if ($variation['variation_type'] == 'size'): ?>
+                    <button type="button" class="size-option" 
+                            data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
+                            data-stock="<?= htmlspecialchars($variation['stock']) ?>">
+                      <?= htmlspecialchars($variation['variation_value']) ?>
+                    </button>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </div>
             </div>
-            <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
-          </div>
+
+            <div class="quantity-selector">
+              <h4>Quantity</h4>
+              <div class="buttons">
+                <button type="button" id="decrease">-</button>
+                <input type="number" id="quantity" value="1" min="1" />
+                <button type="button" id="increase">+</button>
+              </div>
+              <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
+            </div>
+
+            <div class="product-buttons">
+              <button type="submit" class="add-to-cart">Add to Cart</button>
+              <button class="buy-now">Buy Now</button>
+            </div>
+          </form>
 
           <!-- Js for quantity adjustment and size selection -->
           <script>
@@ -165,12 +195,6 @@ $database->closeConnection();
               }
             });
           </script>
-
-          <div class="product-buttons">
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="buy-now">Buy Now</button>
-          </div>
-        </div>
       </section>
 
       <!-- Seller Info -->

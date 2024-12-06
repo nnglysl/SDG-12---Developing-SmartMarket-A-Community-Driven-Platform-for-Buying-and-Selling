@@ -13,12 +13,12 @@ body {
 
 /* Container Styles */
 .earning-container {
-    background: #fff; /* White container */
+    background: #ffffff; /* White container */
     padding: 20px 30px;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 100%;
-    max-width: 600px; /* Limit max width */
+    max-width: 800px; /* Limit max width */
     text-align: center;
     box-sizing: border-box; /* Include padding in dimensions */
 }
@@ -28,7 +28,7 @@ body {
 .earning-container h1 {
     font-size: 2rem;
     color: #333; /* Dark gray heading */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 
