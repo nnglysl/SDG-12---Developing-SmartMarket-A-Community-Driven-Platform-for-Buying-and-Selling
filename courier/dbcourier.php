@@ -18,19 +18,15 @@ class Courier{
         if ($result->num_rows > 0) {
             $buyer = $result->fetch_assoc();
             
-            // Verify the password 
             if (password_verify($password, $buyer['password'])) {
-                // Login successful 
                 session_start();
-                $_SESSION['courier_id'] = $buyer['courier_id']; // Store user ID in session
-                $_SESSION['email'] = $buyer['email']; // Store email in session
-                return true; // Indicate success
+                $_SESSION['courier_id'] = $buyer['courier_id'];
+                $_SESSION['email'] = $buyer['email']; 
+                return true; 
             } else {
-                // Incorrect password
                 return false;
             }
         } else {
-            // User not found
             return false;
         }
     }

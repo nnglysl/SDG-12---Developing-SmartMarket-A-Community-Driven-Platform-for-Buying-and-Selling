@@ -14,15 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
     // Create an instance of Courier
     $courierLogin = new Courier($conn);
 
-    // Attempt to log in the user
     if ($courierLogin->courierLogin($email, $password)) {
-        // Redirect to the home page on successful login
-        header("Location: ../courier/courierdashboard.php");
+        header("Location: ../courier/toreceiveorder.php");
         exit;
     } else {
-        // Login failed: incorrect email or password
         echo 'Invalid email or password.<br>Please try again or register.';
-        // Optionally, redirect back to the login page
         header("Location: ../courier/courierlogin.php");
         exit;
     }

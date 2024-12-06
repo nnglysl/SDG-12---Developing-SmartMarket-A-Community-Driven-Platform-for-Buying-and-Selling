@@ -1,30 +1,21 @@
 <?php
-require_once '../db/dbcon.php'; // Include your database connection
-require_once '../db/dblogin.php'; // Include the UserLogin class
+require_once '../db/Account.php'; 
 
-// Create a new database connection
+
 $database = new Database();
-$conn = $database->getConnection(); // Get the connection
-
-// Login form submission
+$conn = $database->getConnection(); 
+$message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Create an instance of UserLogin
     $userLogin = new UserLogin($conn);
 
-    // Attempt to log in the user
     if ($userLogin->login($email, $password)) {
-        // Redirect to the home page on successful login
-        header("Location: ../home/home.php");
+        header("Location: ../home/home.php"); // goto the home page 
         exit;
     } else {
-        // Login failed: incorrect email or password
-        echo 'Invalid email or password.<br>Please try again or register.';
-        // Optionally, redirect back to the login page
-        header("Location: login.php");
-        exit;
+        $message = 'Invalid email or password.<br>Please try again or register.';
     }
 }
 ?>
@@ -44,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logIn"])) {
     <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo">
     <div class="wrapper">
         <h2>Log In</h2>
+        <?php echo htmlspecialchars($message)?>
         <form method="post" action="">
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
