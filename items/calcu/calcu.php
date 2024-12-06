@@ -14,6 +14,9 @@ $stmt->bind_param("i", $product_id);
 $stmt->execute();
 $variations = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
+// Get the stock for the product (assuming no size)
+$stock = isset($variations[0]['stock']) ? $variations[0]['stock'] : 0;
+
 // Close connection
 $stmt->close();
 session_start();
@@ -23,13 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $product_price = $_POST['product_price'];
-    $selected_size = $_POST['selected_size'];
     $quantity = intval($_POST['quantity']);
     $product_image = $_POST['product_image']; 
     require_once '../../seller/dbcart.php';
     $cart = new ShoppingCart();
 
-    $cart->addItem($product_name, $product_price, $quantity, $selected_size, $product_image);
+    $cart->addItem($product_name, $product_price, $quantity, $product_image);
 
     header('Location: /final/seller/cart.php'); 
     exit();
@@ -90,30 +92,19 @@ $database->closeConnection();
                     <h1 class="product-title">Second Hand Casio Scientific Calculator</h1>
                     <p class="product-price" id="productPrice">₱ 500.00</p>
 
-                    <!-- Size Options -->
-                    <div class="product-options">
-                        <h3>Sizes</h3>
-                        <div class="size-options">
-                            <?php foreach ($variations as $variation): ?>
-                                <?php if ($variation['variation_type'] == 'size'): ?>
-                                    <button class="size-option" 
-                                            data-size="<?= htmlspecialchars($variation['variation_value']) ?>" 
-                                            data-stock="<?= htmlspecialchars($variation['stock']) ?>">
-                                        <?= htmlspecialchars($variation['variation_value']) ?>
-                                    </button>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+                    
 
                     <div class="quantity-selector">
                         <h4>Quantity</h4>
                         <div class="buttons">
                             <button id="decrease">-</button>
-                            <input type="number" id="quantity" name="quantity" value="1" min="1" />
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $stock; ?>" />
                             <button id="increase">+</button>
                         </div>
-                        <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
+                        <!-- Stock Information -->
+                    <div id="stock-info" class="stock-info">
+                        Available stock: <?php echo $stock; ?>
+                    </div>
                     </div>
 
                     <div class="product-buttons">
@@ -122,7 +113,6 @@ $database->closeConnection();
                             <input type="hidden" name="product_name" value="Second Hand Casio Scientific Calculator">
                             <input type="hidden" name="product_price" value="500">
                             <input type="hidden" name="product_image" value="/final/imgs/school supplies/calcu.png">
-                            <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
                             <input type="hidden" id="quantityInput" name="quantity" value="1">
                             <button type="submit" class="add-to-cart">Add to Cart</button>
                             <button type="button" class="buy-now">Buy Now</button>
@@ -153,46 +143,36 @@ $database->closeConnection();
         </div>
     </main>
 
-    <!-- JavaScript for Size Selection and Quantity -->
+    <!-- JavaScript for Quantity Selection -->
     <script>
-        const sizeButtons = document.querySelectorAll('.size-option');
         const quantityInput = document.getElementById('quantity');
         const stockInfo = document.getElementById('stock-info');
-        const selectedSizeInput = document.getElementById('selectedSizeInput');
+        const increaseButton = document.getElementById('increase');
+        const decreaseButton = document.getElementById('decrease');
 
-        sizeButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const selectedStock = this.getAttribute('data-stock');
-                stockInfo.textContent = 'Available stock: ' + selectedStock;
+        // Set the maximum stock limit
+        const maxStock = <?php echo $stock; ?>;
 
-                // Update the maximum quantity based on selected stock
-                quantityInput.max = selectedStock;
+        // Update the stock info and maximum value of quantity input
+        quantityInput.max = maxStock;
+        stockInfo.textContent = 'Available stock: ' + maxStock;
 
-                // Highlight the selected size button
-                sizeButtons.forEach(btn => btn.classList.remove('selected'));
-                this.classList.add('selected');
-
-                // Set the selected size in the hidden input
-                selectedSizeInput.value = this.getAttribute('data-size');
-
-                // Reset quantity to 1 when changing size
-                quantityInput.value = 1;
-            });
-        });
-
-        document.getElementById("increase").addEventListener("click", function () {
-            let maxStock = parseInt(quantityInput.max);
+        increaseButton.addEventListener('click', function () {
             if (parseInt(quantityInput.value) < maxStock) {
                 quantityInput.value = parseInt(quantityInput.value) + 1;
             }
         });
 
-        document.getElementById("decrease").addEventListener("click", function () {
+        decreaseButton.addEventListener('click', function () {
             if (quantityInput.value > 1) {
                 quantityInput.value = parseInt(quantityInput.value) - 1;
             }
         });
     </script>
+
+    <footer>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

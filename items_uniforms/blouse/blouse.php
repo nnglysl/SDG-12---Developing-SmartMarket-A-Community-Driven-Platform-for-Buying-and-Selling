@@ -5,33 +5,38 @@ include '../../php/search_bar.php';
 $database = new Database();
 $conn = $database->getConnection();
 
-$product_id = 9; 
+$product_id = 9; // Set the product ID dynamically based on the product you want to show
 
+// Query to fetch product variations and stock
 $query = "SELECT variation_value, stock, variation_type FROM product_variations WHERE product_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $product_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Fetch all variations data
 $variations = $result->fetch_all(MYSQLI_ASSOC);
 
 $stmt->close();
 session_start();
 
+// Get initial stock value (for example, the first size variation)
+$initial_stock = isset($variations[0]['stock']) ? $variations[0]['stock'] : 0;
+
+// When the form is submitted, add the item to the cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the product details from the form
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $product_price = $_POST['product_price'];
     $selected_size = $_POST['selected_size'];
     $quantity = intval($_POST['quantity']);
-    $product_image = $_POST['product_image']; 
+    $product_image = $_POST['product_image'];
+
     require_once '../../seller/dbcart.php';
     $cart = new ShoppingCart();
-
     $cart->addItem($product_name, $product_price, $quantity, $selected_size, $product_image);
 
-    header('Location: /final/seller/cart.php'); 
+    header('Location: /final/seller/cart.php');
     exit();
 }
 
@@ -76,6 +81,7 @@ $database->closeConnection();
             <a href="#"><i class="bx bx-cart"></i></a>
         </div>
     </header>
+    
     <main class="product-page">
         <div class="center-container">
             <!-- Product Details -->
@@ -99,7 +105,6 @@ $database->closeConnection();
                         <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
                         <input type="hidden" id="quantityInput" name="quantity" value="1">
 
-
                         <div class="quantity-selector">
                             <h4>Quantity</h4>
                             <div class="buttons">
@@ -107,7 +112,7 @@ $database->closeConnection();
                                 <input type="number" id="quantity" value="1" min="1" />
                                 <button type="button" id="increase">+</button>
                             </div>
-                            <p id="stock-info">Please select a size.</p> <!-- To show available stock -->
+                            <p id="stock-info">Available stock: <?php echo $initial_stock; ?></p>
                         </div>
 
                         <div class="product-buttons">
@@ -215,7 +220,7 @@ $database->closeConnection();
     </main>
 
     <footer>
-        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
     </footer>
 </body>
 </html>

@@ -185,6 +185,9 @@ $database->closeConnection();
             </section>
         </div>
     </main>
+    <footer>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

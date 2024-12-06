@@ -1,7 +1,6 @@
 <?php
 include '../db/dbcon.php';
 
-// Instantiate the Database class and get the connection
 $db = new Database();
 $conn = $db->getConnection();
 

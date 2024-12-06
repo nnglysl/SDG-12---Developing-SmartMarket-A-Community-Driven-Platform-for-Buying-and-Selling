@@ -202,6 +202,9 @@ $database->closeConnection();
             }
         });
     </script>
+     <footer>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

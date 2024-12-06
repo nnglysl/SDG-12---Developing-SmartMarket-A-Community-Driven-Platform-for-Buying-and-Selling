@@ -53,11 +53,11 @@ $database->closeConnection();
 </head>
 <body>
 <header>
-        <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
+        <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
 
         <ul class="nav">
             <li><a href="../home/home.php">HOME</a></li>
-            <li><a href="../shop/shop.php">SHOP</a></li>
+            <li><a href="/final/shop/shop.php">SHOP</a></li>
         </ul>
 
         <!-- Search Bar -->
@@ -234,6 +234,8 @@ $database->closeConnection();
       </section>
     </div>
   </main>
-
+  <footer>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
+  </footer>
 </body>
 </html>

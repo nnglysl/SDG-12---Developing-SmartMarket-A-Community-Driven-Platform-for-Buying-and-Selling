@@ -2,9 +2,6 @@
 
 require_once '../php/search_bar.php';
 
-$query = "SELECT * FROM products ORDER BY RAND() LIMIT 3"; // Fetch random products
-$result = mysqli_query($conn, $query);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
