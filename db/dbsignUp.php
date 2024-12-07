@@ -50,7 +50,8 @@ class UserRegistration {
 
         //Validate email domain
         if (!preg_match("/@g\.batstate-u.edu\.ph$/", $email)) {
-            return "Email must be from the domain '@g.batstate-u.edu.ph'.";
+            echo '<div class="centered-message">Use your G-suite account.</div>';
+            return;
         }
 
         // Check if passwords match

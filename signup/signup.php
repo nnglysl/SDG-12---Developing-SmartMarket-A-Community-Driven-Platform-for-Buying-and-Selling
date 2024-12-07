@@ -23,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../verify/verify.php");
         exit();
     } else {
-        echo $response;
-    }
+        echo '<div class="centered-message">' . $response . '</div>';    }
 }
 ?>
 <!DOCTYPE html>
