@@ -22,5 +22,12 @@ class Product {
         // Return the result
         return $result;
     }
+
+    public function __destruct() {
+        if ($this->conn) {
+            mysqli_close($this->conn); 
+            $this->conn = null; 
+        }
+    }
 }
 ?>

@@ -7,8 +7,13 @@ class HomeShop {
         $this->conn = $dbConnection;
     }
 
+<<<<<<< HEAD
      // get random products
      public function getRandomProducts() {
+=======
+    public function getRandomProducts()
+    {
+>>>>>>> 8bf14460a71664f616a7904fa7502aa9173cb1a3
         $query = "SELECT * FROM products ORDER BY RAND() LIMIT 3";
         $result = mysqli_query($this->conn, $query);
 
@@ -20,6 +25,7 @@ class HomeShop {
         }
     }
 
+<<<<<<< HEAD
     // fetch all products with their corresponding shop names
     public function getAllProductsWithShopNames() {
         $query = "SELECT p.product_name, p.price, p.image_path, p.description, s.shop_name 
@@ -34,5 +40,15 @@ class HomeShop {
             return [];
         }
     }
+=======
+    public function __destruct()
+    {
+        if ($this->conn) {
+            mysqli_close($this->conn); 
+            $this->conn = null; 
+        }
+    } 
+>>>>>>> 8bf14460a71664f616a7904fa7502aa9173cb1a3
 }
+
 ?>
