@@ -27,12 +27,21 @@ class BuyerOrder {
         return $orders;
     }
 
-    public function getShipOrders($buyer_id) {
-        return $this->fetchOrdersByStatus($buyer_id, 'to ship');
-    }
 
-    public function getReceivedOrders($buyer_id) {
-        return $this->fetchOrdersByStatus($buyer_id, 'to receive');
+    public function getReceivedOrder($buyer_id) {
+        $sql = "SELECT * FROM orders WHERE order_status = 'received' AND buyer_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $buyer_id); // Assuming buyer_id is an integer
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+
+        $stmt->close();
+        return $orders;
     }
 
     public function getDeliveredOrders($buyer_id) {
