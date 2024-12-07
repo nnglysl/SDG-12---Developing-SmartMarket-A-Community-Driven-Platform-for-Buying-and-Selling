@@ -9,7 +9,6 @@ class Home
         $this->conn = $dbConnection;
     }
 
-    // Get Random Products
     public function getRandomProducts()
     {
         $query = "SELECT * FROM products ORDER BY RAND() LIMIT 3";
@@ -22,5 +21,14 @@ class Home
             return [];
         }
     }
+
+    public function __destruct()
+    {
+        if ($this->conn) {
+            mysqli_close($this->conn); 
+            $this->conn = null; 
+        }
+    } 
 }
+
 ?>
