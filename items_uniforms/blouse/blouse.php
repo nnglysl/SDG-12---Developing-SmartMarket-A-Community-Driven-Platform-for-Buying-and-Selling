@@ -5,7 +5,7 @@ include '../../php/search_bar.php';
 $database = new Database();
 $conn = $database->getConnection();
 
-$product_id = 9; 
+$product_id = 9; // Set the product ID dynamically based on the product you want to show
 
 $query = "SELECT variation_value, stock, variation_type FROM product_variations WHERE product_id = ?";
 $stmt = $conn->prepare($query);

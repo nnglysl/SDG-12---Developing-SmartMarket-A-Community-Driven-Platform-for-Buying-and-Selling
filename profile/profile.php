@@ -32,7 +32,6 @@ $deliveredCount = $buyerOrder->countDeliveredOrders($buyerId);
     <link rel="stylesheet" href="../css/profile.css"/>
 
 </head>
-
 <body>
     <?php include('../header/header.php'); ?>
     

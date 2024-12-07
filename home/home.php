@@ -1,11 +1,12 @@
 <?php
 require_once '../db/dbcon.php';
+require_once '../db/dbhome.php';
 
 // Create a new database connection
 $database = new Database();
-$conn = $database->getConnection(); 
+$conn = $database->getConnection();
 
-// Fetch all products with their shop names
+//Fetch all products with their shop names
 $query = "SELECT p.product_name, p.price, p.image_path, p.description, s.shop_name 
           FROM products p 
           JOIN seller s ON p.seller_id = s.seller_id";
@@ -37,14 +38,14 @@ $result = mysqli_query($conn, $query);
 
     <section id="shop" class="shop-section-first" aria-labelledby="shop-heading">
         <div class="products">
-            <?php if ($result && mysqli_num_rows($result) > 0) { ?>
-                <?php while ($product = mysqli_fetch_assoc($result)) { ?>
+            <?php if (!empty($products)) { ?>
+                <?php foreach ($products as $product) { ?>
                     <div class="product">
                         <a href="<?php echo htmlspecialchars($product['item_path']); ?>">
                             <img src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Product Image" />
                             <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
                             <p>₱ <?php echo htmlspecialchars(number_format($product['price'], 2)); ?></p>
-                            <p class="shop-name">Sold by: <?php echo htmlspecialchars($product['shop_name']); ?></p>
+                            <p><?php echo htmlspecialchars($product['condition']); ?></p>
                         </a>
                     </div>
                 <?php } ?>

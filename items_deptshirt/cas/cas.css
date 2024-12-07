@@ -355,3 +355,19 @@ input[type="number"] {
     line-height: 1.6; 
     color: #000000; 
 }
+
+/* Footer styles */
+footer {
+    background-color: #ffc6c6; /* Dark background color */
+    color: rgb(0, 0, 0); /* White text */
+    text-align: center; /* Center the text */
+    padding: 20px 0; /* Add padding to top and bottom */
+    position: fixed; /* Fixed at the bottom of the page */
+    bottom: 0; /* Align at the bottom */
+    width: 100%; /* Make the footer span the full width */
+    font-size: 14px; /* Adjust font size */
+  }
+  
+  footer p {
+    margin: 0; /* Remove default margin */
+  }

@@ -178,14 +178,13 @@ $database->closeConnection();
                 </div>
             </section>
 
-            <!-- Product Description -->
-            <section class="product-description">
-                <h2>Product Description</h2>
-                <p>This University Collar Pin is a stylish accessory that adds a touch of elegance to any outfit. Measuring 1 inch, it is perfect for formal occasions or as a gift for graduates. Made with high-quality materials, this collar pin is designed to last.</p>
-                <p>Care Instructions: Keep away from moisture and clean with a soft cloth.</p>
-            </section>
-        </div>
-    </main>
+      <!-- Product Description -->
+      <section class="product-description">
+        <h2>Product Description</h2>
+        <p>Size: 1inch</p>
+      </section>
+    </div>
+  </main>
 </body>
 
 </html>

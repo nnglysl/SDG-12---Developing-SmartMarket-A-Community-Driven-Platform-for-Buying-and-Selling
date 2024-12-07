@@ -27,7 +27,6 @@ class BuyerOrder {
         return $orders;
     }
 
-    // Public methods to get orders by status
     public function getShipOrders($buyer_id) {
         return $this->fetchOrdersByStatus($buyer_id, 'to ship');
     }

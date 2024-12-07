@@ -176,15 +176,13 @@ $database->closeConnection();
                 </div>
             </section>
 
-            <!-- Product Description -->
-            <section class="product-description">
-                <h2>Product Description</h2>
-                <p>This BSU ID Lace is designed for durability and comfort, making it perfect for students and staff alike. It securely holds your ID card while providing a stylish look. Ideal for daily use, this ID lace is a must-have accessory for anyone needing to display their identification.</p>
-                <p>Length: 36 inches (91 cm)</p> <!-- Added length information -->
-                <p>Care Instructions: Keep away from extreme heat and moisture. Clean with a damp cloth if necessary.</p>
-            </section>
-        </div>
-    </main>
+      <!-- Product Description -->
+      <section class="product-description">
+        <h2>Product Description</h2>
+        <p>BSU ID Lace</p>
+      </section>
+    </div>
+  </main>
 </body>
 
 </html>

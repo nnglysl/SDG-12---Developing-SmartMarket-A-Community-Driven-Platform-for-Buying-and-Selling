@@ -176,32 +176,11 @@ $database->closeConnection();
                 colorButtons.forEach(btn => btn.classList.remove('selected'));
                 this.classList.add('selected');
 
-                // Reset the quantity to 1 when changing color
-                quantityInput.value = 1;
-
-                // Update the product image input
-                productImageInput.value = selectedImage;
-
-                // Update the selected size (if applicable)
-                selectedSizeInput.value = this.getAttribute('data-color'); // Assuming color is the size
-            });
-        });
-
-        document.getElementById("increase").addEventListener("click", function () {
-            let quantityInput = document.getElementById("quantity");
-            let maxStock = parseInt(quantityInput.getAttribute('max'));
-            if (parseInt(quantityInput.value) < maxStock) {
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-            }
-        });
-
-        document.getElementById("decrease").addEventListener("click", function () {
-            let quantityInput = document.getElementById("quantity");
-            if (quantityInput.value > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-            }
-        });
-    </script>
+        // Reset the quantity to 1 when changing color
+        quantityInput.value = 1;
+      });
+    });
+  </script>
 </body>
 
 </html>

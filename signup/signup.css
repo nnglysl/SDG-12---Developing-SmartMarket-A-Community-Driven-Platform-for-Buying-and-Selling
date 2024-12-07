@@ -69,3 +69,17 @@ input:focus{
     color: rgb(17, 107, 143);
     text-decoration: none;
 }
+
+.centered-message {
+    position: fixed; /* Ensures it stays at the bottom of the viewport */
+    bottom: 300px; /* Position it at the bottom */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for the center alignment */
+    text-align: center;
+    font-size: 10px;
+    color: rgb(255, 0, 0); 
+    padding: 10px 20px; /* Add padding for the message box */
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Limit the max width */
+}
+

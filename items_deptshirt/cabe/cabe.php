@@ -52,13 +52,12 @@ $database->closeConnection();
   <link rel="stylesheet" href="/final/css/nav.css" />
 </head>
 <body>
-<header>
-        <img src="../imgs/mainpagelogo.png" alt="Logo" class="logo" />
-
-        <ul class="nav">
-            <li><a href="../home/home.php">HOME</a></li>
-            <li><a href="../shop/shop.php">SHOP</a></li>
-        </ul>
+  <header>
+    <img src="/final/imgs/mainpagelogo.png" alt="Logo" class="logo" />
+    <ul class="nav">
+      <li><a href="/final/home/home.php">HOME</a></li>
+      <li><a href="/final/shop/shop.php">SHOP</a></li>
+    </ul>
 
         <!-- Search Bar -->
         <div class="search-container">
@@ -234,6 +233,8 @@ $database->closeConnection();
       </section>
     </div>
   </main>
-
+  <footer>
+        <p>&copy; 2024 SmartMarket. All rights reserved.</p>
+  </footer>
 </body>
 </html>

@@ -3,55 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .sidebar {
-    width: 250px;
-    background-color: #222;
-    color: white;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 50px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar-item {
-    text-decoration: none;
-    color: white;
-    display: block;
-    padding: 15px 20px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-
-.sidebar-item:hover {
-    background-color: #ffb6c1;
-    color: #333;
-}
-
-.sidebar-item i {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-/* Reset default margins and paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-    </style>
+    <link rel = "stylesheet" href = "../sidebar/sidebar.css">
+    <title>Sidebar</title>
 </head>
 <body>
         <div class="sidebar">
+            <h2>Seller Dashboard</h2>
             <ul>
                 <li><a href="../seller/sellerdashboard.php" class="sidebar-item"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="../seller/addproduct.php" class="sidebar-item"><i class="fas fa-box"></i> Add Product</a></li>
