@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 09:01 PM
+-- Generation Time: Dec 08, 2024 at 12:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,7 +51,11 @@ INSERT INTO `buyer` (`buyer_id`, `username`, `first_name`, `last_name`, `email`,
 (12, 'coco3', 'colleen', 'Perez', 'rjcatapang12@gmail.com', '$2y$10$JwhQDTKIs8IYCgM..iXcC.PiVb6NodV0Ma3VnLgAGnyxOpMlOc49G', NULL, NULL, 3296, 'verified'),
 (14, 'cocococo', 'colleen', 'Perez', '23-07395@g.batstate-u.edu.ph', '$2y$10$T0C2Agz5FjVNuG/zu3KXMue0Qekv1ZnhG.EhhnxbZ8xVLGyj4r0RK', NULL, '../uploads/674f11f689fb5_user.jpg', 7755, 'verified'),
 (15, 'sadsadgfs', 'colleen', 'Perez', '23-38343@g.batstate-u.edu.ph', '$2y$10$6CvTgKyJp/2lC86vAKVU/.0pd7hYl.w/uN8ctns7pKpyeaA8UrQOC', NULL, '../uploads/674fb65bb1bb3_user.jpg', 2573, 'verified'),
-(17, 'gly_sales', 'glysel', 'sales', '23-32379@g.batstate-u.edu.ph', '$2y$10$h/anqtlj4pWVHkfFfFWiJOqXxR1Vyy..mjQDT3z5vcvGkPZUpFqv6', NULL, '../uploads/675292f7c80b8_Back to school Instagram post Square.png', 6793, 'verified');
+(17, 'gly_sales', 'glysel', 'sales', '23-32379@g.batstate-u.edu.ph', '$2y$10$h/anqtlj4pWVHkfFfFWiJOqXxR1Vyy..mjQDT3z5vcvGkPZUpFqv6', NULL, '../uploads/675292f7c80b8_Back to school Instagram post Square.png', 6793, 'verified'),
+(18, 'glysel_sales', 'glysel', 'sales', '23-45678@g.batstate-u.edu.ph', '$2y$10$LuR04kUPPkf6OVJRtA4CqekRzHig2w6yWTbZ6VkMLkmKrxlyz7ZCC', NULL, NULL, 1503, 'verified'),
+(19, '_nnglysl', 'glysel', 'sales', '23-12345@g.batstate-u.edu.ph', '$2y$10$tX8homifzwHrV/ML1rCa6egaxToiSZvwhmqpneHlquj9mmCZQBvc2', NULL, '../uploads/6753734ba1db5_IMG_20220526_230327_337.jpg', 3533, 'verified'),
+(20, 'nnglysl', 'glysel', 'sales', '23-3456@g.batstate-u.edu.ph', '$2y$10$j3garK5HCshZa5ttmWPmeOYk7EvGbUaSjExpnIeQPf4GtzSP5f7ne', NULL, NULL, 2639, 'not verified'),
+(21, 'nnglysel', 'glysel', 'sales', '23-7895@g.batstate-u.edu.ph', '$2y$10$gv2BK.ng94Q/DvFK75xpq.aFu73GjkVVFwbwM/V8JZeku1mHb0TZO', NULL, NULL, 3992, 'verified');
 
 -- --------------------------------------------------------
 
@@ -325,7 +329,7 @@ ALTER TABLE `seller`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `buyer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `buyer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `cancelledorders`
